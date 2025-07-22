@@ -48,3 +48,6 @@ Solution/
 Hidden*Tests.cs
 solution.md
 *NotYet/
+
+.quickpulse/
+.quickacid/
