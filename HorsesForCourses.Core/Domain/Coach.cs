@@ -58,7 +58,8 @@ public class Coach : DomainEntity<Coach>
                     {
                         if (newSlot.Day == existingSlot.Day &&
                             newSlot.Start < existingSlot.End &&
-                            newSlot.End > existingSlot.Start)
+                            newSlot.End > existingSlot.Start
+                            )
                         {
                             return false;
                         }

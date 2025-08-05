@@ -2,16 +2,20 @@ namespace HorsesForCourses.Core.Domain;
 
 public record Skill
 {
-    public string Value { get; }
+    private string value;
+
+    public string Value => value;
+
+    private Skill() { }
 
     private Skill(string value)
     {
-        Value = value;
+        this.value = value;
     }
 
     public static Skill From(string value)
     {
-        if (string.IsNullOrEmpty(value))
+        if (string.IsNullOrWhiteSpace(value))
             throw new ArgumentException("Skill value cannot be empty.");
         return new Skill(value);
     }

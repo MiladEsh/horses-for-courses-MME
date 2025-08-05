@@ -6,6 +6,8 @@ public record TimeSlot
     public OfficeHour Start { get; }
     public OfficeHour End { get; }
 
+    private TimeSlot() { }
+
     private TimeSlot(CourseDay day, OfficeHour start, OfficeHour end)
     {
         Day = day;
@@ -17,7 +19,6 @@ public record TimeSlot
     {
         if (start >= end)
             throw new ArgumentException("Time slot must be at least 1 hour long.");
-
         return new TimeSlot(day, start, end);
     }
 }
