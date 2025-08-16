@@ -51,28 +51,38 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
             tsb.WithOwner().HasForeignKey("CourseId");
             tsb.ToTable("CourseTimeSlots");
 
-            tsb.HasKey("CourseId", "Day", "StartHour");
+            tsb.HasKey(t => new
+            {
+                t.CourseId,
+                t.Day,
+                t.StartHour
+            });
 
             tsb.Property(t => t.Day)
-            .HasColumnName("Day")
-            .IsRequired();
+                .HasColumnName("Day")
+                .IsRequired();
 
-            // Map Start
-            tsb.OwnsOne(t => t.Start, sb =>
-            {
-                sb.Property(o => o.Value)
+            tsb.Ignore(t => t.StartHour);
+
+            tsb.Property(t => t.Start)
                 .HasColumnName("StartHour")
+                .HasConversion(
+                    v => v.Value,
+                    v => OfficeHour.From(v))
                 .IsRequired();
-            });
 
-            // Map End
-            tsb.OwnsOne(t => t.End, sb =>
-            {
-                sb.Property(o => o.Value)
+            tsb.Ignore(t => t.EndHour);
+
+            tsb.Property(t => t.End)
                 .HasColumnName("EndHour")
+                .HasConversion(
+                    v => v.Value,
+                    v => OfficeHour.From(v))
                 .IsRequired();
-            });
         });
+
+
+
 
 
         // === Coach assignment ===

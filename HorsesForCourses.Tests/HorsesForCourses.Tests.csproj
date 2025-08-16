@@ -23,4 +23,10 @@
     <ProjectReference Include="..\HorsesForCourses.WebApi\HorsesForCourses.WebApi.csproj" />
   </ItemGroup>
 
+   <ItemGroup>
+    <ProjectReference Include="..\..\QuickAcid\QuickAcid\QuickAcid.csproj" />
+    <ProjectReference Include="..\..\QuickFuzzr\QuickFuzzr\QuickFuzzr.csproj" />
+    <ProjectReference Include="..\..\QuickPulse.Explains\QuickPulse.Explains\QuickPulse.Explains.csproj" />
+  </ItemGroup> 
+
 </Project>

@@ -8,7 +8,6 @@ public class CoachConfiguration : IEntityTypeConfiguration<Coach>
 {
     public void Configure(EntityTypeBuilder<Coach> builder)
     {
-        // === Key & ID mapping ===
         builder.HasKey(c => c.Id);
 
         builder.Property(c => c.Id)
@@ -16,7 +15,6 @@ public class CoachConfiguration : IEntityTypeConfiguration<Coach>
             .HasColumnName("Id")
             .ValueGeneratedNever();
 
-        // === Scalar properties ===
         builder.Property(c => c.Name)
             .IsRequired()
             .HasMaxLength(100);
@@ -25,28 +23,38 @@ public class CoachConfiguration : IEntityTypeConfiguration<Coach>
             .IsRequired()
             .HasMaxLength(100);
 
-        // === AssignedCourses ===
-        builder.Navigation(c => c.AssignedCourses)
-            .UsePropertyAccessMode(PropertyAccessMode.Field);
+        // builder.Navigation(c => c.AssignedCourses)
+        //     .UsePropertyAccessMode(PropertyAccessMode.Field);
 
-        builder.HasMany<Course>("_assignedCourses")
-            .WithOne() // adjust if Course has a Coach navigation
+        // builder.HasMany<Course>("_assignedCourses")
+        //     .WithOne() 
+        //     .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(c => c.AssignedCourses)
+            .WithOne() // or .WithOne(c => c.Coach) 
             .OnDelete(DeleteBehavior.Restrict);
 
-        // === Skills: OwnsMany value object ===
-        builder.OwnsMany(c => c.Skills, sb =>
-        {
-            sb.WithOwner().HasForeignKey("CoachId");
+        // builder.Navigation(c => c.AssignedCourses)
+        //     .UsePropertyAccessMode(PropertyAccessMode.Field);
 
-            sb.Property<string>("value") // 👈 backing field name
-              .HasColumnName("Skill")
-              .IsRequired()
-              .HasMaxLength(100);
+        builder.Property(c => c.Skills)
+            .HasConversion(
+                v => string.Join(',', v.Select(a => a.Value)),
+                v => v.Split(',', StringSplitOptions.None).Select(a => Skill.From(a)).ToList());
 
-            sb.HasKey("CoachId", "value");
+        // builder.OwnsMany(c => c.Skills, sb =>
+        // {
+        //     sb.WithOwner().HasForeignKey("CoachId");
 
-            sb.ToTable("CoachSkills");
-        });
+        //     sb.Property<string>("value")
+        //       .HasColumnName("Skill")
+        //       .IsRequired()
+        //       .HasMaxLength(100);
+
+        //     sb.HasKey("CoachId", "value");
+
+        //     sb.ToTable("CoachSkills");
+        // });
 
         builder.ToTable("Coaches");
     }

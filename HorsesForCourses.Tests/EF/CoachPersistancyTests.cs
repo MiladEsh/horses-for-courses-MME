@@ -1,3 +1,4 @@
+using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.WebApi;
 using Microsoft.Data.Sqlite;
@@ -15,7 +16,7 @@ public class CoachPersistancyTests
         var options = new DbContextOptionsBuilder<AppDBContext>()
             .UseSqlite(connection)
             .Options;
-
+        var id = Guid.Empty;
         using (var context = new AppDBContext(options))
         {
             await context.Database.EnsureCreatedAsync();
@@ -23,16 +24,20 @@ public class CoachPersistancyTests
 
         using (var context = new AppDBContext(options))
         {
-            context.Coaches.Add(new Coach("naam", "em@il"));
+            var coach = new Coach("naam", "em@il");
+            id = coach.Id.Value;
+            coach.AddSkill(Skill.From("whatever"));
+            context.Coaches.Add(coach);
             await context.SaveChangesAsync();
         }
 
         using (var context = new AppDBContext(options))
         {
-            var coach = await context.Coaches.FindAsync(1);
+            var coach = await context.Coaches.FindAsync(Id<Coach>.From(id));
 
             Assert.NotNull(coach);
             Assert.Equal("naam", coach!.Name);
+            Assert.Equal("whatever", coach!.Skills.First().Value);
         }
     }
 }

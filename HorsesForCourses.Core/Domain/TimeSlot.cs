@@ -1,9 +1,17 @@
+using HorsesForCourses.Core.Abstractions;
+
 namespace HorsesForCourses.Core.Domain;
 
 public record TimeSlot
 {
+    public Id<Course> CourseId { get; private set; }
+
     public CourseDay Day { get; }
+
+    public int StartHour => Start.Value;
     public OfficeHour Start { get; }
+
+    public int EndHour => Start.Value;
     public OfficeHour End { get; }
 
     private TimeSlot() { }

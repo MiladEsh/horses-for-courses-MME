@@ -27,6 +27,6 @@ public class IdValueConverter<T> : ValueConverter<Id<T>, Guid>
     public IdValueConverter()
         : base(
             id => id.Value,
-            value => Id<T>.From(value)) // Use the factory method
+            value => Id<T>.From(value))
     { }
 }
