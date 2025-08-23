@@ -2,21 +2,19 @@ namespace HorsesForCourses.Core.Abstractions;
 
 public record Id<T>
 {
-    private Guid value;
+    private readonly int value;
+    public int Value => value;
 
-    // Needed by EF Core
-    public Guid Value => value;
+    public static Id<T> Empty { get; } = new Id<T>(default(int));
 
-    // EF needs a public parameterless constructor
     private Id() { }
 
-    private Id(Guid value) => this.value = value;
+    private Id(int value) => this.value = value;
 
-    public override string ToString() => $"{typeof(T).Name}: {value}";
+    //public override string ToString() => $"{typeof(T).Name}: {value}";
 
-    public static Id<T> New() => new Id<T>(Guid.NewGuid());
+    //public static Id<T> New() => new Id<T>(Guid.NewGuid());
 
-    // Factory for EF Core when using ValueConverter
-    public static Id<T> From(Guid guid) => new Id<T>(guid);
+    public static Id<T> From(int value) => new(value);
 }
 

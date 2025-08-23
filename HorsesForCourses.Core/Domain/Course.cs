@@ -14,7 +14,7 @@ public class Course : DomainEntity<Course>
 
     public Coach? AssignedCoach { get; private set; }
 
-    public Course(string name, DateOnly startDate, DateOnly endDate) : base(Id<Course>.New())
+    public Course(string name, DateOnly startDate, DateOnly endDate) //: base(Id<Course>.New())
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Course name cannot be empty.");

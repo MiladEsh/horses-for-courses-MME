@@ -23,7 +23,7 @@ public class AppDBContext : DbContext
     }
 }
 
-public class IdValueConverter<T> : ValueConverter<Id<T>, Guid>
+public class IdValueConverter<T> : ValueConverter<Id<T>, int>
 {
     public IdValueConverter()
         : base(

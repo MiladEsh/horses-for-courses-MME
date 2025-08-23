@@ -17,7 +17,7 @@ public class CoachPersistancyTests
         var options = new DbContextOptionsBuilder<AppDBContext>()
             .UseSqlite(connection)
             .Options;
-        var id = Guid.Empty;
+        var id = 0;
         using (var context = new AppDBContext(options))
         {
             await context.Database.EnsureCreatedAsync();

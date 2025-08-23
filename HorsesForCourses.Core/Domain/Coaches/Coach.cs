@@ -12,7 +12,7 @@ public class Coach : DomainEntity<Coach>
     private readonly List<Course> assignedCourses = new();
     public IReadOnlyCollection<Course> AssignedCourses => assignedCourses.AsReadOnly();
 
-    public Coach(string name, string email) : base(Id<Coach>.New())
+    public Coach(string name, string email) //: base(Id<Coach>.New())
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new CoachNameCanNotBeEmpty();
