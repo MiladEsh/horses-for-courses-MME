@@ -1,4 +1,4 @@
-using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

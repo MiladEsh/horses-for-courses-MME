@@ -1,33 +1,10 @@
 using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Core.Domain.Coaches;
 
 namespace HorsesForCourses.Tests.Core;
 
-public class CoachTests
+public class CoachSkillsTests
 {
-    [Fact]
-    public void CreateCoach_WithValidData_ShouldSucceed()
-    {
-        var coach = new Coach("Mark", "mark@example.com");
-
-        Assert.Equal("Mark", coach.Name);
-        Assert.Equal("mark@example.com", coach.Email);
-        Assert.Empty(coach.Skills);
-    }
-
-    [Fact]
-    public void CreateCoach_WithEmptyName_ShouldThrow()
-    {
-        Assert.Throws<ArgumentException>(() =>
-            new Coach("", "mail@example.com"));
-    }
-
-    [Fact]
-    public void CreateCoach_WithEmptyEmail_ShouldThrow()
-    {
-        Assert.Throws<ArgumentException>(() =>
-            new Coach("Coachy", ""));
-    }
-
     [Fact]
     public void AddSkill_ShouldAdd_WhenNotAlreadyPresent()
     {
@@ -39,7 +16,7 @@ public class CoachTests
     }
 
     [Fact]
-    public void AddSkill_ShouldNotAddDuplicate()
+    public void AddSkill_ShouldThrowIfAddDuplicate()
     {
         var coach = new Coach("Sam", "sam@example.com");
 

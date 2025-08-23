@@ -1,4 +1,4 @@
-using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Core.Domain.Coaches;
 
 namespace HorsesForCourses.WebApi.Controllers;
 

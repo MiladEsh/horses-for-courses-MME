@@ -1,5 +1,6 @@
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 

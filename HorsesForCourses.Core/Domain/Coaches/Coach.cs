@@ -1,6 +1,6 @@
 using HorsesForCourses.Core.Abstractions;
 
-namespace HorsesForCourses.Core.Domain;
+namespace HorsesForCourses.Core.Domain.Coaches;
 
 public class Coach : DomainEntity<Coach>
 {
@@ -9,13 +9,15 @@ public class Coach : DomainEntity<Coach>
 
     public HashSet<Skill> Skills { get; private set; } = new();
 
-    private readonly List<Course> _assignedCourses = new();
-    public IReadOnlyCollection<Course> AssignedCourses => _assignedCourses.AsReadOnly();
+    private readonly List<Course> assignedCourses = new();
+    public IReadOnlyCollection<Course> AssignedCourses => assignedCourses.AsReadOnly();
 
     public Coach(string name, string email) : base(Id<Coach>.New())
     {
-        if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Coach name cannot be empty.");
-        if (string.IsNullOrWhiteSpace(email)) throw new ArgumentException("Coach email cannot be empty.");
+        if (string.IsNullOrWhiteSpace(name))
+            throw new CoachNameCanNotBeEmpty();
+        if (string.IsNullOrWhiteSpace(email))
+            throw new CoachEmailCanNotBeEmpty();
 
         Name = name;
         Email = email;
@@ -38,17 +40,17 @@ public class Coach : DomainEntity<Coach>
 
     public void AssignCourse(Course course)
     {
-        _assignedCourses.Add(course);
+        assignedCourses.Add(course);
     }
 
     public void UnassignCourse(Course course)
     {
-        _assignedCourses.Remove(course);
+        assignedCourses.Remove(course);
     }
 
     public bool IsAvailableFor(Course course)
     {
-        foreach (var assigned in _assignedCourses)
+        foreach (var assigned in assignedCourses)
         {
             if (DatesOverlap(course, assigned))
             {

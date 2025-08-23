@@ -1,4 +1,5 @@
 using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorsesForCourses.WebApi.Controllers;
