@@ -11,7 +11,7 @@ public class CoachPersistancyTests
     [Fact]
     public async Task ShouldPersistData()
     {
-        var connection = new SqliteConnection("DataSource=:memory:");
+        await using var connection = new SqliteConnection("DataSource=:memory:");
         await connection.OpenAsync();
         var options = new DbContextOptionsBuilder<AppDBContext>()
             .UseSqlite(connection)

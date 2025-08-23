@@ -7,7 +7,7 @@ public class Coach : DomainEntity<Coach>
     public string Name { get; private set; }
     public string Email { get; private set; }
 
-    public List<Skill> Skills { get; private set; } = new();
+    public HashSet<Skill> Skills { get; private set; } = new();
 
     private readonly List<Course> _assignedCourses = new();
     public IReadOnlyCollection<Course> AssignedCourses => _assignedCourses.AsReadOnly();

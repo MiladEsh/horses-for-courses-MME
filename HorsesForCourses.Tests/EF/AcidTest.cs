@@ -7,6 +7,7 @@ using QuickAcid;
 using QuickFuzzr;
 using QuickFuzzr.Data;
 using QuickFuzzr.UnderTheHood;
+using QuickPulse.Investigates;
 using QuickPulse.Show;
 using WibblyWobbly;
 
@@ -47,7 +48,7 @@ public class AcidTest
             })
             from createNotNull in "Reloaded Coach is not Null".Spec(() => createdReloaded != null)
             from createSpec in "Create and then reload is memberwise equal.".Spec(
-                () => CoachIsMemberWiseEqual(coach, createdReloaded))
+                () => Investigate.These(coach, createdReloaded).AllEqual)
 
 
             from newSkill in "New Skill".Input(
@@ -74,8 +75,10 @@ public class AcidTest
                 // from updateSkills in "Update and then reload new skill added.".SpecIf(
                 //     () => updatedReloaded != null && !string.IsNullOrEmpty(newSkill),
                 //     () => updatedReloaded.Skills.Contains(Skill.From(newSkill)))
+            from findings in "findings".Derived(() => Investigate.These(update, updatedReloaded))
+            from trace in "Findings: ".TraceIf(() => !findings.AllEqual, () => Introduce.This(findings.TheExhibit))
             from updateSpec in "Update and then reload is memberwise equal.".Spec(
-                () => CoachIsMemberWiseEqual(update, updatedReloaded))
+                () => findings.AllEqual)
 
             select Acid.Test;
 
@@ -86,13 +89,7 @@ public class AcidTest
                 FileAs = "Acid",
                 // Verbose = true
             })
-            .With(1.Runs()).AndOneExecutionPerRun();
-    }
-
-
-    private static bool CoachIsMemberWiseEqual(Coach coach, Coach otherCoach)
-    {
-        return Introduce.This(coach) == Introduce.This(otherCoach);
+            .With(100.Runs()).AndOneExecutionPerRun();
     }
 
     private static AppDBContext GetDbContext(DbContextOptions<AppDBContext> options)
