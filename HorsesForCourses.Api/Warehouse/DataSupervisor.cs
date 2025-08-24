@@ -1,10 +1,12 @@
+using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
 
 namespace HorsesForCourses.Api.Warehouse;
 
 public interface IAmASuperVisor
 {
-    Task Enlist(Coach coach);
+    Task Enlist(IDomainEntity entity);
+    Task Ship();
 }
 
 public class DataSupervisor : IAmASuperVisor
@@ -16,8 +18,13 @@ public class DataSupervisor : IAmASuperVisor
         this.dbContext = dbContext;
     }
 
-    public async Task Enlist(Coach coach)
+    public async Task Enlist(IDomainEntity entity)
     {
-        await dbContext.AddAsync(coach);
+        await dbContext.AddAsync(entity);
+    }
+
+    public async Task Ship()
+    {
+        await dbContext.SaveChangesAsync();
     }
 }

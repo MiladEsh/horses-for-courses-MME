@@ -1,4 +1,4 @@
-namespace HorsesForCourses.Core.Domain;
+namespace HorsesForCourses.Api;
 
 public class ApiException : Exception
 {

@@ -13,7 +13,7 @@ public class Coach : DomainEntity<Coach>
     private readonly List<Course> assignedCourses = new();
     public IReadOnlyCollection<Course> AssignedCourses => assignedCourses.AsReadOnly();
 
-    public Coach(string name, string email) //: base(Id<Coach>.New())
+    public Coach(string name, string email)
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new CoachNameCanNotBeEmpty();
@@ -22,6 +22,24 @@ public class Coach : DomainEntity<Coach>
 
         Name = name;
         Email = email;
+    }
+
+    public virtual void UpdateSkills(IEnumerable<string> skills)
+    {
+        var duplicates = skills
+            .GroupBy(x => x)
+            .Where(g => g.Count() > 1)
+            .SelectMany(g => g)
+            .Distinct()
+            .ToList();
+
+        if (skills.Any())
+            throw new CoachAlreadyHasSkill(string.Join(",", skills));
+
+        Skills.Clear();
+        skills.Select(a => Skill.From(a))
+            .ToList()
+            .ForEach(a => Skills.Add(a));
     }
 
     public void AddSkill(Skill skill)

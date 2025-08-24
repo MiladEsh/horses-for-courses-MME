@@ -16,7 +16,7 @@ public class AppDBContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.ApplyConfiguration(new CoachConfiguration());
+        modelBuilder.ApplyConfiguration(new CoachesConfiguration());
         modelBuilder.ApplyConfiguration(new CourseConfiguration());
     }
 }

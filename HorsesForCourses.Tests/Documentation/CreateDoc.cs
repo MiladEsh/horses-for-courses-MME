@@ -1,6 +1,6 @@
 using QuickPulse.Explains;
 
-namespace HorsesForCourses.Tests.Domain;
+namespace HorsesForCourses.Tests.Documentation;
 
 [DocFile]
 [DocFileHeader("Horses For Courses")]
