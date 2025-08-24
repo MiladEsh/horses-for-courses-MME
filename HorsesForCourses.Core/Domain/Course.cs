@@ -1,5 +1,6 @@
 ﻿using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Core.Domain.Skills;
 
 namespace HorsesForCourses.Core.Domain;
 

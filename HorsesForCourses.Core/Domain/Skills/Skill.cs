@@ -1,4 +1,4 @@
-namespace HorsesForCourses.Core.Domain;
+namespace HorsesForCourses.Core.Domain.Skills;
 
 public record Skill
 {
@@ -16,7 +16,7 @@ public record Skill
     public static Skill From(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException("Skill value cannot be empty.");
+            throw new SkillValueCanNotBeEmpty();
         return new Skill(value);
     }
 }

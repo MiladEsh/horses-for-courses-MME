@@ -1,38 +1,11 @@
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
-using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
+using HorsesForCourses.Core.Domain.Skills;
 
 namespace HorsesForCourses.Tests.Core;
 
-public class CoachSkillsTests
+public class CoachOldTests
 {
-    [Fact]
-    public void AddSkill_ShouldAdd_WhenNotAlreadyPresent()
-    {
-        var coach = new Coach("Anna", "anna@example.com");
-        coach.AddSkill(Skill.From("Agile"));
-        Assert.Contains(Skill.From("Agile"), coach.Skills);
-    }
-
-    [Fact]
-    public void AddSkill_duplicate_throws()
-    {
-        var coach = new Coach("Sam", "sam@example.com");
-
-        coach.AddSkill(Skill.From("Backend"));
-        var ex = Assert.Throws<CoachAlreadyHasSkill>(() => coach.AddSkill(Skill.From("Backend")));
-        Assert.Equal("Backend", ex.Message);
-    }
-
-    [Fact]
-    public void RemoveSkill_ShouldRemoveIfPresent()
-    {
-        var coach = new Coach("Lina", "lina@example.com");
-        coach.AddSkill(Skill.From("DotNet"));
-        coach.RemoveSkill(Skill.From("DotNet"));
-        Assert.DoesNotContain(Skill.From("DotNet"), coach.Skills);
-    }
-
     [Fact]
     public void IsSuitableFor_ShouldReturnTrue_WhenAllSkillsMatch()
     {

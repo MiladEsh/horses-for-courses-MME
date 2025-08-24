@@ -13,7 +13,6 @@ public class CoachesController : ControllerBase
     private readonly IAmASuperVisor supervisor;
     private IGetCoachForUpdateSkills updateSkillsQuery;
 
-
     public CoachesController(IAmASuperVisor supervisor, IGetCoachForUpdateSkills updateSkillsQuery)
     {
         this.supervisor = supervisor;
@@ -37,4 +36,22 @@ public class CoachesController : ControllerBase
         coach.UpdateSkills(request.Skills);
         return NoContent();
     }
+
+    // **Response:**
+    // No content.
+
+    // ### GET `/coaches`
+
+    // **Response (JSON):**
+
+    // ```json
+    // [
+    //   {
+    //     "id": 1,
+    //     "name": "Alice",
+    //     "email": "alice@example.com",
+    //     "numberOfCoursesAssignedTo": 3
+    //   }
+    // ]
+    // ```
 }

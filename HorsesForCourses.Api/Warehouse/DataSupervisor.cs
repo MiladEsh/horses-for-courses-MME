@@ -11,9 +11,9 @@ public interface IAmASuperVisor
 
 public class DataSupervisor : IAmASuperVisor
 {
-    private readonly AppDBContext dbContext;
+    private readonly AppDbContext dbContext;
 
-    public DataSupervisor(AppDBContext dbContext)
+    public DataSupervisor(AppDbContext dbContext)
     {
         this.dbContext = dbContext;
     }

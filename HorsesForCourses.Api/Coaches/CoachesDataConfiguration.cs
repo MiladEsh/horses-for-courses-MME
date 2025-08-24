@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HorsesForCourses.Api;
 
-public class CoachesConfiguration : IEntityTypeConfiguration<Coach>
+public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
 {
     public void Configure(EntityTypeBuilder<Coach> builder)
     {

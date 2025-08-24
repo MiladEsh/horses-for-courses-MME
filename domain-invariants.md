@@ -1,27 +1,29 @@
 # Horses For Courses
-## Api
+### Api
 ```bash
 POST /coaches
 ```
-### Request JSON:
+#### Request JSON:
 ```json
 {
     "name": "Alice",
     "email": "alice@example.com"
   }
 ```
-## Domain
-Coach name cannot be an empty string.  
-Coach email cannot be an empty string.  
-## Data
-The coach is stored in the database.  
+### Domain
+Coach name cannot be empty.  
+Coach email cannot be empty.  
+### Data
 The database assigns the id.  
+The coach is stored in the database.  
 Name and email are taken from the request data.  
-## Api
+### Data
+### Api
 ```bash
 POST /coaches/{id}/skills
 ```
-### Request JSON:
+#### Request JSON:
 ```json
 { "skills": ["C#", "Agile"] }
 ```
+### Domain

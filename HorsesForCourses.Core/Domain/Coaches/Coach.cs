@@ -1,5 +1,6 @@
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
+using HorsesForCourses.Core.Domain.Skills;
 
 namespace HorsesForCourses.Core.Domain.Coaches;
 
@@ -33,7 +34,7 @@ public class Coach : DomainEntity<Coach>
             .Distinct()
             .ToList();
 
-        if (skills.Any())
+        if (duplicates.Any())
             throw new CoachAlreadyHasSkill(string.Join(",", skills));
 
         Skills.Clear();

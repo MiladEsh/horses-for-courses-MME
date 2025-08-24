@@ -9,22 +9,22 @@ using Microsoft.EntityFrameworkCore;
 using QuickAcid;
 using QuickFuzzr;
 
-namespace HorsesForCourses.Tests.Documentation.A_RegisterCoach;
+namespace HorsesForCourses.Tests.Documentation.Coaches.A_RegisterCoach;
 
 public class D_RegisterCoachIntegration
 {
-    private DbContextOptions<AppDBContext> GetOptions()
+    private DbContextOptions<AppDbContext> GetOptions()
     {
         var connection = new SqliteConnection("DataSource=:memory:");
         connection.Open();
-        var options = new DbContextOptionsBuilder<AppDBContext>()
+        var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseSqlite(connection)
             .Options;
         GetContext(options).Database.EnsureCreated();
         return options;
     }
 
-    private AppDBContext GetContext(DbContextOptions<AppDBContext> options) => new(options);
+    private AppDbContext GetContext(DbContextOptions<AppDbContext> options) => new(options);
 
     [Fact]
     public void Supervisor_Stores()

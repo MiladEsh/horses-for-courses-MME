@@ -1,22 +1,21 @@
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Core.Domain.Skills;
 using Microsoft.EntityFrameworkCore;
 
 namespace HorsesForCourses.Api.Warehouse;
 
-public class AppDBContext : DbContext
+public class AppDbContext : DbContext
 {
     public DbSet<Coach> Coaches { get; set; }
-    public DbSet<Skill> Skills { get; set; }
     public DbSet<Course> Courses { get; set; }
 
-    public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder.ApplyConfiguration(new CoachesConfiguration());
+        modelBuilder.ApplyConfiguration(new CoachesDataConfiguration());
         modelBuilder.ApplyConfiguration(new CourseConfiguration());
     }
 }
