@@ -2,7 +2,7 @@ namespace HorsesForCourses.Core.Domain;
 
 public record Skill
 {
-    private string value;
+    private string value = string.Empty;
 
     public string Value => value;
 

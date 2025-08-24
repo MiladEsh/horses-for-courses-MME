@@ -9,9 +9,7 @@ public class CoachSkillsTests
     public void AddSkill_ShouldAdd_WhenNotAlreadyPresent()
     {
         var coach = new Coach("Anna", "anna@example.com");
-
         coach.AddSkill(Skill.From("Agile"));
-
         Assert.Contains(Skill.From("Agile"), coach.Skills);
     }
 
@@ -19,10 +17,8 @@ public class CoachSkillsTests
     public void AddSkill_ShouldThrowIfAddDuplicate()
     {
         var coach = new Coach("Sam", "sam@example.com");
-
         coach.AddSkill(Skill.From("Backend"));
         coach.AddSkill(Skill.From("Backend"));
-
         Assert.Single(coach.Skills);
     }
 
@@ -30,10 +26,8 @@ public class CoachSkillsTests
     public void RemoveSkill_ShouldRemoveIfPresent()
     {
         var coach = new Coach("Lina", "lina@example.com");
-
         coach.AddSkill(Skill.From("DotNet"));
         coach.RemoveSkill(Skill.From("DotNet"));
-
         Assert.DoesNotContain(Skill.From("DotNet"), coach.Skills);
     }
 

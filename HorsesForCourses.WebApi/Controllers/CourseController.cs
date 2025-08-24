@@ -15,8 +15,7 @@ public class CourseController : ControllerBase
         this.repo = repo;
         this.coaches = coaches;
     }
-
-
+    
     public record CreateCourseRequest(string Name, DateOnly StartDate, DateOnly EndDate);
 
     [HttpPost]
