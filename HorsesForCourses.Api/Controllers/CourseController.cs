@@ -1,21 +1,22 @@
 using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Api.Warehouse;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HorsesForCourses.WebApi.Controllers;
+namespace HorsesForCourses.Api.Controllers;
 
 [ApiController]
 [Route("courses")]
 public class CourseController : ControllerBase
 {
     private readonly CourseRepository repo;
-    private readonly CoachRepository coaches;
+    private readonly DataSupervisor coaches;
 
-    public CourseController(CourseRepository repo, CoachRepository coaches)
+    public CourseController(CourseRepository repo, DataSupervisor coaches)
     {
         this.repo = repo;
         this.coaches = coaches;
     }
-    
+
     public record CreateCourseRequest(string Name, DateOnly StartDate, DateOnly EndDate);
 
     [HttpPost]
@@ -61,15 +62,15 @@ public class CourseController : ControllerBase
     }
 
 
-    public record AssignCoachRequest(Guid CoachId);
+    // public record AssignCoachRequest(Guid CoachId);
 
-    [HttpPost("{id}/assign-coach")]
-    public IActionResult AssignCoach(Guid id, AssignCoachRequest request)
-    {
-        var course = repo.Get(id);
-        var coach = coaches.Get(request.CoachId);
-        if (course == null || coach == null) return NotFound();
-        //course.AssignCoach(coach);
-        return Ok();
-    }
+    // [HttpPost("{id}/assign-coach")]
+    // public IActionResult AssignCoach(Guid id, AssignCoachRequest request)
+    // {
+    //     var course = repo.Get(id);
+    //     var coach = coaches.Get(request.CoachId);
+    //     if (course == null || coach == null) return NotFound();
+    //     //course.AssignCoach(coach);
+    //     return Ok();
+    // }
 }

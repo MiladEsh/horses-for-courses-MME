@@ -3,11 +3,12 @@ using QuickPulse.Explains;
 namespace HorsesForCourses.Tests.Domain;
 
 [DocFile]
-public class DomainInvariants
+[DocFileHeader("Horses For Courses")]
+public class CreateDoc
 {
     [Fact]
     public void GenerateDoc()
     {
-        Explain.This<DomainInvariants>("domain-invariants.md");
+        Explain.This<CreateDoc>("domain-invariants.md");
     }
 }

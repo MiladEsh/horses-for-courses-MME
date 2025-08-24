@@ -1,10 +1,8 @@
-using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace HorsesForCourses.WebApi;
+namespace HorsesForCourses.Api.Warehouse;
 
 public class AppDBContext : DbContext
 {
@@ -21,13 +19,4 @@ public class AppDBContext : DbContext
         modelBuilder.ApplyConfiguration(new CoachConfiguration());
         modelBuilder.ApplyConfiguration(new CourseConfiguration());
     }
-}
-
-public class IdValueConverter<T> : ValueConverter<Id<T>, int>
-{
-    public IdValueConverter()
-        : base(
-            id => id.Value,
-            value => Id<T>.From(value))
-    { }
 }

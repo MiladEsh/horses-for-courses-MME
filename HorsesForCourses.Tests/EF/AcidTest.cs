@@ -1,7 +1,7 @@
 // using HorsesForCourses.Core.Abstractions;
 // using HorsesForCourses.Core.Domain;
 // using HorsesForCourses.Core.Domain.Coaches;
-// using HorsesForCourses.WebApi;
+// using HorsesForCourses.Api;
 // using Microsoft.Data.Sqlite;
 // using Microsoft.EntityFrameworkCore;
 // using QuickAcid;

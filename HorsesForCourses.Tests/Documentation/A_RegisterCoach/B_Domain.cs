@@ -1,10 +1,11 @@
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
 using QuickPulse.Explains;
 
 namespace HorsesForCourses.Tests.Domain.Coaches;
 
 [DocFile]
-public class A_CreateCoachTests
+public class B_Domain
 {
     [Fact]
     public void CreateCoach_WithValidData_ShouldSucceed()
@@ -18,7 +19,7 @@ public class A_CreateCoachTests
 
     [Fact]
     [DocContent("Coach name cannot be an empty string.")]
-    [DocExample(typeof(A_CreateCoachTests), nameof(CreateCoach_WithEmptyName_ShouldThrow))]
+    [DocExample(typeof(B_Domain), nameof(CreateCoach_WithEmptyName_ShouldThrow))]
     [CodeSnippet]
     public void CreateCoach_WithEmptyName_ShouldThrow()
     {
@@ -28,7 +29,7 @@ public class A_CreateCoachTests
 
     [Fact]
     [DocContent("Coach email cannot be an empty string.")]
-    [DocExample(typeof(A_CreateCoachTests), nameof(CreateCoach_WithEmptyEmail_ShouldThrow))]
+    [DocExample(typeof(B_Domain), nameof(CreateCoach_WithEmptyEmail_ShouldThrow))]
     [CodeSnippet]
     public void CreateCoach_WithEmptyEmail_ShouldThrow()
     {

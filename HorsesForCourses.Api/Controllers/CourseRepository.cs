@@ -1,6 +1,6 @@
 using HorsesForCourses.Core.Domain;
 
-namespace HorsesForCourses.WebApi.Controllers;
+namespace HorsesForCourses.Api.Controllers;
 
 public class CourseRepository
 {

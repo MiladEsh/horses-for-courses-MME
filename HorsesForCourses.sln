@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorsesForCourses.Core", "Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorsesForCourses.Tests", "HorsesForCourses.Tests\HorsesForCourses.Tests.csproj", "{56562134-2A0E-487D-A1DD-3AC64CCD6314}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorsesForCourses.WebApi", "HorsesForCourses.WebApi\HorsesForCourses.WebApi.csproj", "{0C95D52E-F7D8-433E-B4B8-2A9C8E484F7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorsesForCourses.Api", "HorsesForCourses.Api\HorsesForCourses.Api.csproj", "{0C95D52E-F7D8-433E-B4B8-2A9C8E484F7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

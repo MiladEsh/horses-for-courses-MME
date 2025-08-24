@@ -1,5 +1,6 @@
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
 
 namespace HorsesForCourses.Tests.Core;
 
@@ -14,12 +15,13 @@ public class CoachSkillsTests
     }
 
     [Fact]
-    public void AddSkill_ShouldThrowIfAddDuplicate()
+    public void AddSkill_duplicate_throws()
     {
         var coach = new Coach("Sam", "sam@example.com");
+
         coach.AddSkill(Skill.From("Backend"));
-        coach.AddSkill(Skill.From("Backend"));
-        Assert.Single(coach.Skills);
+        var ex = Assert.Throws<CoachAlreadyHasSkill>(() => coach.AddSkill(Skill.From("Backend")));
+        Assert.Equal("Backend", ex.Message);
     }
 
     [Fact]

@@ -1,8 +1,9 @@
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Api.Warehouse;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace HorsesForCourses.WebApi;
+namespace HorsesForCourses.Api;
 
 public class CoachConfiguration : IEntityTypeConfiguration<Coach>
 {

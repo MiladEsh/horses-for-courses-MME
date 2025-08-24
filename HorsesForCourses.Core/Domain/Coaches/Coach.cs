@@ -1,13 +1,14 @@
 using HorsesForCourses.Core.Abstractions;
+using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
 
 namespace HorsesForCourses.Core.Domain.Coaches;
 
 public class Coach : DomainEntity<Coach>
 {
-    public string Name { get; private set; }
-    public string Email { get; private set; }
+    public string Name { get; init; }
+    public string Email { get; init; }
 
-    public HashSet<Skill> Skills { get; private set; } = new();
+    public HashSet<Skill> Skills { get; init; } = new();
 
     private readonly List<Course> assignedCourses = new();
     public IReadOnlyCollection<Course> AssignedCourses => assignedCourses.AsReadOnly();
@@ -25,7 +26,9 @@ public class Coach : DomainEntity<Coach>
 
     public void AddSkill(Skill skill)
     {
-        if (!Skills.Contains(skill)) Skills.Add(skill);
+        if (Skills.Contains(skill))
+            throw new CoachAlreadyHasSkill(skill.Value);
+        Skills.Add(skill);
     }
 
     public void RemoveSkill(Skill skill)
