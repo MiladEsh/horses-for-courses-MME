@@ -1,6 +1,6 @@
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
-using QuickPulse.Explains;
+
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.A_RegisterCoach;
 

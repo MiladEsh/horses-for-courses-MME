@@ -2,7 +2,7 @@ using HorsesForCourses.Api.Coaches.RegisterCoach;
 using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using QuickPulse.Explains;
+
 using QuickPulse.Show.Bolts;
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.A_RegisterCoach;

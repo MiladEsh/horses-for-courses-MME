@@ -1,3 +1,4 @@
+using HorsesForCourses.Api.Coursees.UpdateSkills;
 using HorsesForCourses.Api.Courses.CreateCoach;
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Domain.Courses;
@@ -10,14 +11,13 @@ namespace HorsesForCourses.Api.Courses;
 public class CoursesController : ControllerBase
 {
     private readonly IAmASuperVisor supervisor;
+    private readonly IGetCourseForUpdateSkills getCourseForSkills;
 
-    public CoursesController(IAmASuperVisor supervisor)
+    public CoursesController(IAmASuperVisor supervisor, IGetCourseForUpdateSkills getCourseForSkills)
     {
-
         this.supervisor = supervisor;
+        this.getCourseForSkills = getCourseForSkills;
     }
-
-
 
     [HttpPost]
     public async Task<IActionResult> CreateCourse(CreateCourseRequest request)
@@ -28,16 +28,14 @@ public class CoursesController : ControllerBase
         return Ok(course.Id.Value);
     }
 
-    // public record UpdateSkillsRequest(List<string> Skills);
-
-    // [HttpPost("{id}/skills")]
-    // public IActionResult UpdateRequiredSkills(Guid id, UpdateSkillsRequest request)
-    // {
-    //     var course = repo.Get(id);
-    //     if (course == null) return NotFound();
-    //     //course.ReplaceRequiredSkills(request.Skills);
-    //     return Ok();
-    // }
+    [HttpPost("{id}/skills")]
+    public async Task<ActionResult> UpdateRequiredSkills(int id, IEnumerable<string> skills)
+    {
+        var course = await getCourseForSkills.Load(id);
+        if (course == null) return NotFound();
+        course.UpdateRequiredSkills(skills);
+        return NoContent();
+    }
 
     // public record TimeslotDto(string Day, TimeOnly Start, TimeOnly End);
     // public record UpdateTimeslotsRequest(List<TimeslotDto> Timeslots);

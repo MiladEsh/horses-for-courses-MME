@@ -1,12 +1,11 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Skills;
-using QuickPulse.Explains;
+
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.B_UpdateSkills;
 
-[DocFile]
-[DocFileHeader("Data")]
+
 public class C_UpdateSkillsData : TheDatabaseTest
 {
     private readonly Coach coach;

@@ -1,11 +1,10 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Courses;
-using QuickPulse.Explains;
+
 
 namespace HorsesForCourses.Tests.Documentation.Courses.A_CreateCourse;
 
-[DocFile]
 public class C_CreateCourseData : TheDatabaseTest
 {
     private readonly DataSupervisor supervisor;

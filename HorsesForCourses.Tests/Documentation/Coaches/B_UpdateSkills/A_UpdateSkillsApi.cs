@@ -1,13 +1,10 @@
 using HorsesForCourses.Api.Coaches.UpdateSkills;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using QuickPulse.Explains;
+
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.B_UpdateSkills;
 
-[DocFile]
-[DocFileHeader("Api")]
-[DocCode("POST /coaches/{id}/skills", "bash")]
 public class A_UpdateSkillsApi : CoachesControllerTests
 {
     private readonly UpdateSkillsRequest request;
@@ -18,8 +15,6 @@ public class A_UpdateSkillsApi : CoachesControllerTests
     }
 
     [Fact]
-    [DocHeader("Request JSON:")]
-    [DocCode("{ \"skills\": [\"C#\", \"Agile\"] }", "json")]
     public async Task UpdateSkills_uses_the_query_object()
     {
         var response = await controller.UpdateSkills(42, request);

@@ -1,11 +1,9 @@
 using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
 using HorsesForCourses.Core.Domain.Skills;
-using QuickPulse.Explains;
+
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.B_UpdateSkills;
 
-[DocFile]
-[DocFileHeader("Domain")]
 public class B_UpdateSkillsDomain
 {
     [Fact]

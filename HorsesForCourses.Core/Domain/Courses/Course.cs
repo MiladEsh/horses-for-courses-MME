@@ -29,6 +29,24 @@ public class Course : DomainEntity<Course>
         EndDate = endDate;
     }
 
+    public virtual void UpdateRequiredSkills(IEnumerable<string> skills)
+    {
+        var duplicates = skills
+            .GroupBy(x => x)
+            .Where(g => g.Count() > 1)
+            .SelectMany(g => g)
+            .Distinct()
+            .ToList();
+
+        if (duplicates.Any())
+            throw new CourseAlreadyHasSkill(string.Join(",", skills));
+
+        RequiredSkills.Clear();
+        skills.Select(a => Skill.From(a))
+            .ToList()
+            .ForEach(a => RequiredSkills.Add(a));
+    }
+
     public void AddRequiredSkill(Skill skill)
     {
         if (IsConfirmed)

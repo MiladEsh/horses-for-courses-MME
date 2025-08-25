@@ -1,7 +1,7 @@
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
-using QuickPulse.Explains;
+
 
 namespace HorsesForCourses.Tests.Documentation.Courses.A_CreateCourse;
 

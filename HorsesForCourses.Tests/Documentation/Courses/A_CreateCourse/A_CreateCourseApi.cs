@@ -3,7 +3,7 @@ using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Tests.Documentation.Courses;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using QuickPulse.Explains;
+
 using static HorsesForCourses.Api.Courses.CoursesController;
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.A_CreateCourse;

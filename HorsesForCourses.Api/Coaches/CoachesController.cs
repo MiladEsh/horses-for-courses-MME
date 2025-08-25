@@ -11,12 +11,12 @@ namespace HorsesForCourses.Api.Coaches;
 public class CoachesController : ControllerBase
 {
     private readonly IAmASuperVisor supervisor;
-    private IGetCoachForUpdateSkills updateSkillsQuery;
+    private readonly IGetCoachForUpdateSkills getCoachForSkills;
 
-    public CoachesController(IAmASuperVisor supervisor, IGetCoachForUpdateSkills updateSkillsQuery)
+    public CoachesController(IAmASuperVisor supervisor, IGetCoachForUpdateSkills getCoachForSkills)
     {
         this.supervisor = supervisor;
-        this.updateSkillsQuery = updateSkillsQuery;
+        this.getCoachForSkills = getCoachForSkills;
     }
 
     [HttpPost]
@@ -31,7 +31,7 @@ public class CoachesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> UpdateSkills(int id, UpdateSkillsRequest request)
     {
-        var coach = await updateSkillsQuery.Load(id);
+        var coach = await getCoachForSkills.Load(id);
         if (coach == null) return NotFound();
         coach.UpdateSkills(request.Skills);
         return NoContent();

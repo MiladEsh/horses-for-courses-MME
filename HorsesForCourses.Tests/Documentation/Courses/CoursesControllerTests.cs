@@ -1,3 +1,4 @@
+using HorsesForCourses.Api.Coursees.UpdateSkills;
 using HorsesForCourses.Api.Courses;
 using HorsesForCourses.Api.Warehouse;
 using Moq;
@@ -8,15 +9,15 @@ public abstract class CoursesControllerTests
 {
     protected readonly CoursesController controller;
     protected readonly Mock<IAmASuperVisor> supervisor;
-    // protected readonly Mock<IGetCoachForUpdateSkills> query;
-    // protected readonly CoachSpy spy;
+    protected readonly Mock<IGetCourseForUpdateSkills> query;
+    protected readonly CourseSpy spy;
 
     public CoursesControllerTests()
     {
-        // spy = new();
-        // query = new Mock<IGetCoachForUpdateSkills>();
-        // query.Setup(a => a.Load(It.IsAny<int>())).ReturnsAsync(spy);
+        spy = new();
+        query = new Mock<IGetCourseForUpdateSkills>();
+        query.Setup(a => a.Load(It.IsAny<int>())).ReturnsAsync(spy);
         supervisor = new Mock<IAmASuperVisor>();
-        controller = new CoursesController(supervisor.Object);
+        controller = new CoursesController(supervisor.Object, query.Object);
     }
 }
