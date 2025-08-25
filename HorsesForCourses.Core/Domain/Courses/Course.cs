@@ -32,7 +32,7 @@ public class Course : DomainEntity<Course>
     public virtual Course UpdateRequiredSkills(IEnumerable<string> skills)
     {
         if (IsConfirmed)
-            throw new InvalidOperationException("Cannot add time slots after course is confirmed.");
+            throw new CourseAlreadyConfirmed();
 
         var duplicates = skills
             .GroupBy(x => x)

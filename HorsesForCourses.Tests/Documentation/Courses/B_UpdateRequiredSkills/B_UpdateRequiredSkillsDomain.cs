@@ -1,5 +1,6 @@
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 using HorsesForCourses.Core.Domain.Skills;
+using HorsesForCourses.Tests.Tools;
 using HorsesForCourses.Tests.Tools.Courses;
 
 
@@ -38,4 +39,11 @@ public class B_UpdateRequiredSkillsDomain : CourseDomainTests
         var skills = new List<string> { "two", "two" };
         Assert.Throws<CourseAlreadyHasSkill>(() => Entity.UpdateRequiredSkills(skills));
     }
+
+    [Fact]
+    public void UpdateRequiredSkills_When_Confirmed_Throws()
+        => Assert.Throws<CourseAlreadyConfirmed>(() =>
+            Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday())
+                .Confirm()
+                .UpdateRequiredSkills(["one"]));
 }
