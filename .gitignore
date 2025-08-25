@@ -51,3 +51,7 @@ solution.md
 
 .quickpulse/
 .quickacid/
+
+*.db
+*.db-shm
+*.db-wal

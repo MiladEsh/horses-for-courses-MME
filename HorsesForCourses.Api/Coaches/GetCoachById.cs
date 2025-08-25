@@ -1,3 +1,4 @@
+using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +12,9 @@ public interface IGetCoachById
 
 public class GetCoachById : IGetCoachById
 {
-    private readonly DbContext dbContext;
+    private readonly AppDbContext dbContext;
 
-    public GetCoachById(DbContext dbContext)
+    public GetCoachById(AppDbContext dbContext)
     {
         this.dbContext = dbContext;
     }

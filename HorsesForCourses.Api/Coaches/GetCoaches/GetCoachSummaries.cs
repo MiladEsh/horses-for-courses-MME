@@ -2,7 +2,7 @@ using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Api.Warehouse.Paging;
 using Microsoft.EntityFrameworkCore;
 
-namespace HorsesForCourses.Api.Coaches;
+namespace HorsesForCourses.Api.Coaches.GetCoaches;
 
 public interface IGetTheCoachSummaries
 {

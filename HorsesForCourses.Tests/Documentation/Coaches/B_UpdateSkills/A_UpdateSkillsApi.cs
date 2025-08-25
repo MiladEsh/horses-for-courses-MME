@@ -31,10 +31,10 @@ public class A_UpdateSkillsApi : CoachesControllerTests
     }
 
     [Fact]
-    public async Task UpdateSkills_does_not_call_supervisor_ship()
+    public async Task UpdateSkills_calls_supervisor_ship()
     {
         await controller.UpdateSkills(42, request);
-        supervisor.Verify(a => a.Ship(), Times.Never);
+        supervisor.Verify(a => a.Ship());
     }
 
     [Fact]

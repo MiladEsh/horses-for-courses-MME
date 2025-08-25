@@ -1,3 +1,4 @@
+using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +12,9 @@ public interface IGetCourseById
 
 public class GetCourseById : IGetCourseById
 {
-    private readonly DbContext dbContext;
+    private readonly AppDbContext dbContext;
 
-    public GetCourseById(DbContext dbContext)
+    public GetCourseById(AppDbContext dbContext)
     {
         this.dbContext = dbContext;
     }

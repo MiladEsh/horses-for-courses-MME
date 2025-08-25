@@ -1,0 +1,42 @@
+### Register Coach
+POST http://localhost:5200/coaches
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "email": "alice@example.com"
+}
+
+### Update Skills
+POST http://localhost:5200/coaches/1/skills
+Content-Type: application/json
+
+{
+  "skills": ["C#"]
+}
+
+### Get Coaches
+GET http://localhost:5200/coaches
+
+### Get Coach By Id
+GET http://localhost:5200/coaches/1/
+
+
+### Create Course
+POST http://localhost:5200/courses
+Content-Type: application/json
+
+{
+  "name": "Advanced C#",
+  "startDate": "2025-09-01",
+  "endDate": "2025-09-05"
+}
+
+### Update Required Skills
+POST http://localhost:5200/courses/1/skills
+Content-Type: application/json
+
+["C#", "LINQ"]
+
+
+
