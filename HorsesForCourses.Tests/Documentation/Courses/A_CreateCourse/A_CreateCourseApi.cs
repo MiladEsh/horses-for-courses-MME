@@ -1,6 +1,7 @@
 using HorsesForCourses.Api.Courses.CreateCourse;
 using HorsesForCourses.Core.Domain.Courses;
-using HorsesForCourses.Tests.Documentation.Courses;
+using HorsesForCourses.Tests.Tools;
+using HorsesForCourses.Tests.Tools.Courses;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 

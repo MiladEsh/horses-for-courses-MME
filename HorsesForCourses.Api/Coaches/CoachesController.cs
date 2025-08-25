@@ -11,12 +11,17 @@ namespace HorsesForCourses.Api.Coaches;
 public class CoachesController : ControllerBase
 {
     private readonly IAmASuperVisor supervisor;
-    private readonly IGetCoachById getCoachForSkills;
+    private readonly IGetCoachById getCoachById;
+    private readonly IGetTheCoachSummaries getTheCoachSummaries;
 
-    public CoachesController(IAmASuperVisor supervisor, IGetCoachById getCoachForSkills)
+    public CoachesController(
+        IAmASuperVisor supervisor,
+        IGetCoachById getCoachById,
+        IGetTheCoachSummaries getTheCoachSummaries)
     {
         this.supervisor = supervisor;
-        this.getCoachForSkills = getCoachForSkills;
+        this.getCoachById = getCoachById;
+        this.getTheCoachSummaries = getTheCoachSummaries;
     }
 
     [HttpPost]
@@ -31,27 +36,13 @@ public class CoachesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> UpdateSkills(int id, UpdateSkillsRequest request)
     {
-        var coach = await getCoachForSkills.Load(id);
+        var coach = await getCoachById.Load(id);
         if (coach == null) return NotFound();
         coach.UpdateSkills(request.Skills);
         return NoContent();
     }
 
-    // **Response:**
-    // No content.
-
-    // ### GET `/coaches`
-
-    // **Response (JSON):**
-
-    // ```json
-    // [
-    //   {
-    //     "id": 1,
-    //     "name": "Alice",
-    //     "email": "alice@example.com",
-    //     "numberOfCoursesAssignedTo": 3
-    //   }
-    // ]
-    // ```
+    [HttpGet]
+    public async Task<IActionResult> GetCoaches(int page = 1, int pageSize = 25)
+        => Ok(await getTheCoachSummaries.All(new PageRequest(page, pageSize)));
 }

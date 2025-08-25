@@ -1,4 +1,5 @@
 using HorsesForCourses.Api.Coaches.UpdateSkills;
+using HorsesForCourses.Tests.Tools.Coaches;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -18,7 +19,7 @@ public class A_UpdateSkillsApi : CoachesControllerTests
     public async Task UpdateSkills_uses_the_query_object()
     {
         var response = await controller.UpdateSkills(42, request);
-        query.Verify(a => a.Load(42));
+        coachQuery.Verify(a => a.Load(42));
     }
 
     [Fact]

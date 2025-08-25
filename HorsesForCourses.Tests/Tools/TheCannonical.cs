@@ -2,10 +2,9 @@ using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
-using Moq;
 using WibblyWobbly;
 
-namespace HorsesForCourses.Tests;
+namespace HorsesForCourses.Tests.Tools;
 
 public static class TheCannonical
 {

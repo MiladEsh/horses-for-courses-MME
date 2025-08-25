@@ -1,4 +1,4 @@
-using HorsesForCourses.Tests.Documentation.Courses;
+using HorsesForCourses.Tests.Tools.Courses;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 

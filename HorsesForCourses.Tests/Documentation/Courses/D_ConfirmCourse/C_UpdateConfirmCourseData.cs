@@ -1,5 +1,6 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Domain.Courses;
+using HorsesForCourses.Tests.Tools;
 
 
 namespace HorsesForCourses.Tests.Documentation.Courses.D_ConfirmCourse;

@@ -1,5 +1,7 @@
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
+using HorsesForCourses.Tests.Tools;
+using HorsesForCourses.Tests.Tools.Coaches;
 
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.A_RegisterCoach;

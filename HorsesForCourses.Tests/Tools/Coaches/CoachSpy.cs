@@ -1,6 +1,6 @@
 using HorsesForCourses.Core.Domain.Coaches;
 
-namespace HorsesForCourses.Tests.Documentation.Coaches;
+namespace HorsesForCourses.Tests.Tools.Coaches;
 
 public class CoachSpy : Coach
 {

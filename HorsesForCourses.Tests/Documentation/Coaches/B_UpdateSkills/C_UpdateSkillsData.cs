@@ -1,6 +1,7 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Skills;
+using HorsesForCourses.Tests.Tools;
 
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.B_UpdateSkills;

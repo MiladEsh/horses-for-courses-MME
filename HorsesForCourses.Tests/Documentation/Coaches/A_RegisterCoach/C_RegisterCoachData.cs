@@ -1,6 +1,7 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Tests.Tools;
 
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.A_RegisterCoach;

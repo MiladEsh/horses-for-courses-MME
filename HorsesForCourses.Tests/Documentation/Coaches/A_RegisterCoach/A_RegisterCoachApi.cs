@@ -1,5 +1,7 @@
 using HorsesForCourses.Api.Coaches.RegisterCoach;
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Tests.Tools;
+using HorsesForCourses.Tests.Tools.Coaches;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 

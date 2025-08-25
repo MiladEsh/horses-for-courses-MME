@@ -1,6 +1,6 @@
 using HorsesForCourses.Core.Domain.Courses;
 
-namespace HorsesForCourses.Tests.Documentation.Courses;
+namespace HorsesForCourses.Tests.Tools.Courses;
 
 public class CourseDomainTests : DomainTests<Course>
 {

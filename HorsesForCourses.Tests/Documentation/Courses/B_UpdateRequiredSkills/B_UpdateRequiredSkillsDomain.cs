@@ -1,5 +1,6 @@
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 using HorsesForCourses.Core.Domain.Skills;
+using HorsesForCourses.Tests.Tools.Courses;
 
 
 namespace HorsesForCourses.Tests.Documentation.Courses.B_UpdateRequiredSkills;

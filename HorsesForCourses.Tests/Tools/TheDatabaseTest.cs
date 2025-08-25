@@ -2,7 +2,7 @@ using HorsesForCourses.Api.Warehouse;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace HorsesForCourses.Tests;
+namespace HorsesForCourses.Tests.Tools;
 
 public abstract class TheDatabaseTest
 {
@@ -22,10 +22,13 @@ public abstract class TheDatabaseTest
     // builder.LogTo(s => s.PulseToLog("sql.log"), Microsoft.Extensions.Logging.LogLevel.Information);
     // builder.EnableSensitiveDataLogging();
 
-    protected void AddToDb<T>(T entity)
+    protected void AddToDb<T>(params T[] entities)
     {
         var context = GetDbContext();
-        context.Add(entity!);
+        foreach (var entity in entities)
+        {
+            context.Add(entity!);
+        }
         context.SaveChanges();
     }
 }

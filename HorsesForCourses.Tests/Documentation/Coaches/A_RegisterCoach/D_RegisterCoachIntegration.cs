@@ -33,7 +33,7 @@ public class D_RegisterCoachIntegration
 
             from options in "options".Stashed(() => GetOptions())
             from supervisor in "supervisor".Derived(() => new DataSupervisor(GetContext(options)))
-            from controller in "controller".Derived(() => new CoachesController(supervisor, null!))
+            from controller in "controller".Derived(() => new CoachesController(supervisor, null!, null!))
 
             let requestFuzzr =
                 from _ in Fuzz.For<RegisterCoachRequest>().Construct(Fuzz.String(), Fuzz.String())

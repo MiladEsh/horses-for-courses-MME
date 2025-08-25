@@ -4,7 +4,7 @@ using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Domain.Courses;
 using Moq;
 
-namespace HorsesForCourses.Tests.Documentation.Courses;
+namespace HorsesForCourses.Tests.Tools.Courses;
 
 public abstract class CoursesControllerTests
 {

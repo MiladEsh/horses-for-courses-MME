@@ -1,6 +1,4 @@
-using QuickAcid.Proceedings.ClerksOffice;
-
-namespace HorsesForCourses.Tests.Documentation;
+namespace HorsesForCourses.Tests.Tools;
 
 public abstract class DomainTests<TEntity>
 {

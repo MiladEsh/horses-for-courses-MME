@@ -1,9 +1,8 @@
-using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
 
-namespace HorsesForCourses.Tests.Documentation.Courses;
+namespace HorsesForCourses.Tests.Tools.Courses;
 
 public class CourseSpy : Course
 {

@@ -1,3 +1,6 @@
+using HorsesForCourses.Tests.Tools;
+using HorsesForCourses.Tests.Tools.Courses;
+
 namespace HorsesForCourses.Tests.Documentation.Courses.C_UpdateTimeSlots;
 
 public class C_UpdateTimeSlotsData : CourseDatabaseTests

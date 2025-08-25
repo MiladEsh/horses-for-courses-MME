@@ -1,4 +1,6 @@
 using HorsesForCourses.Core.Domain.Courses;
+using HorsesForCourses.Tests.Tools;
+using HorsesForCourses.Tests.Tools.Courses;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -7,8 +9,6 @@ namespace HorsesForCourses.Tests.Documentation.Courses.E_AssignCoach;
 
 public class A_AssignCoachApi : CoursesControllerTests
 {
-    private readonly List<string> request = ["one", "two"];
-
     protected override void ManipulateEntity(Course entity)
     {
         entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());

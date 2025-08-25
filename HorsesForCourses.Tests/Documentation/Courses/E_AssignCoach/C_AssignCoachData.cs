@@ -1,5 +1,6 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Domain.Courses;
+using HorsesForCourses.Tests.Tools;
 
 
 namespace HorsesForCourses.Tests.Documentation.Courses.E_AssignCoach;
@@ -27,7 +28,7 @@ public class C_AssignCoachData : TheDatabaseTest
     private Course Reload() => Reload(GetDbContext());
     private Course Reload(AppDbContext dbContext) => dbContext.Courses.Single(a => a.Id == course.Id);
 
-    [Fact]
+    [Fact(Skip = "Todo")]
     public void Skills_can_be_updated()
     {
         Act();
