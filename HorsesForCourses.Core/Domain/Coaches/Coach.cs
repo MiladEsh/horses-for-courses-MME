@@ -54,11 +54,6 @@ public class Coach : DomainEntity<Coach>
         assignedCourses.Add(course);
     }
 
-    public void UnassignCourse(Course course)
-    {
-        assignedCourses.Remove(course);
-    }
-
     public bool IsAvailableFor(Course course)
     {
         foreach (var assigned in assignedCourses)
