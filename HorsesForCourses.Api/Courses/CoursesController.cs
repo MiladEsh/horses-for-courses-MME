@@ -29,11 +29,20 @@ public class CoursesController : ControllerBase
     }
 
     [HttpPost("{id}/skills")]
-    public async Task<ActionResult> UpdateRequiredSkills(int id, IEnumerable<string> skills)
+    public async Task<IActionResult> UpdateRequiredSkills(int id, IEnumerable<string> skills)
     {
         var course = await getCourseForSkills.Load(id);
         if (course == null) return NotFound();
         course.UpdateRequiredSkills(skills);
+        return NoContent();
+    }
+
+    [HttpPost("{id}/confirm")]
+    public async Task<IActionResult> ConfirmCourse(int id)
+    {
+        var course = await getCourseForSkills.Load(id);
+        if (course == null) return NotFound();
+        course.Confirm();
         return NoContent();
     }
 

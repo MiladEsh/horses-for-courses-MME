@@ -4,22 +4,20 @@ using HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.A_RegisterCoach;
 
-public class B_RegisterCoachDomain
+public class B_RegisterCoachDomain : CoachDomainTests
 {
     [Fact]
     public void RegisterCoach_WithValidData_ShouldSucceed()
     {
-        var coach = TheCannonical.Coach();
-        Assert.Equal(TheCannonical.CoachName, coach.Name);
-        Assert.Equal(TheCannonical.CoachEmail, coach.Email);
-        Assert.Empty(coach.Skills);
+        Assert.Equal(TheCannonical.CoachName, Entity.Name);
+        Assert.Equal(TheCannonical.CoachEmail, Entity.Email);
+        Assert.Empty(Entity.Skills);
     }
 
     [Fact]
     public void RegisterCoach_WithValidData_keeps_default_id()
     {
-        var coach = TheCannonical.Coach();
-        Assert.Equal(default, coach.Id.Value);
+        Assert.Equal(default, Entity.Id.Value);
     }
 
     [Fact]
@@ -30,4 +28,6 @@ public class B_RegisterCoachDomain
     [Fact]
     public void RegisterCoach_WithEmptyEmail_ShouldThrow()
         => Assert.Throws<CoachEmailCanNotBeEmpty>(() => new Coach(TheCannonical.CoachName, string.Empty));
+
+
 }

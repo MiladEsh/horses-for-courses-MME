@@ -1,26 +1,24 @@
-using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
+using HorsesForCourses.Tests.Documentation.Coaches;
 
 
 namespace HorsesForCourses.Tests.Documentation.Courses.A_CreateCourse;
 
-public class B_CreateCourseDomain
+public class B_CreateCourseDomain : CourseDomainTests
 {
     [Fact]
     public void CreateCourse_WithValidData_ShouldSucceed()
     {
-        var course = TheCannonical.Course();
-        Assert.Equal(TheCannonical.CourseName, course.Name);
-        Assert.Equal(TheCannonical.CourseStart, course.StartDate);
-        Assert.Equal(TheCannonical.CourseEnd, course.EndDate);
+        Assert.Equal(TheCannonical.CourseName, Entity.Name);
+        Assert.Equal(TheCannonical.CourseStart, Entity.StartDate);
+        Assert.Equal(TheCannonical.CourseEnd, Entity.EndDate);
     }
 
     [Fact]
     public void CreateCourse_WithValidData_keeps_default_id()
     {
-        var course = TheCannonical.Course();
-        Assert.Equal(default, course.Id.Value);
+        Assert.Equal(default, Entity.Id.Value);
     }
 
     [Fact]
@@ -35,5 +33,4 @@ public class B_CreateCourseDomain
             new Course(TheCannonical.CourseName, new DateOnly(2025, 7, 31), new DateOnly(2025, 7, 1))
         );
     }
-
 }
