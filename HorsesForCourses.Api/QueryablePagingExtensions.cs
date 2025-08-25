@@ -1,4 +1,4 @@
-using HorsesForCourses.Api;
+using HorsesForCourses.Api.Warehouse.Paging;
 
 public static class QueryablePagingExtensions
 {

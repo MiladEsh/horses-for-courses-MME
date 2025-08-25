@@ -1,4 +1,5 @@
 using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Api.Warehouse.Paging;
 using Microsoft.EntityFrameworkCore;
 
 namespace HorsesForCourses.Api.Coaches;

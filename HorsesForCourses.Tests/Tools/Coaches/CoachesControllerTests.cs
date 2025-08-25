@@ -1,6 +1,6 @@
-using HorsesForCourses.Api;
 using HorsesForCourses.Api.Coaches;
 using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Api.Warehouse.Paging;
 using Moq;
 
 namespace HorsesForCourses.Tests.Tools.Coaches;
