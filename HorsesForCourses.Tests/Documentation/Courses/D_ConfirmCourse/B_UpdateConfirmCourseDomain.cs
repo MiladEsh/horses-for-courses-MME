@@ -20,7 +20,7 @@ public class B_UpdateConfirmCourseDomain : CourseDomainTests
     public void UpdateConfirmCourse_Twice_Throws()
     {
         Entity.Confirm();
-        Assert.Throws<CourseAlreadyComfirmed>(() => Entity.Confirm());
+        Assert.Throws<CourseAlreadyConfirmed>(() => Entity.Confirm());
     }
 
     [Fact]

@@ -31,6 +31,9 @@ public class Course : DomainEntity<Course>
 
     public virtual void UpdateRequiredSkills(IEnumerable<string> skills)
     {
+        if (IsConfirmed)
+            throw new InvalidOperationException("Cannot add time slots after course is confirmed.");
+
         var duplicates = skills
             .GroupBy(x => x)
             .Where(g => g.Count() > 1)
@@ -50,34 +53,32 @@ public class Course : DomainEntity<Course>
 
     public virtual Course UpdateTimeSlots(IEnumerable<TimeSlot> timeSlots)
     {
+        if (IsConfirmed)
+            throw new CourseAlreadyConfirmed();
+        if (TimeSlotsOverlap(timeSlots))
+            throw new OverLappingTimeSlots();
         TimeSlots = [.. timeSlots];
         return this;
     }
 
-    public void AddTimeSlot(TimeSlot slot)
+    private bool TimeSlotsOverlap(IEnumerable<TimeSlot> timeSlots)
     {
-        if (IsConfirmed)
-            throw new InvalidOperationException("Cannot add time slots after course is confirmed.");
-
-        if (TimeSlots.Any(existing => existing == slot))
+        var index = 1;
+        foreach (var timeSlot in timeSlots)
         {
-            throw new InvalidOperationException("This time slot already exists.");
+            foreach (var otherTimeSlot in timeSlots.Skip(index))
+            {
+                if (timeSlot.OverlapsWith(otherTimeSlot))
+                    return true;
+            }
         }
-
-        TimeSlots.Add(slot);
-    }
-
-    public void RemoveTimeSlot(TimeSlot slot)
-    {
-        if (IsConfirmed) throw new InvalidOperationException("Cannot remove time slots after course is confirmed.");
-
-        TimeSlots.RemoveAll(t => t == slot);
+        return false;
     }
 
     public void Confirm()
     {
         if (IsConfirmed)
-            throw new CourseAlreadyComfirmed();
+            throw new CourseAlreadyConfirmed();
 
         if (TimeSlots.Count == 0)
             throw new AtLeastOneTimeSlotRequired();
@@ -88,26 +89,18 @@ public class Course : DomainEntity<Course>
     public void AssignCoach(Coach coach)
     {
         if (!IsConfirmed)
-            throw new InvalidOperationException("Cannot assign a coach before the course is confirmed.");
+            throw new CourseNotYetConfirmed();
 
         if (AssignedCoach != null)
-            throw new InvalidOperationException("A coach has already been assigned to this course.");
+            throw new CourseAlreadyHasCoach();
 
         if (!coach.IsSuitableFor(this))
-            throw new InvalidOperationException("Coach does not have all the required skills for this course.");
+            throw new CoachNotSuitableForCourse();
 
         if (!coach.IsAvailableFor(this))
-            throw new InvalidOperationException("Coach is not available during the scheduled course time slots.");
+            throw new CoachNotAvailableForCourse();
 
         AssignedCoach = coach;
         coach.AssignCourse(this);
-    }
-
-    public void UnassignCoach()
-    {
-        if (AssignedCoach == null) throw new InvalidOperationException("No coach has been assigned to this course.");
-
-        AssignedCoach.UnassignCourse(this);
-        AssignedCoach = null;
     }
 }

@@ -29,4 +29,11 @@ public record TimeSlot
             throw new TimeSlotMustBeAtleastOneHourLong();
         return new TimeSlot(day, start, end);
     }
+
+    public bool OverlapsWith(TimeSlot otherTimeSlot)
+    {
+        if (Day != otherTimeSlot.Day) return false;
+        if (Start < otherTimeSlot.End && End > otherTimeSlot.Start) return true;
+        return false;
+    }
 }
