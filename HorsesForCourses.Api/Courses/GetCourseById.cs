@@ -2,18 +2,18 @@ using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.EntityFrameworkCore;
 
-namespace HorsesForCourses.Api.Coursees.UpdateSkills;
+namespace HorsesForCourses.Api.Courses;
 
-public interface IGetCourseForUpdateSkills
+public interface IGetCourseById
 {
     Task<Course?> Load(int id);
 }
 
-public class GetCourseForUpdateSkills : IGetCourseForUpdateSkills
+public class GetCourseById : IGetCourseById
 {
     private readonly DbContext dbContext;
 
-    public GetCourseForUpdateSkills(DbContext dbContext)
+    public GetCourseById(DbContext dbContext)
     {
         this.dbContext = dbContext;
     }

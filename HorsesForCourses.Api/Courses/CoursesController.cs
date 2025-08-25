@@ -1,5 +1,5 @@
-using HorsesForCourses.Api.Coursees.UpdateSkills;
-using HorsesForCourses.Api.Courses.CreateCoach;
+using HorsesForCourses.Api.Coaches;
+using HorsesForCourses.Api.Courses.CreateCourse;
 using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Domain;
@@ -13,12 +13,17 @@ namespace HorsesForCourses.Api.Courses;
 public partial class CoursesController : ControllerBase
 {
     private readonly IAmASuperVisor supervisor;
-    private readonly IGetCourseForUpdateSkills getCourseForSkills;
+    private readonly IGetCourseById getCourseById;
+    private readonly IGetCoachById getCoachById;
 
-    public CoursesController(IAmASuperVisor supervisor, IGetCourseForUpdateSkills getCourseForSkills)
+    public CoursesController(
+        IAmASuperVisor supervisor,
+        IGetCourseById getCourseById,
+        IGetCoachById getCoachById)
     {
         this.supervisor = supervisor;
-        this.getCourseForSkills = getCourseForSkills;
+        this.getCourseById = getCourseById;
+        this.getCoachById = getCoachById;
     }
 
     [HttpPost]
@@ -33,16 +38,16 @@ public partial class CoursesController : ControllerBase
     [HttpPost("{id}/skills")]
     public async Task<IActionResult> UpdateRequiredSkills(int id, IEnumerable<string> skills)
     {
-        var course = await getCourseForSkills.Load(id);
+        var course = await getCourseById.Load(id);
         if (course == null) return NotFound();
         course.UpdateRequiredSkills(skills);
         return NoContent();
     }
 
     [HttpPost("{id}/timeslots")]
-    public async Task<IActionResult> UpdateTimeSlots(int id, IEnumerable<TimeSlotDto> timeSlots)
+    public async Task<IActionResult> UpdateTimeSlots(int id, IEnumerable<TimeSlotRequest> timeSlots)
     {
-        var course = await getCourseForSkills.Load(id);
+        var course = await getCourseById.Load(id);
         if (course == null) return NotFound();
         course.UpdateTimeSlots(
             timeSlots.Select(
@@ -56,23 +61,20 @@ public partial class CoursesController : ControllerBase
     [HttpPost("{id}/confirm")]
     public async Task<IActionResult> ConfirmCourse(int id)
     {
-        var course = await getCourseForSkills.Load(id);
+        var course = await getCourseById.Load(id);
         if (course == null) return NotFound();
         course.Confirm();
         return NoContent();
     }
 
 
-
-    // public record AssignCoachRequest(Guid CoachId);
-
-    // [HttpPost("{id}/assign-coach")]
-    // public IActionResult AssignCoach(Guid id, AssignCoachRequest request)
-    // {
-    //     var course = repo.Get(id);
-    //     var coach = coaches.Get(request.CoachId);
-    //     if (course == null || coach == null) return NotFound();
-    //     //course.AssignCoach(coach);
-    //     return Ok();
-    // }
+    [HttpPost("{id}/assign-coach")]
+    public async Task<IActionResult> AssignCoach(int id, int coachId)
+    {
+        var course = await getCourseById.Load(id);
+        var coach = await getCoachById.Load(coachId);
+        if (course == null || coach == null) return NotFound();
+        course.AssignCoach(coach);
+        return NoContent();
+    }
 }

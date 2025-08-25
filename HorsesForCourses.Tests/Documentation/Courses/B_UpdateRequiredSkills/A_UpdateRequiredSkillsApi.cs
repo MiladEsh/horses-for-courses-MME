@@ -13,7 +13,7 @@ public class A_UpdateRequiredSkillsApi : CoursesControllerTests
     public async Task UpdateRequiredSkills_uses_the_query_object()
     {
         var response = await controller.UpdateRequiredSkills(42, request);
-        query.Verify(a => a.Load(42));
+        courseQuery.Verify(a => a.Load(42));
     }
 
     [Fact]

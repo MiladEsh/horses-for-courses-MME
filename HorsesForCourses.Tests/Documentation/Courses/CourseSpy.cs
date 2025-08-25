@@ -1,5 +1,6 @@
 using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
 
 namespace HorsesForCourses.Tests.Documentation.Courses;
@@ -9,10 +10,11 @@ public class CourseSpy : Course
     public CourseSpy() : base(TheCannonical.CourseName, TheCannonical.CourseStart, TheCannonical.CourseEnd) { }
     public bool SkillsCalled;
     public IEnumerable<string>? SkillsSeen;
-    public override void UpdateRequiredSkills(IEnumerable<string> skills)
+    public override Course UpdateRequiredSkills(IEnumerable<string> skills)
     {
         SkillsCalled = true; SkillsSeen = skills;
         base.UpdateRequiredSkills(skills);
+        return this;
     }
 
     public bool TimeSlotsCalled;
@@ -22,5 +24,14 @@ public class CourseSpy : Course
     {
         TimeSlotsCalled = true; TimeSlotsSeen = timeSlots;
         return base.UpdateTimeSlots(timeSlots);
+    }
+
+    public bool AssignCoachCalled;
+    public Coach? AssignCoachSeen;
+    public override Course AssignCoach(Coach coach)
+    {
+        AssignCoachCalled = true; AssignCoachSeen = coach;
+        base.AssignCoach(coach);
+        return this;
     }
 }

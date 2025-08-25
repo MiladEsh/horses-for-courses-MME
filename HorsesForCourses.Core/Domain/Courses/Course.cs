@@ -29,7 +29,7 @@ public class Course : DomainEntity<Course>
         EndDate = endDate;
     }
 
-    public virtual void UpdateRequiredSkills(IEnumerable<string> skills)
+    public virtual Course UpdateRequiredSkills(IEnumerable<string> skills)
     {
         if (IsConfirmed)
             throw new InvalidOperationException("Cannot add time slots after course is confirmed.");
@@ -49,6 +49,7 @@ public class Course : DomainEntity<Course>
         RequiredSkills.Clear();
         RequiredSkills.AddRange(newSkills);
 
+        return this;
     }
 
     public virtual Course UpdateTimeSlots(IEnumerable<TimeSlot> timeSlots)
@@ -75,7 +76,7 @@ public class Course : DomainEntity<Course>
         return false;
     }
 
-    public void Confirm()
+    public Course Confirm()
     {
         if (IsConfirmed)
             throw new CourseAlreadyConfirmed();
@@ -84,9 +85,11 @@ public class Course : DomainEntity<Course>
             throw new AtLeastOneTimeSlotRequired();
 
         IsConfirmed = true;
+
+        return this;
     }
 
-    public void AssignCoach(Coach coach)
+    public virtual Course AssignCoach(Coach coach)
     {
         if (!IsConfirmed)
             throw new CourseNotYetConfirmed();
@@ -102,5 +105,6 @@ public class Course : DomainEntity<Course>
 
         AssignedCoach = coach;
         coach.AssignCourse(this);
+        return this;
     }
 }

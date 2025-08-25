@@ -18,7 +18,7 @@ public class A_UpdateConfirmCourseApi : CoursesControllerTests
     public async Task UpdateConfirmCourse_uses_the_query_object()
     {
         await controller.ConfirmCourse(42);
-        query.Verify(a => a.Load(42));
+        courseQuery.Verify(a => a.Load(42));
     }
 
     [Fact]

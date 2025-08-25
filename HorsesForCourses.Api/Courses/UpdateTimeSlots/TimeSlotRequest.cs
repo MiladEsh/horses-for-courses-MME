@@ -2,4 +2,4 @@ using HorsesForCourses.Core.Domain;
 
 namespace HorsesForCourses.Api.Courses.UpdateTimeSlots;
 
-public record TimeSlotDto(CourseDay Day, int Start, int End);
+public record TimeSlotRequest(CourseDay Day, int Start, int End);

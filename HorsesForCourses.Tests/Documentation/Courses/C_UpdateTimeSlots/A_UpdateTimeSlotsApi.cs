@@ -7,14 +7,14 @@ namespace HorsesForCourses.Tests.Documentation.Courses.C_UpdateTimeSlots;
 
 public class A_UpdateTimeSlotsApi : CoursesControllerTests
 {
-    private readonly IEnumerable<TimeSlotDto> request =
+    private readonly IEnumerable<TimeSlotRequest> request =
         TheCannonical.TimeSlotsRequestFullDayMonday();
 
     [Fact]
     public async Task UpdateTimeSlots_uses_the_query_object()
     {
         var response = await controller.UpdateTimeSlots(42, request);
-        query.Verify(a => a.Load(42));
+        courseQuery.Verify(a => a.Load(42));
     }
 
     [Fact]

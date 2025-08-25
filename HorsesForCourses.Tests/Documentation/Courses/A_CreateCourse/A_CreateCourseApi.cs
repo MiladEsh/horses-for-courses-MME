@@ -1,4 +1,4 @@
-using HorsesForCourses.Api.Courses.CreateCoach;
+using HorsesForCourses.Api.Courses.CreateCourse;
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Tests.Documentation.Courses;
 using Microsoft.AspNetCore.Mvc;

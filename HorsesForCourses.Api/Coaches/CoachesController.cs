@@ -11,9 +11,9 @@ namespace HorsesForCourses.Api.Coaches;
 public class CoachesController : ControllerBase
 {
     private readonly IAmASuperVisor supervisor;
-    private readonly IGetCoachForUpdateSkills getCoachForSkills;
+    private readonly IGetCoachById getCoachForSkills;
 
-    public CoachesController(IAmASuperVisor supervisor, IGetCoachForUpdateSkills getCoachForSkills)
+    public CoachesController(IAmASuperVisor supervisor, IGetCoachById getCoachForSkills)
     {
         this.supervisor = supervisor;
         this.getCoachForSkills = getCoachForSkills;

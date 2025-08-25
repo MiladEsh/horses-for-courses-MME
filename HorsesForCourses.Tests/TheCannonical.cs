@@ -22,7 +22,7 @@ public static class TheCannonical
     public static Course Course()
         => new(CourseName, CourseStart, CourseEnd);
 
-    public static IEnumerable<TimeSlotDto> TimeSlotsRequestFullDayMonday()
+    public static IEnumerable<TimeSlotRequest> TimeSlotsRequestFullDayMonday()
         => [new(CourseDay.Monday, 9, 17)];
     public static IEnumerable<TimeSlot> TimeSlotsFullDayMonday()
         => [TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(17))];
