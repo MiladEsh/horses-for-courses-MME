@@ -1,8 +1,9 @@
 ﻿using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 using HorsesForCourses.Core.Domain.Skills;
 
-namespace HorsesForCourses.Core.Domain;
+namespace HorsesForCourses.Core.Domain.Courses;
 
 public class Course : DomainEntity<Course>
 {
@@ -15,13 +16,13 @@ public class Course : DomainEntity<Course>
 
     public Coach? AssignedCoach { get; private set; }
 
-    public Course(string name, DateOnly startDate, DateOnly endDate) //: base(Id<Course>.New())
+    public Course(string name, DateOnly startDate, DateOnly endDate)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException("Course name cannot be empty.");
+            throw new CourseNameCanNotBeEmpty();
 
         if (startDate > endDate)
-            throw new ArgumentException("Start date must be before end date.");
+            throw new CourseEndDateCanNotBeBeforeStartDate();
 
         Name = name;
         StartDate = startDate;
@@ -110,4 +111,3 @@ public class Course : DomainEntity<Course>
         AssignedCoach = null;
     }
 }
-

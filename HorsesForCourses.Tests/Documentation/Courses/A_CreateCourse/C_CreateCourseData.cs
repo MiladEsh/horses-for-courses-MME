@@ -1,36 +1,36 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Abstractions;
-using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Core.Domain.Courses;
 using QuickPulse.Explains;
 
-namespace HorsesForCourses.Tests.Documentation.Coaches.A_RegisterCoach;
+namespace HorsesForCourses.Tests.Documentation.Courses.A_CreateCourse;
 
-
-public class C_RegisterCoachData : TheDatabaseTest
+[DocFile]
+public class C_CreateCourseData : TheDatabaseTest
 {
     private readonly DataSupervisor supervisor;
-    private readonly Coach coach;
+    private readonly Course course;
 
-    public C_RegisterCoachData()
+    public C_CreateCourseData()
     {
         supervisor = new DataSupervisor(GetDbContext());
-        coach = TheCannonical.Coach();
+        course = TheCannonical.Course();
     }
 
     private async Task Act()
     {
-        await supervisor.Enlist(coach);
+        await supervisor.Enlist(course);
         await supervisor.Ship();
     }
 
-    private Coach Reload()
-        => GetDbContext().Coaches.Find(Id<Coach>.From(coach.Id.Value))!;
+    private Course Reload()
+        => GetDbContext().Courses.Find(Id<Course>.From(course.Id.Value))!;
 
     [Fact]
     public async Task Supervisor_Assigns_id()
     {
         await Act();
-        Assert.NotEqual(default, coach.Id.Value);
+        Assert.NotEqual(default, course.Id.Value);
     }
 
     [Fact]
@@ -47,7 +47,8 @@ public class C_RegisterCoachData : TheDatabaseTest
     {
         await Act();
         var reloaded = Reload();
-        Assert.Equal(TheCannonical.CoachName, reloaded!.Name);
-        Assert.Equal(TheCannonical.CoachEmail, reloaded!.Email);
+        Assert.Equal(TheCannonical.CourseName, reloaded!.Name);
+        Assert.Equal(TheCannonical.CourseStart, reloaded!.StartDate);
+        Assert.Equal(TheCannonical.CourseEnd, reloaded!.EndDate);
     }
 }

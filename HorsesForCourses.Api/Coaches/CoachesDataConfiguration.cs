@@ -23,8 +23,6 @@ public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
             .HasColumnType("INTEGER")
             .HasAnnotation("Sqlite:Autoincrement", true);
 
-
-        // === Scalar properties ===
         builder.Property(c => c.Name)
             .IsRequired()
             .HasMaxLength(100);
@@ -41,7 +39,6 @@ public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
         //     .WithOne() // adjust if Course has a Coach navigation
         //     .OnDelete(DeleteBehavior.Restrict);
 
-        // === Skills: OwnsMany value object ===
         builder.OwnsMany(c => c.Skills, sb =>
         {
             sb.WithOwner().HasForeignKey("CoachId");

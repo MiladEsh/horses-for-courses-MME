@@ -2,20 +2,27 @@ using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Api.Warehouse;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using HorsesForCourses.Core.Domain.Courses;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace HorsesForCourses.Api;
+namespace HorsesForCourses.Api.Courses;
 
-public class CourseConfiguration : IEntityTypeConfiguration<Course>
+public class CourseDataConfiguration : IEntityTypeConfiguration<Course>
 {
     public void Configure(EntityTypeBuilder<Course> builder)
     {
-        // === Key + Id mapping ===
         builder.HasKey(c => c.Id);
 
-        builder.Property(c => c.Id)
+        var idProp = builder.Property(c => c.Id)
             .HasConversion(new IdValueConverter<Course>())
-            .HasColumnName("Id")
-            .ValueGeneratedNever();
+            .Metadata;
+        idProp.SetValueComparer(new IdValueComparer<Course>());
+        idProp.SetBeforeSaveBehavior(PropertySaveBehavior.Ignore);
+        idProp.SetAfterSaveBehavior(PropertySaveBehavior.Throw);
+        builder.Property(c => c.Id)
+            .ValueGeneratedOnAdd()
+            .HasColumnType("INTEGER")
+            .HasAnnotation("Sqlite:Autoincrement", true);
 
         // === Scalars ===
         builder.Property(c => c.Name)

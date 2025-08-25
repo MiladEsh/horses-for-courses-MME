@@ -1,5 +1,6 @@
-using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Api.Courses;
 using HorsesForCourses.Core.Domain.Coaches;
+using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Skills;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,6 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new CoachesDataConfiguration());
-        modelBuilder.ApplyConfiguration(new CourseConfiguration());
+        modelBuilder.ApplyConfiguration(new CourseDataConfiguration());
     }
 }
