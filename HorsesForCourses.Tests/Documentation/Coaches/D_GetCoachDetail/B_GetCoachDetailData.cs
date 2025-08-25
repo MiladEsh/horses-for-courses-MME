@@ -19,5 +19,7 @@ public class B_GetCoachDetailData : TheDatabaseTest
         Assert.Equal(1, detail.Id);
         Assert.Equal(TheCannonical.CoachName, detail.Name);
         Assert.Equal(TheCannonical.CoachEmail, detail.Email);
+        Assert.Equal([], detail.Skills);
+        Assert.Equal([], detail.Courses);
     }
 }
