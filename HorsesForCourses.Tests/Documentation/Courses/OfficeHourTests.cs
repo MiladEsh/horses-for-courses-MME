@@ -1,4 +1,5 @@
 using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 
 namespace HorsesForCourses.Tests.Core;
 
@@ -19,7 +20,7 @@ public class OfficeHourTests
     [MemberData(nameof(InvalidHours))]
     public void Create_OfficeHour_Invalid_ShouldThrow(int value)
     {
-        Assert.Throws<ArgumentException>(() => OfficeHour.From(value));
+        Assert.Throws<InvalidOfficeHour>(() => OfficeHour.From(value));
     }
 
     public static IEnumerable<object[]> InvalidHours

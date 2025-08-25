@@ -1,12 +1,13 @@
+using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
-using HorsesForCourses.Core.Domain.Skills;
-using HorsesForCourses.Tests.Documentation.Coaches;
 
 
-namespace HorsesForCourses.Tests.Documentation.Courses.B_UpdateConfirmCourse;
+namespace HorsesForCourses.Tests.Documentation.Courses.D_ConfirmCourse;
 
 public class B_UpdateConfirmCourseDomain : CourseDomainTests
 {
+    protected override Course ManipulateEntity(Course entity)
+        => entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());
 
     [Fact]
     public void UpdateConfirmCourse_WithValidData_ShouldSucceed()
@@ -16,9 +17,16 @@ public class B_UpdateConfirmCourseDomain : CourseDomainTests
     }
 
     [Fact]
-    public void UpdateConfirmCourse_WithInValidSkill_Throws()
+    public void UpdateConfirmCourse_Twice_Throws()
     {
         Entity.Confirm();
-        Assert.Throws<SkillValueCanNotBeEmpty>(() => Entity.Confirm());
+        Assert.Throws<CourseAlreadyComfirmed>(() => Entity.Confirm());
+    }
+
+    [Fact]
+    public void UpdateConfirmCourse_Without_TimeSlots_Throws()
+    {
+        Entity.UpdateTimeSlots([]);
+        Assert.Throws<AtLeastOneTimeSlotRequired>(() => Entity.Confirm());
     }
 }

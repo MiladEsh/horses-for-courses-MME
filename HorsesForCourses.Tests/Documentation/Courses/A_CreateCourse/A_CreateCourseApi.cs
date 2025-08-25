@@ -4,9 +4,7 @@ using HorsesForCourses.Tests.Documentation.Courses;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-using static HorsesForCourses.Api.Courses.CoursesController;
-
-namespace HorsesForCourses.Tests.Documentation.Coaches.A_CreateCourse;
+namespace HorsesForCourses.Tests.Documentation.Courses.A_CreateCourse;
 
 public class A_CreateCourseApi : CoursesControllerTests
 {

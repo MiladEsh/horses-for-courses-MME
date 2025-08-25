@@ -1,9 +1,8 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Domain.Courses;
-using HorsesForCourses.Core.Domain.Skills;
 
 
-namespace HorsesForCourses.Tests.Documentation.Courses.B_UpdateConfirmCourse;
+namespace HorsesForCourses.Tests.Documentation.Courses.D_ConfirmCourse;
 
 public class C_UpdateConfirmCourseData : TheDatabaseTest
 {
@@ -18,7 +17,10 @@ public class C_UpdateConfirmCourseData : TheDatabaseTest
     private void Act()
     {
         var context = GetDbContext();
-        Reload(context).Confirm();
+
+        var entity = Reload(context);
+        entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());
+        entity.Confirm();
         context.SaveChanges();
     }
 

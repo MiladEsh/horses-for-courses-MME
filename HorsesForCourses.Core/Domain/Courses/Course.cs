@@ -41,29 +41,17 @@ public class Course : DomainEntity<Course>
         if (duplicates.Any())
             throw new CourseAlreadyHasSkill(string.Join(",", skills));
 
+        var newSkills = skills.Select(Skill.From).ToList();
+
         RequiredSkills.Clear();
-        skills.Select(a => Skill.From(a))
-            .ToList()
-            .ForEach(a => RequiredSkills.Add(a));
+        RequiredSkills.AddRange(newSkills);
+
     }
 
-    public void AddRequiredSkill(Skill skill)
+    public virtual Course UpdateTimeSlots(IEnumerable<TimeSlot> timeSlots)
     {
-        if (IsConfirmed)
-            throw new InvalidOperationException("Cannot modify required skills after course is confirmed.");
-
-        if (!RequiredSkills.Contains(skill))
-        {
-            RequiredSkills.Add(skill);
-        }
-    }
-
-    public void RemoveRequiredSkill(Skill skill)
-    {
-        if (IsConfirmed)
-            throw new InvalidOperationException("Cannot modify required skills after course is confirmed.");
-
-        RequiredSkills.Remove(skill);
+        TimeSlots = [.. timeSlots];
+        return this;
     }
 
     public void AddTimeSlot(TimeSlot slot)
@@ -89,16 +77,10 @@ public class Course : DomainEntity<Course>
     public void Confirm()
     {
         if (IsConfirmed)
-            throw new InvalidOperationException("Course is already confirmed.");
+            throw new CourseAlreadyComfirmed();
 
         if (TimeSlots.Count == 0)
-            throw new InvalidOperationException("Course must have at least one time slot before confirmation.");
-
-        if (StartDate > EndDate)
-            throw new InvalidOperationException("Start date must be before end date.");
-
-        if (string.IsNullOrWhiteSpace(Name))
-            throw new InvalidOperationException("Course must have a name.");
+            throw new AtLeastOneTimeSlotRequired();
 
         IsConfirmed = true;
     }

@@ -1,3 +1,5 @@
+using HorsesForCourses.Api.Courses.UpdateTimeSlots;
+using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
 using Moq;
@@ -19,4 +21,9 @@ public static class TheCannonical
 
     public static Course Course()
         => new(CourseName, CourseStart, CourseEnd);
+
+    public static IEnumerable<TimeSlotDto> TimeSlotsRequestFullDayMonday()
+        => [new(CourseDay.Monday, 9, 17)];
+    public static IEnumerable<TimeSlot> TimeSlotsFullDayMonday()
+        => [TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(17))];
 }

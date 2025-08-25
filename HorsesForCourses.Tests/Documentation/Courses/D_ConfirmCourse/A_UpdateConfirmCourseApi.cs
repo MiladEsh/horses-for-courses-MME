@@ -1,12 +1,18 @@
+using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace HorsesForCourses.Tests.Documentation.Courses.B_UpdateConfirmCourse;
+namespace HorsesForCourses.Tests.Documentation.Courses.D_ConfirmCourse;
 
 
 public class A_UpdateConfirmCourseApi : CoursesControllerTests
 {
     private readonly List<string> request = ["one", "two"];
+
+    protected override void ManipulateEntity(Course entity)
+    {
+        entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());
+    }
 
     [Fact]
     public async Task UpdateConfirmCourse_uses_the_query_object()
@@ -16,11 +22,10 @@ public class A_UpdateConfirmCourseApi : CoursesControllerTests
     }
 
     [Fact]
-    public async Task UpdateConfirmCourse_calls_update_skills()
+    public async Task UpdateConfirmCourse_calls_confirm()
     {
         await controller.ConfirmCourse(42);
-        Assert.True(spy.Called);
-        Assert.Equal(request, spy.Seen);
+        Assert.True(spy.IsConfirmed);
     }
 
     [Fact]
@@ -31,7 +36,7 @@ public class A_UpdateConfirmCourseApi : CoursesControllerTests
     }
 
     [Fact]
-    public async Task UpdateConfirmCourse_ReturnsOk_WithValidId()
+    public async Task UpdateConfirmCourse_NoContent()
     {
         var response = await controller.ConfirmCourse(42);
         Assert.IsType<NoContentResult>(response);

@@ -4,11 +4,12 @@ namespace HorsesForCourses.Tests.Documentation;
 
 public abstract class DomainTests<TEntity>
 {
-    protected TEntity Entity { get; }
-    protected abstract TEntity CreateCannonicalEntity();
-
     public DomainTests()
     {
-        Entity = CreateCannonicalEntity();
+        Entity = ManipulateEntity(CreateCannonicalEntity());
     }
+
+    protected TEntity Entity { get; }
+    protected abstract TEntity CreateCannonicalEntity();
+    protected virtual TEntity ManipulateEntity(TEntity entity) => entity;
 }

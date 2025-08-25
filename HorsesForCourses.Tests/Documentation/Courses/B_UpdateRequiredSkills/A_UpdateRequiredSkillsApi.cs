@@ -20,8 +20,8 @@ public class A_UpdateRequiredSkillsApi : CoursesControllerTests
     public async Task UpdateRequiredSkills_calls_update_skills()
     {
         await controller.UpdateRequiredSkills(42, request);
-        Assert.True(spy.Called);
-        Assert.Equal(request, spy.Seen);
+        Assert.True(spy.SkillsCalled);
+        Assert.Equal(request, spy.SkillsSeen);
     }
 
     [Fact]
@@ -32,7 +32,7 @@ public class A_UpdateRequiredSkillsApi : CoursesControllerTests
     }
 
     [Fact]
-    public async Task UpdateRequiredSkills_ReturnsOk_WithValidId()
+    public async Task UpdateRequiredSkills_Returns_NoContent()
     {
         var response = await controller.UpdateRequiredSkills(42, request);
         Assert.IsType<NoContentResult>(response);

@@ -1,4 +1,5 @@
 using HorsesForCourses.Core.Domain;
+using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 
 namespace HorsesForCourses.Tests.Core;
 
@@ -17,7 +18,7 @@ public class TimeSlotTests
     [Fact]
     public void CreateTimeSlot_LessThanOneHour_ShouldThrow()
     {
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<TimeSlotMustBeAtleastOneHourLong>(() =>
             TimeSlot.From(CourseDay.Wednesday, OfficeHour.From(14), OfficeHour.From(14))
         );
     }
@@ -25,7 +26,7 @@ public class TimeSlotTests
     [Fact]
     public void CreateTimeSlot_EndBeforeStart_ShouldThrow()
     {
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<TimeSlotMustBeAtleastOneHourLong>(() =>
             TimeSlot.From(CourseDay.Thursday, OfficeHour.From(15), OfficeHour.From(14))
         );
     }

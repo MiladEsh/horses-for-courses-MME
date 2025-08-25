@@ -1,4 +1,5 @@
 using HorsesForCourses.Core.Abstractions;
+using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 
 namespace HorsesForCourses.Core.Domain;
 
@@ -18,7 +19,7 @@ public record OfficeHour : ComparableValue<OfficeHour, int>
     public static OfficeHour From(int value)
     {
         if (value < 9 || value > 17)
-            throw new ArgumentException("Office hour should be between 09:00 - 17:00 (inclusive).");
+            throw new InvalidOfficeHour();
         return new OfficeHour(value);
     }
 

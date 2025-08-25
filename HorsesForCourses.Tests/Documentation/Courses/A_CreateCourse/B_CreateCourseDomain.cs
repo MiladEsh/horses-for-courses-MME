@@ -1,6 +1,5 @@
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
-using HorsesForCourses.Tests.Documentation.Coaches;
 
 
 namespace HorsesForCourses.Tests.Documentation.Courses.A_CreateCourse;

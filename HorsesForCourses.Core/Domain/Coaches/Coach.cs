@@ -44,18 +44,6 @@ public class Coach : DomainEntity<Coach>
             .ForEach(a => Skills.Add(a));
     }
 
-    public void AddSkill(Skill skill)
-    {
-        if (Skills.Contains(skill))
-            throw new CoachAlreadyHasSkill(skill.Value);
-        Skills.Add(skill);
-    }
-
-    public void RemoveSkill(Skill skill)
-    {
-        Skills.Remove(skill);
-    }
-
     public bool IsSuitableFor(Course course)
     {
         return course.RequiredSkills.All(Skills.Contains);

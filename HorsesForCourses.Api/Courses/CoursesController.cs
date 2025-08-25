@@ -1,6 +1,8 @@
 using HorsesForCourses.Api.Coursees.UpdateSkills;
 using HorsesForCourses.Api.Courses.CreateCoach;
+using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +10,7 @@ namespace HorsesForCourses.Api.Courses;
 
 [ApiController]
 [Route("courses")]
-public class CoursesController : ControllerBase
+public partial class CoursesController : ControllerBase
 {
     private readonly IAmASuperVisor supervisor;
     private readonly IGetCourseForUpdateSkills getCourseForSkills;
@@ -37,6 +39,20 @@ public class CoursesController : ControllerBase
         return NoContent();
     }
 
+    [HttpPost("{id}/timeslots")]
+    public async Task<IActionResult> UpdateTimeSlots(int id, IEnumerable<TimeSlotDto> timeSlots)
+    {
+        var course = await getCourseForSkills.Load(id);
+        if (course == null) return NotFound();
+        course.UpdateTimeSlots(
+            timeSlots.Select(
+                a => TimeSlot.From(
+                    a.Day,
+                    OfficeHour.From(a.Start),
+                    OfficeHour.From(a.End))).ToList());
+        return NoContent();
+    }
+
     [HttpPost("{id}/confirm")]
     public async Task<IActionResult> ConfirmCourse(int id)
     {
@@ -46,27 +62,6 @@ public class CoursesController : ControllerBase
         return NoContent();
     }
 
-    // public record TimeslotDto(string Day, TimeOnly Start, TimeOnly End);
-    // public record UpdateTimeslotsRequest(List<TimeslotDto> Timeslots);
-
-    // [HttpPost("{id}/timeslots")]
-    // public IActionResult UpdateTimeslots(Guid id, UpdateTimeslotsRequest request)
-    // {
-    //     var course = repo.Get(id);
-    //     if (course == null) return NotFound();
-    //     //course.ReplaceTimeslots(request.Timeslots);
-    //     return Ok();
-    // }
-
-
-    // [HttpPost("{id}/confirm")]
-    // public IActionResult Confirm(Guid id)
-    // {
-    //     var course = repo.Get(id);
-    //     if (course == null) return NotFound();
-    //     //course.Confirm();
-    //     return Ok();
-    // }
 
 
     // public record AssignCoachRequest(Guid CoachId);

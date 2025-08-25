@@ -1,12 +1,11 @@
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Courses;
+using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 
 namespace HorsesForCourses.Core.Domain;
 
 public record TimeSlot
 {
-    public Id<Course> CourseId { get; private set; }
-
     public CourseDay Day { get; }
 
     public int StartHour => Start.Value;
@@ -27,7 +26,7 @@ public record TimeSlot
     public static TimeSlot From(CourseDay day, OfficeHour start, OfficeHour end)
     {
         if (start >= end)
-            throw new ArgumentException("Time slot must be at least 1 hour long.");
+            throw new TimeSlotMustBeAtleastOneHourLong();
         return new TimeSlot(day, start, end);
     }
 }
