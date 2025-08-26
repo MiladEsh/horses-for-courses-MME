@@ -9,7 +9,7 @@ namespace HorsesForCourses.Tests.Courses.C_UpdateTimeSlots;
 public class A_UpdateTimeSlotsApi : CoursesControllerTests
 {
     private readonly IEnumerable<TimeSlotRequest> request =
-        TheCannonical.TimeSlotsRequestFullDayMonday();
+        TheCanonical.TimeSlotsRequestFullDayMonday();
 
     [Fact]
     public async Task UpdateTimeSlots_uses_the_query_object()
@@ -23,7 +23,7 @@ public class A_UpdateTimeSlotsApi : CoursesControllerTests
     {
         await controller.UpdateTimeSlots(1, request);
         Assert.True(spy.TimeSlotsCalled);
-        Assert.Equal(TheCannonical.TimeSlotsFullDayMonday(), spy.TimeSlotsSeen);
+        Assert.Equal(TheCanonical.TimeSlotsFullDayMonday(), spy.TimeSlotsSeen);
     }
 
     [Fact]

@@ -14,8 +14,8 @@ public class C_AssignCoachData : TheDatabaseTest
 
     public C_AssignCoachData()
     {
-        course = TheCannonical.Course();
-        coach = TheCannonical.Coach();
+        course = TheCanonical.Course();
+        coach = TheCanonical.Coach();
         AddToDb(course, coach);
     }
 
@@ -23,7 +23,7 @@ public class C_AssignCoachData : TheDatabaseTest
     {
         var context = GetDbContext();
         var entity = Reload(context);
-        entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());
+        entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
         entity.Confirm();
         entity.AssignCoach(coach);
         context.SaveChanges();

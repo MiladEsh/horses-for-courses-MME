@@ -14,10 +14,10 @@ public class GetCourseByIdTests : TheDatabaseTest
     [Fact]
     public async Task LoadIt()
     {
-        AddToDb(TheCannonical.Course());
+        AddToDb(TheCanonical.Course());
         var result = await Act();
         Assert.NotNull(result);
         Assert.Equal(1, result.Id.Value);
-        Assert.Equal(TheCannonical.CourseName, result.Name);
+        Assert.Equal(TheCanonical.CourseName, result.Name);
     }
 }

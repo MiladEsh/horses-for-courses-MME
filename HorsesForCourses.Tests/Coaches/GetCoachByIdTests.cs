@@ -14,10 +14,10 @@ public class GetCoachByIdTests : TheDatabaseTest
     [Fact]
     public async Task LoadIt()
     {
-        AddToDb(TheCannonical.Coach());
+        AddToDb(TheCanonical.Coach());
         var result = await Act();
         Assert.NotNull(result);
         Assert.Equal(1, result.Id.Value);
-        Assert.Equal(TheCannonical.CoachName, result.Name);
+        Assert.Equal(TheCanonical.CoachName, result.Name);
     }
 }

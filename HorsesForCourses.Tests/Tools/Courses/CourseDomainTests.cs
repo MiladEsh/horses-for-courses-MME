@@ -4,5 +4,5 @@ namespace HorsesForCourses.Tests.Tools.Courses;
 
 public class CourseDomainTests : DomainTests<Course>
 {
-    protected override Course CreateCannonicalEntity() => TheCannonical.Course();
+    protected override Course CreateCannonicalEntity() => TheCanonical.Course();
 }

@@ -15,7 +15,7 @@ public class C_RegisterCoachData : TheDatabaseTest
     public C_RegisterCoachData()
     {
         supervisor = new DataSupervisor(GetDbContext());
-        coach = TheCannonical.Coach();
+        coach = TheCanonical.Coach();
     }
 
     private async Task Act()
@@ -48,7 +48,7 @@ public class C_RegisterCoachData : TheDatabaseTest
     {
         await Act();
         var reloaded = Reload();
-        Assert.Equal(TheCannonical.CoachName, reloaded!.Name);
-        Assert.Equal(TheCannonical.CoachEmail, reloaded!.Email);
+        Assert.Equal(TheCanonical.CoachName, reloaded!.Name);
+        Assert.Equal(TheCanonical.CoachEmail, reloaded!.Email);
     }
 }

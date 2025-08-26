@@ -11,7 +11,7 @@ public class C_UpdateConfirmCourseData : TheDatabaseTest
 
     public C_UpdateConfirmCourseData()
     {
-        course = TheCannonical.Course();
+        course = TheCanonical.Course();
         AddToDb(course);
     }
 
@@ -20,7 +20,7 @@ public class C_UpdateConfirmCourseData : TheDatabaseTest
         var context = GetDbContext();
 
         var entity = Reload(context);
-        entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());
+        entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
         entity.Confirm();
         context.SaveChanges();
     }

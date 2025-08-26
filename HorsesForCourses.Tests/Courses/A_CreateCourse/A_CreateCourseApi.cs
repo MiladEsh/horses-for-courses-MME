@@ -13,7 +13,7 @@ public class A_CreateCourseApi : CoursesControllerTests
 
     public A_CreateCourseApi()
     {
-        request = new CreateCourseRequest(TheCannonical.CourseName, TheCannonical.CourseStart, TheCannonical.CourseEnd);
+        request = new CreateCourseRequest(TheCanonical.CourseName, TheCanonical.CourseStart, TheCanonical.CourseEnd);
     }
 
     private async Task<OkObjectResult?> Act()

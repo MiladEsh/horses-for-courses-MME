@@ -14,11 +14,11 @@ public class B_AssignCoachDomain : CourseDomainTests
     public void AssignCoach_WithValidData_ShouldSucceed()
     {
         Entity
-            .UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday())
+            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
             .Confirm()
-            .AssignCoach(TheCannonical.Coach());
+            .AssignCoach(TheCanonical.Coach());
         Assert.NotNull(Entity.AssignedCoach);
-        Assert.Equal(TheCannonical.CoachName, Entity.AssignedCoach.Name);
+        Assert.Equal(TheCanonical.CoachName, Entity.AssignedCoach.Name);
     }
 
     [Fact]
@@ -31,16 +31,16 @@ public class B_AssignCoachDomain : CourseDomainTests
     public void AssignCoach_When_Unconfirmed_Throws()
         => Assert.Throws<CourseNotYetConfirmed>(() =>
             Entity
-                .UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday())
-                .AssignCoach(TheCannonical.Coach()));
+                .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
+                .AssignCoach(TheCanonical.Coach()));
 
     [Fact]
     public void AssignCoach_Twice_Throws()
     {
         Entity
-            .UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday())
-            .Confirm().AssignCoach(TheCannonical.Coach());
-        Assert.Throws<CourseAlreadyHasCoach>(() => Entity.AssignCoach(TheCannonical.Coach()));
+            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
+            .Confirm().AssignCoach(TheCanonical.Coach());
+        Assert.Throws<CourseAlreadyHasCoach>(() => Entity.AssignCoach(TheCanonical.Coach()));
     }
 
     [Fact]
@@ -48,27 +48,27 @@ public class B_AssignCoachDomain : CourseDomainTests
     {
         Entity
             .UpdateRequiredSkills(["not this one"])
-            .UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday())
+            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
             .Confirm();
-        Assert.Throws<CoachNotSuitableForCourse>(() => Entity.AssignCoach(TheCannonical.Coach()));
+        Assert.Throws<CoachNotSuitableForCourse>(() => Entity.AssignCoach(TheCanonical.Coach()));
     }
 
     [Fact]
     public void CoachUnavailable_Throws()
     {
-        var coach = TheCannonical.Coach();
-        var course = TheCannonical.Course()
-            .UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday())
+        var coach = TheCanonical.Coach();
+        var course = TheCanonical.Course()
+            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
             .Confirm()
             .AssignCoach(coach);
-        Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday()).Confirm();
+        Entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday()).Confirm();
         Assert.Throws<CoachNotAvailableForCourse>(() => Entity.AssignCoach(coach));
     }
 
     [Fact]
     public void CoachUnavailable_Case_1_Succeeds()
     {
-        var coach = TheCannonical.Coach();
+        var coach = TheCanonical.Coach();
         new Course("Assigned", DateOnly.FromDateTime(19.August(2025)), DateOnly.FromDateTime(19.August(2025)))
             .UpdateTimeSlots([TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(17))])
             .Confirm()
@@ -83,7 +83,7 @@ public class B_AssignCoachDomain : CourseDomainTests
     [Fact]
     public void CoachUnavailable_Case_2_Succeeds()
     {
-        var coach = TheCannonical.Coach();
+        var coach = TheCanonical.Coach();
         new Course("Assigned",
                 DateOnly.FromDateTime(19.August(2025)),
                 DateOnly.FromDateTime(19.August(2025)))
@@ -102,7 +102,7 @@ public class B_AssignCoachDomain : CourseDomainTests
     [Fact]
     public void CoachUnavailable_Case_3_Succeeds()
     {
-        var coach = TheCannonical.Coach();
+        var coach = TheCanonical.Coach();
         new Course("Assigned",
                 DateOnly.FromDateTime(19.August(2025)),
                 DateOnly.FromDateTime(22.August(2025)))

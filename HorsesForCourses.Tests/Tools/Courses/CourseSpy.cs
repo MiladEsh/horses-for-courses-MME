@@ -6,7 +6,7 @@ namespace HorsesForCourses.Tests.Tools.Courses;
 
 public class CourseSpy : Course
 {
-    public CourseSpy() : base(TheCannonical.CourseName, TheCannonical.CourseStart, TheCannonical.CourseEnd) { }
+    public CourseSpy() : base(TheCanonical.CourseName, TheCanonical.CourseStart, TheCanonical.CourseEnd) { }
     public bool SkillsCalled;
     public IEnumerable<string>? SkillsSeen;
     public override Course UpdateRequiredSkills(IEnumerable<string> skills)

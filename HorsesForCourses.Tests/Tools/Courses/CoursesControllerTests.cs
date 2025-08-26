@@ -34,7 +34,7 @@ public abstract class CoursesControllerTests
         getCourseById.Setup(a => a.Load(1)).ReturnsAsync(spy);
 
         getCoachById = new Mock<IGetCoachById>();
-        getCoachById.Setup(a => a.Load(1)).ReturnsAsync(TheCannonical.Coach());
+        getCoachById.Setup(a => a.Load(1)).ReturnsAsync(TheCanonical.Coach());
 
         supervisor = new Mock<IAmASuperVisor>();
 

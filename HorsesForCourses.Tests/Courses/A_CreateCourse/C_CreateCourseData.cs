@@ -41,8 +41,8 @@ public class C_CreateCourseData : CourseDatabaseTests
     {
         await Act();
         var reloaded = Reload();
-        Assert.Equal(TheCannonical.CourseName, reloaded!.Name);
-        Assert.Equal(TheCannonical.CourseStart, reloaded!.StartDate);
-        Assert.Equal(TheCannonical.CourseEnd, reloaded!.EndDate);
+        Assert.Equal(TheCanonical.CourseName, reloaded!.Name);
+        Assert.Equal(TheCanonical.CourseStart, reloaded!.StartDate);
+        Assert.Equal(TheCanonical.CourseEnd, reloaded!.EndDate);
     }
 }

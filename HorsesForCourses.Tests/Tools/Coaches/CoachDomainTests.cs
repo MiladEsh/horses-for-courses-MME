@@ -4,5 +4,5 @@ namespace HorsesForCourses.Tests.Tools.Coaches;
 
 public class CoachDomainTests : DomainTests<Coach>
 {
-    protected override Coach CreateCannonicalEntity() => TheCannonical.Coach();
+    protected override Coach CreateCannonicalEntity() => TheCanonical.Coach();
 }

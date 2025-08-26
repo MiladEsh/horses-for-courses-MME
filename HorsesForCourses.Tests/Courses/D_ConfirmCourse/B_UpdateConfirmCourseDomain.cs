@@ -9,7 +9,7 @@ namespace HorsesForCourses.Tests.Courses.D_ConfirmCourse;
 public class B_UpdateConfirmCourseDomain : CourseDomainTests
 {
     protected override Course ManipulateEntity(Course entity)
-        => entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());
+        => entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
 
     [Fact]
     public void UpdateConfirmCourse_WithValidData_ShouldSucceed()

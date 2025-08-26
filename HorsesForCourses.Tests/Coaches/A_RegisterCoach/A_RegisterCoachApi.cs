@@ -13,7 +13,7 @@ public class A_RegisterCoachApi : CoachesControllerTests
 
     public A_RegisterCoachApi()
     {
-        request = new RegisterCoachRequest(TheCannonical.CoachName, TheCannonical.CoachEmail);
+        request = new RegisterCoachRequest(TheCanonical.CoachName, TheCanonical.CoachEmail);
     }
 
     private async Task<OkObjectResult?> Act()
@@ -27,8 +27,8 @@ public class A_RegisterCoachApi : CoachesControllerTests
         await Act();
         supervisor.Verify(a => a.Enlist(
             It.Is<Coach>(a =>
-                a.Name == TheCannonical.CoachName &&
-                a.Email == TheCannonical.CoachEmail)));
+                a.Name == TheCanonical.CoachName &&
+                a.Email == TheCanonical.CoachEmail)));
         supervisor.Verify(a => a.Ship());
     }
 

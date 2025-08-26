@@ -9,7 +9,7 @@ public class CourseDatabaseTests : TheDatabaseTest
 
     public CourseDatabaseTests()
     {
-        Entity = TheCannonical.Course();
+        Entity = TheCanonical.Course();
         AddToDb(Entity);
     }
 

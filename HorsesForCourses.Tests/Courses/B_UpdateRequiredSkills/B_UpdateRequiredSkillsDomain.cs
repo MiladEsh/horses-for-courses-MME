@@ -43,7 +43,7 @@ public class B_UpdateRequiredSkillsDomain : CourseDomainTests
     [Fact]
     public void UpdateRequiredSkills_When_Confirmed_Throws()
         => Assert.Throws<CourseAlreadyConfirmed>(() =>
-            Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday())
+            Entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
                 .Confirm()
                 .UpdateRequiredSkills(["one"]));
 }

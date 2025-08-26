@@ -27,15 +27,15 @@ public class B_GetCoursesData : TheDatabaseTest
     [Fact]
     public async Task With_Course()
     {
-        AddToDb(TheCannonical.Course());
+        AddToDb(TheCanonical.Course());
         var result = await Act(new PageRequest());
         Assert.Single(result.Items);
 
         var summary = result.Items.Single();
         Assert.Equal(1, summary.Id);
-        Assert.Equal(TheCannonical.CourseName, summary.Name);
-        Assert.Equal(TheCannonical.CourseStart, summary.StartDate);
-        Assert.Equal(TheCannonical.CourseEnd, summary.EndDate);
+        Assert.Equal(TheCanonical.CourseName, summary.Name);
+        Assert.Equal(TheCanonical.CourseStart, summary.StartDate);
+        Assert.Equal(TheCanonical.CourseEnd, summary.EndDate);
         Assert.False(summary.HasSchedule);
         Assert.False(summary.HasCoach);
 

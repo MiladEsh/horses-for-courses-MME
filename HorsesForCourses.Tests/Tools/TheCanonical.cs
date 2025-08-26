@@ -6,7 +6,7 @@ using WibblyWobbly;
 
 namespace HorsesForCourses.Tests.Tools;
 
-public static class TheCannonical
+public static class TheCanonical
 {
     public const string CoachName = "a";
     public const string CoachEmail = "a@a.a";

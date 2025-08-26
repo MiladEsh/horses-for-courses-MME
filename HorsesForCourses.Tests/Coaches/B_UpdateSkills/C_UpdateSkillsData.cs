@@ -13,7 +13,7 @@ public class C_UpdateSkillsData : TheDatabaseTest
 
     public C_UpdateSkillsData()
     {
-        coach = TheCannonical.Coach();
+        coach = TheCanonical.Coach();
         AddToDb(coach);
     }
 

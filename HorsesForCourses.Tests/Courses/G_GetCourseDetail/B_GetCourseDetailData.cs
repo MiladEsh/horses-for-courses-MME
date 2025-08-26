@@ -13,13 +13,13 @@ public class B_GetCourseDetailData : TheDatabaseTest
     [Fact]
     public async Task With_Course()
     {
-        AddToDb(TheCannonical.Course());
+        AddToDb(TheCanonical.Course());
         var detail = await Act();
         Assert.NotNull(detail);
         Assert.Equal(1, detail.Id);
-        Assert.Equal(TheCannonical.CourseName, detail.Name);
-        Assert.Equal(TheCannonical.CourseStart, detail.Start);
-        Assert.Equal(TheCannonical.CourseEnd, detail.End);
+        Assert.Equal(TheCanonical.CourseName, detail.Name);
+        Assert.Equal(TheCanonical.CourseStart, detail.Start);
+        Assert.Equal(TheCanonical.CourseEnd, detail.End);
         Assert.Equal([], detail.Skills);
         Assert.Null(detail.Coach);
     }

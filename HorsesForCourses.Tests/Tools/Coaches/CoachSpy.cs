@@ -4,7 +4,7 @@ namespace HorsesForCourses.Tests.Tools.Coaches;
 
 public class CoachSpy : Coach
 {
-    public CoachSpy() : base(TheCannonical.CoachName, TheCannonical.CoachEmail) { }
+    public CoachSpy() : base(TheCanonical.CoachName, TheCanonical.CoachEmail) { }
     public bool Called;
     public IEnumerable<string>? Seen;
     public override void UpdateSkills(IEnumerable<string> skills)

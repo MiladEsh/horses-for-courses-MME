@@ -11,9 +11,9 @@ public class B_CreateCourseDomain : CourseDomainTests
     [Fact]
     public void CreateCourse_WithValidData_ShouldSucceed()
     {
-        Assert.Equal(TheCannonical.CourseName, Entity.Name);
-        Assert.Equal(TheCannonical.CourseStart, Entity.StartDate);
-        Assert.Equal(TheCannonical.CourseEnd, Entity.EndDate);
+        Assert.Equal(TheCanonical.CourseName, Entity.Name);
+        Assert.Equal(TheCanonical.CourseStart, Entity.StartDate);
+        Assert.Equal(TheCanonical.CourseEnd, Entity.EndDate);
     }
 
     [Fact]
@@ -25,13 +25,13 @@ public class B_CreateCourseDomain : CourseDomainTests
     [Fact]
     public void CreateCourse_WithEmptyName_ShouldThrow()
         => Assert.Throws<CourseNameCanNotBeEmpty>(
-            () => new Course(string.Empty, TheCannonical.CourseStart, TheCannonical.CourseEnd));
+            () => new Course(string.Empty, TheCanonical.CourseStart, TheCanonical.CourseEnd));
 
     [Fact]
     public void CreateCourse_WithEndDateBeforeStartDate_ShouldThrow()
     {
         Assert.Throws<CourseEndDateCanNotBeBeforeStartDate>(() =>
-            new Course(TheCannonical.CourseName, new DateOnly(2025, 7, 31), new DateOnly(2025, 7, 1))
+            new Course(TheCanonical.CourseName, new DateOnly(2025, 7, 31), new DateOnly(2025, 7, 1))
         );
     }
 }

@@ -64,7 +64,7 @@ public class B_UpdateTimeSlotsDomain : CourseDomainTests
     [Fact]
     public void UpdateTimeSlots_valid_ShouldSucceed()
     {
-        Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());
+        Entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
         var timeSlot = Entity.TimeSlots.Single();
         Assert.Equal(CourseDay.Monday, timeSlot.Day);
         Assert.Equal(9, timeSlot.Start.Value);
@@ -75,8 +75,8 @@ public class B_UpdateTimeSlotsDomain : CourseDomainTests
     public void UpdateTimeSlots_overlapping_timeslots_Full_Day_ShouldThrow()
     {
         Assert.Throws<OverLappingTimeSlots>(() =>
-            Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday()
-                .Concat(TheCannonical.TimeSlotsFullDayMonday())));
+            Entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday()
+                .Concat(TheCanonical.TimeSlotsFullDayMonday())));
     }
 
     [Fact]
@@ -110,9 +110,9 @@ public class B_UpdateTimeSlotsDomain : CourseDomainTests
     [Fact]
     public void UpdateTimeSlots_AlreadyConfirmed_ShouldThrow()
     {
-        Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday());
+        Entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
         Entity.Confirm();
         Assert.Throws<CourseAlreadyConfirmed>(() =>
-            Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday()));
+            Entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday()));
     }
 }

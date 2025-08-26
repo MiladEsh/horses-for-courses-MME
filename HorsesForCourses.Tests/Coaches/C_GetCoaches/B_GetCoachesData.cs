@@ -27,14 +27,14 @@ public class B_GetCoachesData : TheDatabaseTest
     [Fact]
     public async Task With_Coach()
     {
-        AddToDb(TheCannonical.Coach());
+        AddToDb(TheCanonical.Coach());
         var result = await Act(new PageRequest());
         Assert.Single(result.Items);
 
         var summary = result.Items.Single();
         Assert.Equal(1, summary.Id);
-        Assert.Equal(TheCannonical.CoachName, summary.Name);
-        Assert.Equal(TheCannonical.CoachEmail, summary.Email);
+        Assert.Equal(TheCanonical.CoachName, summary.Name);
+        Assert.Equal(TheCanonical.CoachEmail, summary.Email);
         Assert.Equal(0, summary.NumberOfCoursesAssignedTo);
 
         Assert.Equal(1, result.TotalCount);

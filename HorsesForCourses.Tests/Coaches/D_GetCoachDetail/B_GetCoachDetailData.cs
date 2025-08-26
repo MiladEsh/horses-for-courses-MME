@@ -13,12 +13,12 @@ public class B_GetCoachDetailData : TheDatabaseTest
     [Fact]
     public async Task With_Coach()
     {
-        AddToDb(TheCannonical.Coach());
+        AddToDb(TheCanonical.Coach());
         var detail = await Act();
         Assert.NotNull(detail);
         Assert.Equal(1, detail.Id);
-        Assert.Equal(TheCannonical.CoachName, detail.Name);
-        Assert.Equal(TheCannonical.CoachEmail, detail.Email);
+        Assert.Equal(TheCanonical.CoachName, detail.Name);
+        Assert.Equal(TheCanonical.CoachEmail, detail.Email);
         Assert.Equal([], detail.Skills);
         Assert.Equal([], detail.Courses);
     }
