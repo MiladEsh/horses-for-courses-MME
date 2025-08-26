@@ -1,3 +1,4 @@
+using HorsesForCourses.Api.Coaches;
 using HorsesForCourses.Api.Courses;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
