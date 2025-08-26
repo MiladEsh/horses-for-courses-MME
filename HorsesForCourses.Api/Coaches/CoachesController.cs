@@ -44,7 +44,7 @@ public class CoachesController : ControllerBase
         var coach = await getCoachById.Load(id);
         if (coach == null) return NotFound();
         coach.UpdateSkills(request.Skills);
-        supervisor.Ship();
+        await supervisor.Ship();
         return NoContent();
     }
 
