@@ -56,14 +56,12 @@ public class CourseDataConfiguration : IEntityTypeConfiguration<Course>
             tsb.WithOwner().HasForeignKey("CourseId");
             tsb.ToTable("CourseTimeSlots");
 
-            // Composite key on FK + Day + Start (converted)
             tsb.HasKey("CourseId", nameof(TimeSlot.Day), nameof(TimeSlot.Start));
 
             tsb.Property(t => t.Day)
                 .HasColumnName("Day")
                 .IsRequired();
 
-            // map value object -> int
             tsb.Property(t => t.Start)
                 .HasColumnName("StartHour")
                 .HasConversion(v => v.Value, v => OfficeHour.From(v))

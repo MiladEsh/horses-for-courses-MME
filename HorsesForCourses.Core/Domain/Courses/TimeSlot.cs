@@ -1,5 +1,3 @@
-using HorsesForCourses.Core.Abstractions;
-using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 
 namespace HorsesForCourses.Core.Domain;

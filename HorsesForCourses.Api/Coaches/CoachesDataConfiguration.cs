@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace HorsesForCourses.Api;
+namespace HorsesForCourses.Api.Coaches;
 
 public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
 {
@@ -30,14 +30,6 @@ public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
         builder.Property(c => c.Email)
             .IsRequired()
             .HasMaxLength(100);
-
-        // === AssignedCourses ===
-        // builder.Navigation(c => c.AssignedCourses)
-        //     .UsePropertyAccessMode(PropertyAccessMode.Field);
-
-        // builder.HasMany<Course>("_assignedCourses")
-        //     .WithOne() // adjust if Course has a Coach navigation
-        //     .OnDelete(DeleteBehavior.Restrict);
 
         builder.OwnsMany(c => c.Skills, sb =>
         {

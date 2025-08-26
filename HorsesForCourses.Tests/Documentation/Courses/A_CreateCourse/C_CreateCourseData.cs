@@ -1,6 +1,4 @@
 using HorsesForCourses.Api.Warehouse;
-using HorsesForCourses.Core.Abstractions;
-using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Tests.Tools;
 using HorsesForCourses.Tests.Tools.Courses;
 

@@ -3,7 +3,6 @@ using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Tests.Tools;
 using HorsesForCourses.Tests.Tools.Courses;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 
 namespace HorsesForCourses.Tests.Documentation.Courses.E_AssignCoach;
 

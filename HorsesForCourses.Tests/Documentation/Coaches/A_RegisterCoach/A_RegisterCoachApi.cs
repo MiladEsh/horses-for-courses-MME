@@ -5,8 +5,6 @@ using HorsesForCourses.Tests.Tools.Coaches;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-using QuickPulse.Show.Bolts;
-
 namespace HorsesForCourses.Tests.Documentation.Coaches.A_RegisterCoach;
 
 public class A_RegisterCoachApi : CoachesControllerTests

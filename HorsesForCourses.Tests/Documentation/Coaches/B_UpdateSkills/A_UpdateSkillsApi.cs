@@ -1,7 +1,6 @@
 using HorsesForCourses.Api.Coaches.UpdateSkills;
 using HorsesForCourses.Tests.Tools.Coaches;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 
 
 namespace HorsesForCourses.Tests.Documentation.Coaches.B_UpdateSkills;

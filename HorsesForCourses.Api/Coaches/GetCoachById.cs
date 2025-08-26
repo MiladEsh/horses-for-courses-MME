@@ -1,7 +1,6 @@
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
-using Microsoft.EntityFrameworkCore;
 
 namespace HorsesForCourses.Api.Coaches;
 

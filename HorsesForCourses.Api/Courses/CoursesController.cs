@@ -9,7 +9,6 @@ using HorsesForCourses.Api.Warehouse.Paging;
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.AspNetCore.Mvc;
-using QuickPulse.Show;
 
 namespace HorsesForCourses.Api.Courses;
 

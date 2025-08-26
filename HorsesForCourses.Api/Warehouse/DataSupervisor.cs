@@ -1,5 +1,4 @@
 using HorsesForCourses.Core.Abstractions;
-using HorsesForCourses.Core.Domain.Coaches;
 
 namespace HorsesForCourses.Api.Warehouse;
 

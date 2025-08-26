@@ -2,7 +2,6 @@ using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Tests.Tools;
 using HorsesForCourses.Tests.Tools.Courses;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 
 namespace HorsesForCourses.Tests.Documentation.Courses.C_UpdateTimeSlots;
 
