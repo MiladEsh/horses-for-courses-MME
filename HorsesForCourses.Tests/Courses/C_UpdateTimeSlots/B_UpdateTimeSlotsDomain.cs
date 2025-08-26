@@ -72,11 +72,39 @@ public class B_UpdateTimeSlotsDomain : CourseDomainTests
     }
 
     [Fact]
-    public void UpdateTimeSlots_overlapping_timeslots_ShouldThrow()
+    public void UpdateTimeSlots_overlapping_timeslots_Full_Day_ShouldThrow()
     {
         Assert.Throws<OverLappingTimeSlots>(() =>
             Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday()
                 .Concat(TheCannonical.TimeSlotsFullDayMonday())));
+    }
+
+    [Fact]
+    public void UpdateTimeSlots_overlapping_timeslots_overlap_ShouldThrow()
+    {
+        Assert.Throws<OverLappingTimeSlots>(() =>
+            Entity.UpdateTimeSlots(
+                [ TimeSlot.From(CourseDay.Monday, OfficeHour.From(14), OfficeHour.From(17))
+                , TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(15))]));
+    }
+
+    [Fact]
+    public void UpdateTimeSlots_overlapping_timeslots_contained_ShouldThrow()
+    {
+        Assert.Throws<OverLappingTimeSlots>(() =>
+            Entity.UpdateTimeSlots(
+                [ TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(17))
+                , TimeSlot.From(CourseDay.Monday, OfficeHour.From(14), OfficeHour.From(15))]));
+    }
+
+    [Fact]
+    public void UpdateTimeSlots_overlapping_timeslots_overlap_triple_ShouldThrow()
+    {
+        Assert.Throws<OverLappingTimeSlots>(() =>
+            Entity.UpdateTimeSlots(
+                [ TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(12))
+                , TimeSlot.From(CourseDay.Monday, OfficeHour.From(14), OfficeHour.From(17))
+                , TimeSlot.From(CourseDay.Monday, OfficeHour.From(11), OfficeHour.From(15))]));
     }
 
     [Fact]
@@ -87,5 +115,4 @@ public class B_UpdateTimeSlotsDomain : CourseDomainTests
         Assert.Throws<CourseAlreadyConfirmed>(() =>
             Entity.UpdateTimeSlots(TheCannonical.TimeSlotsFullDayMonday()));
     }
-
 }

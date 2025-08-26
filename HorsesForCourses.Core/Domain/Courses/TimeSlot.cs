@@ -7,10 +7,10 @@ public record TimeSlot
     public CourseDay Day { get; }
 
     public int StartHour => Start.Value;
-    public OfficeHour Start { get; }
+    public OfficeHour Start { get; } = OfficeHour.Empty;
 
     public int EndHour => Start.Value;
-    public OfficeHour End { get; }
+    public OfficeHour End { get; } = OfficeHour.Empty;
 
     private TimeSlot() { }
 

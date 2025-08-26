@@ -16,6 +16,8 @@ public record OfficeHour : ComparableValue<OfficeHour, int>
         Value = value;
     }
 
+    public static OfficeHour Empty => new(-1); // Not sure about this
+
     public static OfficeHour From(int value)
     {
         if (value < 9 || value > 17)
