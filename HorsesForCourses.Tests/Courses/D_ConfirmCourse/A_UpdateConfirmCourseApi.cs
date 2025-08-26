@@ -18,28 +18,28 @@ public class A_UpdateConfirmCourseApi : CoursesControllerTests
     [Fact]
     public async Task UpdateConfirmCourse_uses_the_query_object()
     {
-        await controller.ConfirmCourse(1);
-        getCourseById.Verify(a => a.Load(1));
+        await controller.ConfirmCourse(TheCanonical.CourseId);
+        getCourseById.Verify(a => a.Load(TheCanonical.CourseId));
     }
 
     [Fact]
     public async Task UpdateConfirmCourse_calls_confirm()
     {
-        await controller.ConfirmCourse(1);
+        await controller.ConfirmCourse(TheCanonical.CourseId);
         Assert.True(spy.IsConfirmed);
     }
 
     [Fact]
     public async Task UpdateConfirmCourse_calls_supervisor_ship()
     {
-        await controller.ConfirmCourse(1);
+        await controller.ConfirmCourse(TheCanonical.CourseId);
         supervisor.Verify(a => a.Ship());
     }
 
     [Fact]
     public async Task UpdateConfirmCourse_NoContent()
     {
-        var response = await controller.ConfirmCourse(1);
+        var response = await controller.ConfirmCourse(TheCanonical.CourseId);
         Assert.IsType<NoContentResult>(response);
     }
 

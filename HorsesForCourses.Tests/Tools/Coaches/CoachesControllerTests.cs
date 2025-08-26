@@ -18,7 +18,7 @@ public abstract class CoachesControllerTests
     public CoachesControllerTests()
     {
         getCoachDetail = new Mock<IGetTheCoachDetail>();
-        getCoachDetail.Setup(a => a.One(1)).ReturnsAsync(new CoachDetail());
+        getCoachDetail.Setup(a => a.One(TheCanonical.CoachId)).ReturnsAsync(new CoachDetail());
 
         getCoachSummaries = new Mock<IGetTheCoachSummaries>();
         getCoachSummaries.Setup(a => a.All(It.IsAny<PageRequest>()))
@@ -26,7 +26,7 @@ public abstract class CoachesControllerTests
 
         spy = new();
         coachQuery = new Mock<IGetCoachById>();
-        coachQuery.Setup(a => a.Load(1)).ReturnsAsync(spy);
+        coachQuery.Setup(a => a.Load(TheCanonical.CoachId)).ReturnsAsync(spy);
 
         supervisor = new Mock<IAmASuperVisor>();
 

@@ -9,7 +9,7 @@ namespace HorsesForCourses.Tests.Coaches;
 public class GetCoachByIdTests : TheDatabaseTest
 {
     private async Task<Coach?> Act()
-        => await new GetCoachById(GetDbContext()).Load(1);
+        => await new GetCoachById(GetDbContext()).Load(TheCanonical.CoachId);
 
     [Fact]
     public async Task LoadIt()

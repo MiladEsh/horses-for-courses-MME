@@ -14,14 +14,14 @@ public class A_UpdateTimeSlotsApi : CoursesControllerTests
     [Fact]
     public async Task UpdateTimeSlots_uses_the_query_object()
     {
-        var response = await controller.UpdateTimeSlots(1, request);
-        getCourseById.Verify(a => a.Load(1));
+        var response = await controller.UpdateTimeSlots(TheCanonical.CourseId, request);
+        getCourseById.Verify(a => a.Load(TheCanonical.CourseId));
     }
 
     [Fact]
     public async Task UpdateTimeSlots_calls_domain_entity()
     {
-        await controller.UpdateTimeSlots(1, request);
+        await controller.UpdateTimeSlots(TheCanonical.CourseId, request);
         Assert.True(spy.TimeSlotsCalled);
         Assert.Equal(TheCanonical.TimeSlotsFullDayMonday(), spy.TimeSlotsSeen);
     }
@@ -29,14 +29,14 @@ public class A_UpdateTimeSlotsApi : CoursesControllerTests
     [Fact]
     public async Task UpdateTimeSlots_calls_supervisor_ship()
     {
-        await controller.UpdateTimeSlots(1, request);
+        await controller.UpdateTimeSlots(TheCanonical.CourseId, request);
         supervisor.Verify(a => a.Ship());
     }
 
     [Fact]
     public async Task UpdateTimeSlots_Returns_NoContent()
     {
-        var response = await controller.UpdateTimeSlots(1, request);
+        var response = await controller.UpdateTimeSlots(TheCanonical.CourseId, request);
         Assert.IsType<NoContentResult>(response);
     }
 

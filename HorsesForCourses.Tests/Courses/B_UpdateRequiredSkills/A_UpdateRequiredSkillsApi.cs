@@ -1,3 +1,4 @@
+using HorsesForCourses.Tests.Tools;
 using HorsesForCourses.Tests.Tools.Courses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,14 +12,14 @@ public class A_UpdateRequiredSkillsApi : CoursesControllerTests
     [Fact]
     public async Task UpdateRequiredSkills_uses_the_query_object()
     {
-        var response = await controller.UpdateRequiredSkills(1, request);
-        getCourseById.Verify(a => a.Load(1));
+        var response = await controller.UpdateRequiredSkills(TheCanonical.CourseId, request);
+        getCourseById.Verify(a => a.Load(TheCanonical.CourseId));
     }
 
     [Fact]
     public async Task UpdateRequiredSkills_calls_update_skills()
     {
-        await controller.UpdateRequiredSkills(1, request);
+        await controller.UpdateRequiredSkills(TheCanonical.CourseId, request);
         Assert.True(spy.SkillsCalled);
         Assert.Equal(request, spy.SkillsSeen);
     }
@@ -26,14 +27,14 @@ public class A_UpdateRequiredSkillsApi : CoursesControllerTests
     [Fact]
     public async Task UpdateRequiredSkills_calls_supervisor_ship()
     {
-        await controller.UpdateRequiredSkills(1, request);
+        await controller.UpdateRequiredSkills(TheCanonical.CourseId, request);
         supervisor.Verify(a => a.Ship());
     }
 
     [Fact]
     public async Task UpdateRequiredSkills_Returns_NoContent()
     {
-        var response = await controller.UpdateRequiredSkills(1, request);
+        var response = await controller.UpdateRequiredSkills(TheCanonical.CourseId, request);
         Assert.IsType<NoContentResult>(response);
     }
 

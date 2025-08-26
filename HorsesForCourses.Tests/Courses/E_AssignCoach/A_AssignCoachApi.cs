@@ -19,14 +19,14 @@ public class A_AssignCoachApi : CoursesControllerTests
     public async Task AssignCoach_uses_the_query_objects()
     {
         await controller.AssignCoach(1, new AssignCoachRequest(1));
-        getCourseById.Verify(a => a.Load(1));
-        getCoachById.Verify(a => a.Load(1));
+        getCourseById.Verify(a => a.Load(TheCanonical.CourseId));
+        getCoachById.Verify(a => a.Load(TheCanonical.CoachId));
     }
 
     [Fact]
     public async Task AssignCoach_calls_domain()
     {
-        await controller.AssignCoach(1, new AssignCoachRequest(1));
+        await controller.AssignCoach(TheCanonical.CourseId, new AssignCoachRequest(TheCanonical.CoachId));
         Assert.True(spy.AssignCoachCalled);
         Assert.Equal("a", spy.AssignCoachSeen!.Name);
     }
@@ -34,21 +34,21 @@ public class A_AssignCoachApi : CoursesControllerTests
     [Fact]
     public async Task AssignCoach_calls_supervisor_ship()
     {
-        await controller.AssignCoach(1, new AssignCoachRequest(1));
+        await controller.AssignCoach(TheCanonical.CourseId, new AssignCoachRequest(TheCanonical.CoachId));
         supervisor.Verify(a => a.Ship());
     }
 
     [Fact]
     public async Task AssignCoach_NoContent()
     {
-        var response = await controller.AssignCoach(1, new AssignCoachRequest(1));
+        var response = await controller.AssignCoach(TheCanonical.CourseId, new AssignCoachRequest(TheCanonical.CoachId));
         Assert.IsType<NoContentResult>(response);
     }
 
     [Fact]
     public async Task UpdateTimeSlots_Returns_Not_Found_If_No_Course()
     {
-        var response = await controller.AssignCoach(-1, new AssignCoachRequest(1));
+        var response = await controller.AssignCoach(-1, new AssignCoachRequest(TheCanonical.CoachId));
         Assert.IsType<NotFoundResult>(response);
     }
 

@@ -8,7 +8,7 @@ namespace HorsesForCourses.Tests.Coaches.D_GetCoachDetail;
 public class B_GetCoachDetailData : TheDatabaseTest
 {
     private async Task<CoachDetail?> Act()
-        => await new GetCoachDetail(GetDbContext()).One(1);
+        => await new GetCoachDetail(GetDbContext()).One(TheCanonical.CoachId);
 
     [Fact]
     public async Task With_Coach()

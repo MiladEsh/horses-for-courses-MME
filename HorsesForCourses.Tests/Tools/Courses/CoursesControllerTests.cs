@@ -31,10 +31,10 @@ public abstract class CoursesControllerTests
         spy = new();
         ManipulateEntity(spy);
         getCourseById = new Mock<IGetCourseById>();
-        getCourseById.Setup(a => a.Load(1)).ReturnsAsync(spy);
+        getCourseById.Setup(a => a.Load(TheCanonical.CourseId)).ReturnsAsync(spy);
 
         getCoachById = new Mock<IGetCoachById>();
-        getCoachById.Setup(a => a.Load(1)).ReturnsAsync(TheCanonical.Coach());
+        getCoachById.Setup(a => a.Load(TheCanonical.CoachId)).ReturnsAsync(TheCanonical.Coach());
 
         supervisor = new Mock<IAmASuperVisor>();
 
