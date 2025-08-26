@@ -37,7 +37,7 @@ public class C_CreateCourseData : CourseDatabaseTests
     }
 
     [Fact]
-    public async Task Supervisor_name_and_email()
+    public async Task Supervisor_persists_name_and_dates()
     {
         await Act();
         var reloaded = Reload();

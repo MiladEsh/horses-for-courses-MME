@@ -4,27 +4,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HorsesForCourses.Tests.Tools;
 
-public abstract class TheDatabaseTest
+public abstract class TheDatabaseTest : IDisposable
 {
+    private readonly SqliteConnection connection;
     protected readonly DbContextOptions<AppDbContext> Options;
     protected AppDbContext GetDbContext() => new(Options);
 
     public TheDatabaseTest()
     {
-        var connection = new SqliteConnection("DataSource=:memory:");
+        connection = new SqliteConnection("DataSource=:memory:");
         connection.Open();
         var builder = new DbContextOptionsBuilder<AppDbContext>().UseSqlite(connection);
         Options = builder.Options;
         var dbContext = GetDbContext();
         dbContext.Database.EnsureCreated();
     }
-    // If we need logging of sql statements
-    // builder.LogTo(s => s.PulseToLog("sql.log"), Microsoft.Extensions.Logging.LogLevel.Information);
-    // builder.EnableSensitiveDataLogging();
+
+    public void Dispose() => connection.Dispose();
 
     protected void AddToDb(params object[] entities)
     {
-        var context = GetDbContext();
+        using var context = GetDbContext();
         foreach (var entity in entities)
         {
             context.Add(entity!);
