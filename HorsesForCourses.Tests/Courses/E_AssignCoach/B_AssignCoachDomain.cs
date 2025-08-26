@@ -1,4 +1,3 @@
-using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 using HorsesForCourses.Tests.Tools;
@@ -65,57 +64,44 @@ public class B_AssignCoachDomain : CourseDomainTests
         Assert.Throws<CoachNotAvailableForCourse>(() => Entity.AssignCoach(coach));
     }
 
+    private static void AssignTheCoach(Course courseA, Course courseB)
+    {
+        var coach = TheCanonical.Coach();
+        courseA.Confirm().AssignCoach(coach);
+        courseB.Confirm().AssignCoach(coach);
+    }
+
     [Fact]
     public void CoachUnavailable_Case_1_Succeeds()
     {
-        var coach = TheCanonical.Coach();
-        new Course("Assigned", DateOnly.FromDateTime(19.August(2025)), DateOnly.FromDateTime(19.August(2025)))
-            .UpdateTimeSlots([TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(17))])
-            .Confirm()
-            .AssignCoach(coach);
-        var otherCourse = new Course("To Assign", DateOnly.FromDateTime(19.August(2025)), DateOnly.FromDateTime(19.August(2025)))
-            .UpdateTimeSlots([TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(17))])
-            .Confirm();
+        // Checking the Arrangements
         Assert.Equal(DayOfWeek.Tuesday, 19.August(2025).DayOfWeek);
-        otherCourse.AssignCoach(coach);
+        // --
+        var courseA = new CourseA(19.August(2025), 19.August(2025)).FullDayOnMonday();
+        var courseB = new CourseB(19.August(2025), 19.August(2025)).FullDayOnMonday();
+        AssignTheCoach(courseA, courseB);
     }
 
     [Fact]
     public void CoachUnavailable_Case_2_Succeeds()
     {
-        var coach = TheCanonical.Coach();
-        new Course("Assigned",
-                DateOnly.FromDateTime(19.August(2025)),
-                DateOnly.FromDateTime(19.August(2025)))
-            .UpdateTimeSlots([TimeSlot.From(CourseDay.Tuesday, OfficeHour.From(9), OfficeHour.From(17))])
-            .Confirm()
-            .AssignCoach(coach);
-        var otherCourse = new Course("To Assign",
-                DateOnly.FromDateTime(20.August(2025)),
-                DateOnly.FromDateTime(25.August(2025)))
-            .UpdateTimeSlots([TimeSlot.From(CourseDay.Tuesday, OfficeHour.From(9), OfficeHour.From(17))])
-            .Confirm();
+        // Checking the Arrangements
         Assert.Equal(DayOfWeek.Tuesday, 19.August(2025).DayOfWeek);
-        otherCourse.AssignCoach(coach);
+        // --
+        var courseA = new CourseA(19.August(2025), 19.August(2025)).FullDayOnTuesday();
+        var courseB = new CourseB(20.August(2025), 25.August(2025)).FullDayOnTuesday();
+        AssignTheCoach(courseA, courseB);
     }
 
     [Fact]
     public void CoachUnavailable_Case_3_Succeeds()
     {
-        var coach = TheCanonical.Coach();
-        new Course("Assigned",
-                DateOnly.FromDateTime(19.August(2025)),
-                DateOnly.FromDateTime(22.August(2025)))
-            .UpdateTimeSlots([TimeSlot.From(CourseDay.Tuesday, OfficeHour.From(9), OfficeHour.From(17))])
-            .Confirm()
-            .AssignCoach(coach);
-        var otherCourse = new Course("To Assign",
-                DateOnly.FromDateTime(20.August(2025)),
-                DateOnly.FromDateTime(30.August(2025)))
-            .UpdateTimeSlots([TimeSlot.From(CourseDay.Tuesday, OfficeHour.From(9), OfficeHour.From(17))])
-            .Confirm();
+        // Checking the Arrangements
         Assert.Equal(DayOfWeek.Tuesday, 19.August(2025).DayOfWeek);
         Assert.Equal(DayOfWeek.Tuesday, 26.August(2025).DayOfWeek);
-        otherCourse.AssignCoach(coach);
+        // --
+        var courseA = new CourseA(19.August(2025), 22.August(2025)).FullDayOnTuesday();
+        var courseB = new CourseB(20.August(2025), 30.August(2025)).FullDayOnTuesday();
+        AssignTheCoach(courseA, courseB);
     }
 }
