@@ -57,7 +57,7 @@ public class Course : DomainEntity<Course>
         if (IsConfirmed)
             throw new CourseAlreadyConfirmed();
         if (TimeSlotsOverlap(timeSlots))
-            throw new OverLappingTimeSlots();
+            throw new OverlappingTimeSlots();
         TimeSlots = [.. timeSlots];
         return this;
     }

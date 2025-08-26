@@ -1,12 +1,12 @@
 
 using System.Text.Json.Serialization;
+using HorsesForCourses.Api;
 using HorsesForCourses.Api.Coaches;
 using HorsesForCourses.Api.Coaches.GetCoaches;
 using HorsesForCourses.Api.Courses;
 using HorsesForCourses.Api.Courses.GetCourseDetail;
 using HorsesForCourses.Api.Courses.GetCourses;
 using HorsesForCourses.Api.Warehouse;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -58,26 +58,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-else
-{
-    app.UseExceptionHandler(appBuilder =>
-    {
-        appBuilder.Run(async context =>
-        {
-            context.Response.StatusCode = 500;
-            context.Response.ContentType = "application/problem+json";
 
-            var problem = new ProblemDetails
-            {
-                Title = "Er is een fout opgetreden",
-                Status = 500,
-                Detail = "Er ging iets mis tijdens het verwerken van je verzoek."
-            };
-
-            await context.Response.WriteAsJsonAsync(problem);
-        });
-    });
-}
+app.UseMiddleware<DomainExceptionMiddleware>();
 
 app.UseCors();
 

@@ -1,3 +1,3 @@
 namespace HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 
-public class OverLappingTimeSlots : DomainException { }
+public class OverlappingTimeSlots : DomainException { }

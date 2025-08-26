@@ -48,7 +48,7 @@ Content-Type: application/json
 ]
 
 ### Confirm Course
-POST http://localhost:5200/courses/2/confirm
+POST http://localhost:5200/courses/1/confirm
 
 
 ### Assign Coach
@@ -61,7 +61,7 @@ Content-Type: application/json
 GET http://localhost:5200/courses
 
 ### Get Course Detail
-GET http://localhost:5200/courses/1
+GET http://localhost:5200/courses/2
 
 
 
