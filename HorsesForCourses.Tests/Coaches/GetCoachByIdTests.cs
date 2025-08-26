@@ -20,4 +20,8 @@ public class GetCoachByIdTests : TheDatabaseTest
         Assert.Equal(1, result.Id.Value);
         Assert.Equal(TheCanonical.CoachName, result.Name);
     }
+
+    [Fact]
+    public async Task NotThere_Returns_Null()
+        => Assert.Null(await Act());
 }

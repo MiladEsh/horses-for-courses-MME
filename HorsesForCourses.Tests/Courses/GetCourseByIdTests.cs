@@ -20,4 +20,8 @@ public class GetCourseByIdTests : TheDatabaseTest
         Assert.Equal(1, result.Id.Value);
         Assert.Equal(TheCanonical.CourseName, result.Name);
     }
+
+    [Fact]
+    public async Task NotThere_Returns_Null()
+        => Assert.Null(await Act());
 }
