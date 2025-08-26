@@ -98,5 +98,9 @@ public partial class CoursesController : ControllerBase
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetCourseDetail(int id)
-        => Ok(await getCourseDetail.One(id));
+    {
+        var courseDetail = await getCourseDetail.One(id);
+        if (courseDetail == null) return NotFound();
+        return Ok(courseDetail);
+    }
 }

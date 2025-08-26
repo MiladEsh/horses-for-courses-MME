@@ -17,14 +17,14 @@ public class A_UpdateSkillsApi : CoachesControllerTests
     [Fact]
     public async Task UpdateSkills_uses_the_query_object()
     {
-        var response = await controller.UpdateSkills(42, request);
-        coachQuery.Verify(a => a.Load(42));
+        var response = await controller.UpdateSkills(1, request);
+        coachQuery.Verify(a => a.Load(1));
     }
 
     [Fact]
     public async Task UpdateSkills_calls_update_skills()
     {
-        await controller.UpdateSkills(42, request);
+        await controller.UpdateSkills(1, request);
         Assert.True(spy.Called);
         Assert.Equal(request.Skills, spy.Seen);
     }
@@ -32,14 +32,21 @@ public class A_UpdateSkillsApi : CoachesControllerTests
     [Fact]
     public async Task UpdateSkills_calls_supervisor_ship()
     {
-        await controller.UpdateSkills(42, request);
+        await controller.UpdateSkills(1, request);
         supervisor.Verify(a => a.Ship());
     }
 
     [Fact]
     public async Task UpdateSkills_ReturnsOk_WithValidId()
     {
-        var response = await controller.UpdateSkills(42, request);
+        var response = await controller.UpdateSkills(1, request);
         Assert.IsType<NoContentResult>(response);
+    }
+
+    [Fact]
+    public async Task UpdateSkills_Returns_Not_Found_If_No_Coach()
+    {
+        var response = await controller.UpdateSkills(-1, request);
+        Assert.IsType<NotFoundResult>(response);
     }
 }

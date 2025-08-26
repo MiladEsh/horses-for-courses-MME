@@ -54,5 +54,9 @@ public class CoachesController : ControllerBase
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetCoachDetail(int id)
-        => Ok(await getTheCoachDetail.One(id));
+    {
+        var coachDetail = await getTheCoachDetail.One(id);
+        if (coachDetail == null) return NotFound();
+        return Ok(coachDetail);
+    }
 }

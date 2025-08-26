@@ -23,17 +23,21 @@ public abstract class CoursesControllerTests
     public CoursesControllerTests()
     {
         getCourseDetail = new Mock<IGetTheCourseDetail>();
-        getCourseDetail.Setup(a => a.One(It.IsAny<int>())).ReturnsAsync(new CourseDetail());
+
         getCourseSummaries = new Mock<IGetTheCourseSummaries>();
         getCourseSummaries.Setup(a => a.All(It.IsAny<PageRequest>()))
             .ReturnsAsync(new PagedResult<CourseSummary>([], 0, 1, 15));
+
         spy = new();
         ManipulateEntity(spy);
         getCourseById = new Mock<IGetCourseById>();
-        getCourseById.Setup(a => a.Load(It.IsAny<int>())).ReturnsAsync(spy);
+        getCourseById.Setup(a => a.Load(1)).ReturnsAsync(spy);
+
         getCoachById = new Mock<IGetCoachById>();
-        getCoachById.Setup(a => a.Load(It.IsAny<int>())).ReturnsAsync(TheCannonical.Coach());
+        getCoachById.Setup(a => a.Load(1)).ReturnsAsync(TheCannonical.Coach());
+
         supervisor = new Mock<IAmASuperVisor>();
+
         controller = new CoursesController(
             supervisor.Object,
             getCourseById.Object,

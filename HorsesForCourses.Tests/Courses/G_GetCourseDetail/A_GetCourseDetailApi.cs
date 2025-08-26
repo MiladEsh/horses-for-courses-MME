@@ -7,23 +7,27 @@ namespace HorsesForCourses.Tests.Courses.G_GetCourseDetail;
 
 public class A_GetCourseDetailApi : CoursesControllerTests
 {
-    private async Task<OkObjectResult?> Act()
-    {
-        return await controller.GetCourseDetail(42) as OkObjectResult;
-    }
 
     [Fact]
     public async Task GetCourseDetail_uses_the_query_object()
     {
-        var result = await Act();
-        getCourseDetail.Verify(a => a.One(It.IsAny<int>()));
+        var result = await controller.GetCourseDetail(1);
+        getCourseDetail.Verify(a => a.One(1));
     }
 
     [Fact]
     public async Task GetCourseDetailReturnsOk_With_List()
     {
-        var result = await Act();
+        getCourseDetail.Setup(a => a.One(1)).ReturnsAsync(new CourseDetail());
+        var result = await controller.GetCourseDetail(1) as OkObjectResult;
         Assert.NotNull(result);
         Assert.IsType<CourseDetail>(result!.Value);
+    }
+
+    [Fact]
+    public async Task GetCourseDetailReturns_NotFound_If_Course_Not_Prese()
+    {
+        var result = await controller.GetCourseDetail(-1);
+        Assert.IsType<NotFoundResult>(result);
     }
 }
