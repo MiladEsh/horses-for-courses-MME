@@ -20,7 +20,7 @@ public class A_UpdateConfirmCourseApi : CoursesControllerTests
     public async Task UpdateConfirmCourse_uses_the_query_object()
     {
         await controller.ConfirmCourse(42);
-        courseQuery.Verify(a => a.Load(42));
+        getCourseById.Verify(a => a.Load(42));
     }
 
     [Fact]
@@ -31,10 +31,10 @@ public class A_UpdateConfirmCourseApi : CoursesControllerTests
     }
 
     [Fact]
-    public async Task UpdateConfirmCourse_does_not_call_supervisor_ship()
+    public async Task UpdateConfirmCourse_calls_supervisor_ship()
     {
         await controller.ConfirmCourse(42);
-        supervisor.Verify(a => a.Ship(), Times.Never);
+        supervisor.Verify(a => a.Ship());
     }
 
     [Fact]

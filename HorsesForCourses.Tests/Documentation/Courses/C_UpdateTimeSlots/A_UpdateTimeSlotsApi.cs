@@ -16,7 +16,7 @@ public class A_UpdateTimeSlotsApi : CoursesControllerTests
     public async Task UpdateTimeSlots_uses_the_query_object()
     {
         var response = await controller.UpdateTimeSlots(42, request);
-        courseQuery.Verify(a => a.Load(42));
+        getCourseById.Verify(a => a.Load(42));
     }
 
     [Fact]
@@ -28,10 +28,10 @@ public class A_UpdateTimeSlotsApi : CoursesControllerTests
     }
 
     [Fact]
-    public async Task UpdateTimeSlots_does_not_call_supervisor_ship()
+    public async Task UpdateTimeSlots_calls_supervisor_ship()
     {
         await controller.UpdateTimeSlots(42, request);
-        supervisor.Verify(a => a.Ship(), Times.Never);
+        supervisor.Verify(a => a.Ship());
     }
 
     [Fact]

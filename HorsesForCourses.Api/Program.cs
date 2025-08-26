@@ -1,7 +1,10 @@
 
+using System.Text.Json.Serialization;
 using HorsesForCourses.Api.Coaches;
 using HorsesForCourses.Api.Coaches.GetCoaches;
 using HorsesForCourses.Api.Courses;
+using HorsesForCourses.Api.Courses.GetCourseDetail;
+using HorsesForCourses.Api.Courses.GetCourses;
 using HorsesForCourses.Api.Warehouse;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +27,10 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=horsesforcourses.db"));
 
+builder.Services.AddControllers().AddJsonOptions(options =>
+    options.JsonSerializerOptions.Converters.Add(
+        new JsonStringEnumConverter(null, allowIntegerValues: false)));
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
@@ -35,7 +42,10 @@ builder.Services
     .AddScoped<IGetTheCoachSummaries, GetCoachSummaries>()
     .AddScoped<IGetTheCoachDetail, GetCoachDetail>()
 
-    .AddScoped<IGetCourseById, GetCourseById>();
+    .AddScoped<IGetCourseById, GetCourseById>()
+    .AddScoped<IGetTheCourseSummaries, GetCourseSummaries>()
+    .AddScoped<IGetTheCourseDetail, GetCourseDetail>();
+
 
 var app = builder.Build();
 

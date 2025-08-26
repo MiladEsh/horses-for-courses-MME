@@ -1,15 +1,15 @@
-using HorsesForCourses.Api.Coaches.GetCoaches;
+using HorsesForCourses.Api.Courses.GetCourses;
 using HorsesForCourses.Api.Warehouse.Paging;
 using HorsesForCourses.Tests.Tools;
 
 
-namespace HorsesForCourses.Tests.Documentation.Coaches.C_GetCoaches;
+namespace HorsesForCourses.Tests.Documentation.Courses.F_GetCourses;
 
 
-public class B_GetCoachesData : TheDatabaseTest
+public class B_GetCoursesData : TheDatabaseTest
 {
-    private async Task<PagedResult<CoachSummary>> Act(PageRequest request)
-        => await new GetCoachSummaries(GetDbContext()).All(request);
+    private async Task<PagedResult<CourseSummary>> Act(PageRequest request)
+        => await new GetCourseSummaries(GetDbContext()).All(request);
 
     [Fact]
     public async Task EmptyList()
@@ -25,17 +25,19 @@ public class B_GetCoachesData : TheDatabaseTest
     }
 
     [Fact]
-    public async Task With_Coach()
+    public async Task With_Course()
     {
-        AddToDb(TheCannonical.Coach());
+        AddToDb(TheCannonical.Course());
         var result = await Act(new PageRequest());
         Assert.Single(result.Items);
 
         var summary = result.Items.Single();
         Assert.Equal(1, summary.Id);
-        Assert.Equal(TheCannonical.CoachName, summary.Name);
-        Assert.Equal(TheCannonical.CoachEmail, summary.Email);
-        Assert.Equal(0, summary.NumberOfCoursesAssignedTo);
+        Assert.Equal(TheCannonical.CourseName, summary.Name);
+        Assert.Equal(TheCannonical.CourseStart, summary.StartDate);
+        Assert.Equal(TheCannonical.CourseEnd, summary.EndDate);
+        Assert.False(summary.HasSchedule);
+        Assert.False(summary.HasCoach);
 
         Assert.Equal(1, result.TotalCount);
         Assert.Equal(1, result.PageNumber);

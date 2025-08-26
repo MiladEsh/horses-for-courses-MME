@@ -22,7 +22,7 @@ public abstract class TheDatabaseTest
     // builder.LogTo(s => s.PulseToLog("sql.log"), Microsoft.Extensions.Logging.LogLevel.Information);
     // builder.EnableSensitiveDataLogging();
 
-    protected void AddToDb<T>(params T[] entities)
+    protected void AddToDb(params object[] entities)
     {
         var context = GetDbContext();
         foreach (var entity in entities)

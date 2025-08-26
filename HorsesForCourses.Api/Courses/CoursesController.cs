@@ -1,10 +1,15 @@
 using HorsesForCourses.Api.Coaches;
+using HorsesForCourses.Api.Courses.AssignCoach;
 using HorsesForCourses.Api.Courses.CreateCourse;
+using HorsesForCourses.Api.Courses.GetCourseDetail;
+using HorsesForCourses.Api.Courses.GetCourses;
 using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Api.Warehouse.Paging;
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.AspNetCore.Mvc;
+using QuickPulse.Show;
 
 namespace HorsesForCourses.Api.Courses;
 
@@ -15,15 +20,21 @@ public partial class CoursesController : ControllerBase
     private readonly IAmASuperVisor supervisor;
     private readonly IGetCourseById getCourseById;
     private readonly IGetCoachById getCoachById;
+    private readonly IGetTheCourseSummaries getCourseSummaries;
+    private readonly IGetTheCourseDetail getCourseDetail;
 
     public CoursesController(
         IAmASuperVisor supervisor,
         IGetCourseById getCourseById,
-        IGetCoachById getCoachById)
+        IGetCoachById getCoachById,
+        IGetTheCourseSummaries getCourseSummaries,
+        IGetTheCourseDetail getCourseDetail)
     {
         this.supervisor = supervisor;
         this.getCourseById = getCourseById;
         this.getCoachById = getCoachById;
+        this.getCourseSummaries = getCourseSummaries;
+        this.getCourseDetail = getCourseDetail;
     }
 
     [HttpPost]
@@ -41,6 +52,7 @@ public partial class CoursesController : ControllerBase
         var course = await getCourseById.Load(id);
         if (course == null) return NotFound();
         course.UpdateRequiredSkills(skills);
+        await supervisor.Ship();
         return NoContent();
     }
 
@@ -55,6 +67,7 @@ public partial class CoursesController : ControllerBase
                     a.Day,
                     OfficeHour.From(a.Start),
                     OfficeHour.From(a.End))).ToList());
+        await supervisor.Ship();
         return NoContent();
     }
 
@@ -64,17 +77,27 @@ public partial class CoursesController : ControllerBase
         var course = await getCourseById.Load(id);
         if (course == null) return NotFound();
         course.Confirm();
+        await supervisor.Ship();
         return NoContent();
     }
 
 
     [HttpPost("{id}/assign-coach")]
-    public async Task<IActionResult> AssignCoach(int id, int coachId)
+    public async Task<IActionResult> AssignCoach(int id, AssignCoachRequest request)
     {
         var course = await getCourseById.Load(id);
-        var coach = await getCoachById.Load(coachId);
+        var coach = await getCoachById.Load(request.CoachId);
         if (course == null || coach == null) return NotFound();
         course.AssignCoach(coach);
+        await supervisor.Ship();
         return NoContent();
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetCourses(int page = 1, int pageSize = 25)
+        => Ok(await getCourseSummaries.All(new PageRequest(page, pageSize)));
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetCourseDetail(int id)
+        => Ok(await getCourseDetail.One(id));
 }

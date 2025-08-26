@@ -1,6 +1,6 @@
 namespace HorsesForCourses.Api.Coaches.GetCoaches;
 
-public class CoachDetail
+public record CoachDetail
 {
     public record CourseInfo(int Id, string Name);
     public int Id { get; set; }

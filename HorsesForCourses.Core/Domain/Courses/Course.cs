@@ -72,6 +72,7 @@ public class Course : DomainEntity<Course>
                 if (timeSlot.OverlapsWith(otherTimeSlot))
                     return true;
             }
+            index++;
         }
         return false;
     }

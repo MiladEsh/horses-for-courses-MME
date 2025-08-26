@@ -21,4 +21,8 @@
     <ProjectReference Include="..\HorsesForCourses.Core\HorsesForCourses.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\QuickPulse.Show\QuickPulse.Show\QuickPulse.Show.csproj" />
+  </ItemGroup>
+
 </Project>
