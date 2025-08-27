@@ -40,4 +40,19 @@ public record TimeSlot
         if (Start < otherTimeSlot.End && End > otherTimeSlot.Start) return true;
         return false;
     }
+
+    public static bool HasOverlap(IEnumerable<TimeSlot> timeSlots)
+    {
+        var index = 1;
+        foreach (var timeSlot in timeSlots)
+        {
+            foreach (var otherTimeSlot in timeSlots.Skip(index))
+            {
+                if (timeSlot.OverlapsWith(otherTimeSlot))
+                    return true;
+            }
+            index++;
+        }
+        return false;
+    }
 }

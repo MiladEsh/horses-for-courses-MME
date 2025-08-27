@@ -3,6 +3,7 @@ using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 using HorsesForCourses.Core.Domain.Courses.TimeSlots;
 using HorsesForCourses.Core.Domain.Skills;
+using HorsesForCourses.Core.Extensions;
 
 namespace HorsesForCourses.Core.Domain.Courses;
 
@@ -30,82 +31,59 @@ public class Course : DomainEntity<Course>
         EndDate = endDate;
     }
 
+    private bool NotAllowedIfAlreadyConfirmed()
+        => IsConfirmed ? throw new CourseAlreadyConfirmed() : true;
+
+    private static bool NotAllowedWhenThereAreDuplicateSkills(IEnumerable<string> skills)
+        => skills.NoDuplicatesAllowed(a => new CourseAlreadyHasSkill(string.Join(",", a)));
+
     public virtual Course UpdateRequiredSkills(IEnumerable<string> skills)
     {
-        if (IsConfirmed)
-            throw new CourseAlreadyConfirmed();
-
-        var duplicates = skills
-            .GroupBy(x => x)
-            .Where(g => g.Count() > 1)
-            .SelectMany(g => g)
-            .Distinct()
-            .ToList();
-
-        if (duplicates.Any())
-            throw new CourseAlreadyHasSkill(string.Join(",", skills));
-
+        NotAllowedIfAlreadyConfirmed();
+        NotAllowedWhenThereAreDuplicateSkills(skills);
         var newSkills = skills.Select(Skill.From).ToList();
-
         RequiredSkills.Clear();
         RequiredSkills.AddRange(newSkills);
-
         return this;
     }
+
+    private bool NotAllowedWhenTimeSlotsOverlap(IEnumerable<TimeSlot> timeSlots)
+        => TimeSlot.HasOverlap(timeSlots) ? throw new OverlappingTimeSlots() : true;
 
     public virtual Course UpdateTimeSlots<T>(IEnumerable<T> timeSlotInfo, Func<T, (CourseDay Day, int Start, int End)> getTimeSlot)
     {
         var timeSlots = TimeSlot.EnumerableFrom(timeSlotInfo, getTimeSlot);
-        if (IsConfirmed)
-            throw new CourseAlreadyConfirmed();
-        if (TimeSlotsOverlap(timeSlots))
-            throw new OverlappingTimeSlots();
+        NotAllowedIfAlreadyConfirmed();
+        NotAllowedWhenTimeSlotsOverlap(timeSlots);
         TimeSlots = [.. timeSlots];
         return this;
     }
 
-    private bool TimeSlotsOverlap(IEnumerable<TimeSlot> timeSlots)
-    {
-        var index = 1;
-        foreach (var timeSlot in timeSlots)
-        {
-            foreach (var otherTimeSlot in timeSlots.Skip(index))
-            {
-                if (timeSlot.OverlapsWith(otherTimeSlot))
-                    return true;
-            }
-            index++;
-        }
-        return false;
-    }
+    private bool NotAllowedWhenThereAreNoTimeSlots()
+        => TimeSlots.Count == 0 ? throw new AtLeastOneTimeSlotRequired() : true;
 
     public Course Confirm()
     {
-        if (IsConfirmed)
-            throw new CourseAlreadyConfirmed();
-
-        if (TimeSlots.Count == 0)
-            throw new AtLeastOneTimeSlotRequired();
-
+        NotAllowedIfAlreadyConfirmed();
+        NotAllowedWhenThereAreNoTimeSlots();
         IsConfirmed = true;
-
         return this;
     }
 
+    private bool NotAllowedIfNotYetConfirmed()
+        => !IsConfirmed ? throw new CourseNotYetConfirmed() : true;
+
+    private bool NotAllowedIfCourseAlreadyHasCoach()
+        => AssignedCoach != null ? throw new CourseAlreadyHasCoach() : true;
+
     public virtual Course AssignCoach(Coach coach)
     {
-        if (!IsConfirmed)
-            throw new CourseNotYetConfirmed();
-
-        if (AssignedCoach != null)
-            throw new CourseAlreadyHasCoach();
-
+        NotAllowedIfNotYetConfirmed();
+        NotAllowedIfCourseAlreadyHasCoach();
         if (!coach.IsSuitableFor(this))
             throw new CoachNotSuitableForCourse();
-
-        if (!coach.IsAvailableFor(this))
+        if (!Is.TheCoach(coach).AvailableFor(this))
             throw new CoachNotAvailableForCourse();
-
         AssignedCoach = coach;
         coach.AssignCourse(this);
         return this;
