@@ -10,14 +10,9 @@ public interface IGetTheCourseDetail
     Task<CourseDetail?> One(int id);
 }
 
-public class GetCourseDetail : IGetTheCourseDetail
+public class GetCourseDetail(AppDbContext dbContext) : IGetTheCourseDetail
 {
-    private readonly AppDbContext dbContext;
-
-    public GetCourseDetail(AppDbContext dbContext)
-    {
-        this.dbContext = dbContext;
-    }
+    private readonly AppDbContext dbContext = dbContext;
 
     public async Task<CourseDetail?> One(int id)
     {

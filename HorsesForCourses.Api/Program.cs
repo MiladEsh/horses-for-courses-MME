@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using HorsesForCourses.Api;
 using HorsesForCourses.Api.Coaches;
+using HorsesForCourses.Api.Coaches.GetCoachDetail;
 using HorsesForCourses.Api.Coaches.GetCoaches;
 using HorsesForCourses.Api.Courses;
 using HorsesForCourses.Api.Courses.GetCourseDetail;

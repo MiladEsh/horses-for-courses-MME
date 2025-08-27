@@ -1,23 +1,19 @@
+using HorsesForCourses.Api.Coaches.GetCoaches;
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.EntityFrameworkCore;
 
-namespace HorsesForCourses.Api.Coaches.GetCoaches;
+namespace HorsesForCourses.Api.Coaches.GetCoachDetail;
 
 public interface IGetTheCoachDetail
 {
     Task<CoachDetail?> One(int id);
 }
 
-public class GetCoachDetail : IGetTheCoachDetail
+public class GetCoachDetail(AppDbContext dbContext) : IGetTheCoachDetail
 {
-    private readonly AppDbContext dbContext;
-
-    public GetCoachDetail(AppDbContext dbContext)
-    {
-        this.dbContext = dbContext;
-    }
+    private readonly AppDbContext dbContext = dbContext;
 
     public async Task<CoachDetail?> One(int id)
     {

@@ -1,4 +1,5 @@
 using HorsesForCourses.Api.Coaches;
+using HorsesForCourses.Api.Coaches.GetCoachDetail;
 using HorsesForCourses.Api.Coaches.GetCoaches;
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Api.Warehouse.Paging;
@@ -9,6 +10,7 @@ namespace HorsesForCourses.Tests.Tools.Coaches;
 public abstract class CoachesControllerTests
 {
     protected readonly CoachesController controller;
+    protected readonly CoachesRepository repository;
     protected readonly Mock<IAmASuperVisor> supervisor;
     protected readonly Mock<IGetCoachById> coachQuery;
     protected readonly Mock<IGetTheCoachSummaries> getCoachSummaries;
@@ -29,11 +31,11 @@ public abstract class CoachesControllerTests
         coachQuery.Setup(a => a.Load(TheCanonical.CoachId)).ReturnsAsync(spy);
 
         supervisor = new Mock<IAmASuperVisor>();
-
-        controller = new CoachesController(
-            supervisor.Object,
+        repository = new CoachesRepository(
+           supervisor.Object,
             coachQuery.Object,
             getCoachSummaries.Object,
             getCoachDetail.Object);
+        controller = new CoachesController(repository);
     }
 }

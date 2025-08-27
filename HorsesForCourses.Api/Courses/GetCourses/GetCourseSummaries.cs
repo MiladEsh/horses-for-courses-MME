@@ -9,14 +9,10 @@ public interface IGetTheCourseSummaries
     Task<PagedResult<CourseSummary>> All(PageRequest request);
 }
 
-public class GetCourseSummaries : IGetTheCourseSummaries
+public class GetCourseSummaries(AppDbContext dbContext) : IGetTheCourseSummaries
 {
-    private readonly AppDbContext dbContext;
+    private readonly AppDbContext dbContext = dbContext;
 
-    public GetCourseSummaries(AppDbContext dbContext)
-    {
-        this.dbContext = dbContext;
-    }
     public async Task<PagedResult<CourseSummary>> All(PageRequest request)
     {
         return await dbContext.Courses

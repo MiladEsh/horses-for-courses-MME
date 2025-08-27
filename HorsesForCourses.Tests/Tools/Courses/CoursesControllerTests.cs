@@ -12,6 +12,7 @@ namespace HorsesForCourses.Tests.Tools.Courses;
 public abstract class CoursesControllerTests
 {
     protected readonly CoursesController controller;
+    protected readonly CoursesRepository repository;
     protected readonly Mock<IAmASuperVisor> supervisor;
     protected readonly Mock<IGetCourseById> getCourseById;
     protected readonly Mock<IGetCoachById> getCoachById;
@@ -38,12 +39,14 @@ public abstract class CoursesControllerTests
 
         supervisor = new Mock<IAmASuperVisor>();
 
-        controller = new CoursesController(
-            supervisor.Object,
-            getCourseById.Object,
-            getCoachById.Object,
-            getCourseSummaries.Object,
-            getCourseDetail.Object);
+        repository = new CoursesRepository(
+           supervisor.Object,
+           getCourseById.Object,
+           getCoachById.Object,
+           getCourseSummaries.Object,
+           getCourseDetail.Object);
+
+        controller = new CoursesController(repository);
     }
 
     protected virtual void ManipulateEntity(Course entity) { }

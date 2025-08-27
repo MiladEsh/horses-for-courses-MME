@@ -9,14 +9,10 @@ public interface IGetTheCoachSummaries
     Task<PagedResult<CoachSummary>> All(PageRequest request);
 }
 
-public class GetCoachSummaries : IGetTheCoachSummaries
+public class GetCoachSummaries(AppDbContext dbContext) : IGetTheCoachSummaries
 {
-    private readonly AppDbContext dbContext;
+    private readonly AppDbContext dbContext = dbContext;
 
-    public GetCoachSummaries(AppDbContext dbContext)
-    {
-        this.dbContext = dbContext;
-    }
     public async Task<PagedResult<CoachSummary>> All(PageRequest request)
     {
         return await dbContext.Coaches

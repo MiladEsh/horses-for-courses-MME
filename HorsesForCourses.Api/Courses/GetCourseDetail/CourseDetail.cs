@@ -13,18 +13,3 @@ public record CourseDetail
     public IEnumerable<TimeSlotInfo> TimeSlots { get; set; } = [];
     public IdAndName? Coach { get; set; }
 }
-
-
-
-// { "id": int
-//     , "name": string
-//     , "startDate": string(#yyyy-mm-dd#)
-//     , "endDate": string(#yyyy-mm-dd#)
-//     , "skills": [string]
-//     , "timeslots": [
-//         { "day": string
-//         , "start": int // == hour
-//         , "end": int   // == hour
-//         }] 
-//     , "coach": {"id":int, "name": string}
-//     }
