@@ -3,6 +3,7 @@ using HorsesForCourses.Api.Warehouse;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata;
+using HorsesForCourses.Core.Abstractions;
 
 namespace HorsesForCourses.Api.Coaches;
 
@@ -25,11 +26,11 @@ public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
 
         coach.Property(c => c.Name)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(DefaultString.MaxLength);
 
         coach.Property(c => c.Email)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(DefaultString.MaxLength);
 
         coach.OwnsMany(c => c.Skills, sb =>
         {

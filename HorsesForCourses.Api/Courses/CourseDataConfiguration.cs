@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.EntityFrameworkCore.Metadata;
 using HorsesForCourses.Core.Domain.Courses.TimeSlots;
+using HorsesForCourses.Core.Abstractions;
 
 namespace HorsesForCourses.Api.Courses;
 
@@ -26,7 +27,7 @@ public class CourseDataConfiguration : IEntityTypeConfiguration<Course>
 
         course.Property(c => c.Name)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(DefaultString.MaxLength);
 
         course.Property(c => c.StartDate)
             .IsRequired();

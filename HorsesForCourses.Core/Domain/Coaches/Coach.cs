@@ -6,25 +6,15 @@ using HorsesForCourses.Core.Extensions;
 
 namespace HorsesForCourses.Core.Domain.Coaches;
 
-public class Coach : DomainEntity<Coach>
+public class Coach(string name, string email) : DomainEntity<Coach>
 {
-    public string Name { get; init; }
-    public string Email { get; init; }
+    public string Name { get; init; } = name.IsValidDefaultString<CoachNameCanNotBeEmpty, CoachNameIsTooLong>();
+    public string Email { get; init; } = email.IsValidDefaultString<CoachEmailCanNotBeEmpty, CoachEmailCanNotBeTooLong>();
 
-    public HashSet<Skill> Skills { get; init; } = new();
+    public HashSet<Skill> Skills { get; init; } = [];
 
-    private readonly List<Course> assignedCourses = new();
+    private readonly List<Course> assignedCourses = [];
     public IReadOnlyCollection<Course> AssignedCourses => assignedCourses.AsReadOnly();
-
-    public Coach(string name, string email)
-    {
-        if (string.IsNullOrWhiteSpace(name)) // Make a value object, check string length
-            throw new CoachNameCanNotBeEmpty();
-        if (string.IsNullOrWhiteSpace(email))
-            throw new CoachEmailCanNotBeEmpty();
-        Name = name;
-        Email = email;
-    }
 
     private static bool NotAllowedWhenThereAreDuplicateSkills(IEnumerable<string> skills)
         => skills.NoDuplicatesAllowed(a => new CoachAlreadyHasSkill(string.Join(",", a)));
