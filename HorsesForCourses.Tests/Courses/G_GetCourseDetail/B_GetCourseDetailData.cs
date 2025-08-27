@@ -23,4 +23,8 @@ public class B_GetCourseDetailData : TheDatabaseTest
         Assert.Equal([], detail.Skills);
         Assert.Null(detail.Coach);
     }
+
+    [Fact]
+    public async Task NotThere_Returns_Null()
+        => Assert.Null(await Act());
 }

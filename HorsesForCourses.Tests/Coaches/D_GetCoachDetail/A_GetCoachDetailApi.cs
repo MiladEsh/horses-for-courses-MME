@@ -1,4 +1,5 @@
 using HorsesForCourses.Api.Coaches.GetCoaches;
+using HorsesForCourses.Tests.Tools;
 using HorsesForCourses.Tests.Tools.Coaches;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -10,14 +11,14 @@ public class A_GetCoachDetailApi : CoachesControllerTests
     [Fact]
     public async Task GetCoachDetail_uses_the_query_object()
     {
-        var result = await controller.GetCoachDetail(1);
+        var result = await controller.GetCoachDetail(TheCanonical.CoachId);
         getCoachDetail.Verify(a => a.One(It.IsAny<int>()));
     }
 
     [Fact]
     public async Task GetCoachDetailReturnsOk_With_List()
     {
-        var result = await controller.GetCoachDetail(1);
+        var result = await controller.GetCoachDetail(TheCanonical.CoachId);
         Assert.NotNull(result);
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.IsType<CoachDetail>(okResult!.Value);

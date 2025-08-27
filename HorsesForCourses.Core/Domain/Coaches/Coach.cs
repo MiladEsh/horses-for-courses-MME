@@ -8,7 +8,7 @@ namespace HorsesForCourses.Core.Domain.Coaches;
 
 public class Coach(string name, string email) : DomainEntity<Coach>
 {
-    public string Name { get; init; } = name.IsValidDefaultString<CoachNameCanNotBeEmpty, CoachNameIsTooLong>();
+    public string Name { get; init; } = name.IsValidDefaultString<CoachNameCanNotBeEmpty, CoachNameCanNotBeTooLong>();
     public string Email { get; init; } = email.IsValidDefaultString<CoachEmailCanNotBeEmpty, CoachEmailCanNotBeTooLong>();
 
     public HashSet<Skill> Skills { get; init; } = [];

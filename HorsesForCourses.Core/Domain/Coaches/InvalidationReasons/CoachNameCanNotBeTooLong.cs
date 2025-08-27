@@ -1,3 +1,3 @@
 namespace HorsesForCourses.Core.Domain.Coaches.InvalidationReasons;
 
-public class CoachNameIsTooLong : DomainException { }
+public class CoachNameCanNotBeTooLong : DomainException { }
