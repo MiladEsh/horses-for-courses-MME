@@ -27,6 +27,8 @@ public static class TheCanonical
 
     public static IEnumerable<TimeSlotRequest> TimeSlotsRequestFullDayMonday()
         => [new(CourseDay.Monday, 9, 17)];
-    public static IEnumerable<TimeSlot> TimeSlotsFullDayMonday()
-        => [TimeSlot.From(CourseDay.Monday, OfficeHour.From(9), OfficeHour.From(17))];
+    public static IEnumerable<(CourseDay, int, int)> TimeSlotsFullDayMonday()
+        => [(CourseDay.Monday, 9, 17)];
+    public static IEnumerable<TimeSlot> TimeSlotsFullDayMondayExpected()
+        => [TimeSlot.From(CourseDay.Monday, 9, 17)];
 }

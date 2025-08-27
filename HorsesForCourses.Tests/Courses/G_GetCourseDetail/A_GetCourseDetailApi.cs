@@ -26,7 +26,7 @@ public class A_GetCourseDetailApi : CoursesControllerTests
     }
 
     [Fact]
-    public async Task GetCourseDetailReturns_NotFound_If_Course_Not_Prese()
+    public async Task GetCourseDetailReturns_NotFound_If_Course_Not_Present()
     {
         var result = await controller.GetCourseDetail(-1);
         Assert.IsType<NotFoundResult>(result);

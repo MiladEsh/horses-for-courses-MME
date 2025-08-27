@@ -17,12 +17,22 @@ public record TimeSlot
         End = end;
     }
 
-
-    public static TimeSlot From(CourseDay day, OfficeHour start, OfficeHour end)
+    public static TimeSlot From(CourseDay day, int start, int end)
     {
         if (start >= end)
             throw new TimeSlotMustBeAtleastOneHourLong();
-        return new TimeSlot(day, start, end);
+        return new TimeSlot(day, OfficeHour.From(start), OfficeHour.From(end));
+    }
+
+    public static IEnumerable<TimeSlot> EnumerableFrom<T>(
+        IEnumerable<T> enumerable,
+        Func<T, (CourseDay Day, int Start, int End)> getTimeSlot)
+    {
+        foreach (var item in enumerable)
+        {
+            var (day, start, end) = getTimeSlot(item);
+            yield return From(day, start, end);
+        }
     }
 
     public bool OverlapsWith(TimeSlot otherTimeSlot)

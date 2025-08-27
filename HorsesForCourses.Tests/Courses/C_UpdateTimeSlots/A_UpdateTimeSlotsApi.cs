@@ -23,7 +23,7 @@ public class A_UpdateTimeSlotsApi : CoursesControllerTests
     {
         await controller.UpdateTimeSlots(TheCanonical.CourseId, request);
         Assert.True(spy.TimeSlotsCalled);
-        Assert.Equal(TheCanonical.TimeSlotsFullDayMonday(), spy.TimeSlotsSeen);
+        Assert.Equal(TheCanonical.TimeSlotsFullDayMondayExpected(), spy.TimeSlotsSeen);
     }
 
     [Fact]

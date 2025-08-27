@@ -53,8 +53,9 @@ public class Course : DomainEntity<Course>
         return this;
     }
 
-    public virtual Course UpdateTimeSlots(IEnumerable<TimeSlot> timeSlots)
+    public virtual Course UpdateTimeSlots<T>(IEnumerable<T> timeSlotInfo, Func<T, (CourseDay Day, int Start, int End)> getTimeSlot)
     {
+        var timeSlots = TimeSlot.EnumerableFrom(timeSlotInfo, getTimeSlot);
         if (IsConfirmed)
             throw new CourseAlreadyConfirmed();
         if (TimeSlotsOverlap(timeSlots))

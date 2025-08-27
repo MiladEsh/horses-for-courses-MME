@@ -20,7 +20,7 @@ public class C_UpdateConfirmCourseData : TheDatabaseTest
         var context = GetDbContext();
 
         var entity = Reload(context);
-        entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
+        entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a);
         entity.Confirm();
         context.SaveChanges();
     }

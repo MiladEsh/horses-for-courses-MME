@@ -11,7 +11,7 @@ public class A_AssignCoachApi : CoursesControllerTests
 {
     protected override void ManipulateEntity(Course entity)
     {
-        entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
+        entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a);
         entity.Confirm();
     }
 

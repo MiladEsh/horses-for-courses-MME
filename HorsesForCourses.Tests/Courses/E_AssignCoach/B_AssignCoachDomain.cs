@@ -13,7 +13,7 @@ public class B_AssignCoachDomain : CourseDomainTests
     public void AssignCoach_WithValidData_ShouldSucceed()
     {
         Entity
-            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
+            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a)
             .Confirm()
             .AssignCoach(TheCanonical.Coach());
         Assert.NotNull(Entity.AssignedCoach);
@@ -30,14 +30,14 @@ public class B_AssignCoachDomain : CourseDomainTests
     public void AssignCoach_When_Unconfirmed_Throws()
         => Assert.Throws<CourseNotYetConfirmed>(() =>
             Entity
-                .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
+                .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a)
                 .AssignCoach(TheCanonical.Coach()));
 
     [Fact]
     public void AssignCoach_Twice_Throws()
     {
         Entity
-            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
+            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a)
             .Confirm().AssignCoach(TheCanonical.Coach());
         Assert.Throws<CourseAlreadyHasCoach>(() => Entity.AssignCoach(TheCanonical.Coach()));
     }
@@ -47,7 +47,7 @@ public class B_AssignCoachDomain : CourseDomainTests
     {
         Entity
             .UpdateRequiredSkills(["not this one"])
-            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
+            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a)
             .Confirm();
         Assert.Throws<CoachNotSuitableForCourse>(() => Entity.AssignCoach(TheCanonical.Coach()));
     }
@@ -57,10 +57,10 @@ public class B_AssignCoachDomain : CourseDomainTests
     {
         var coach = TheCanonical.Coach();
         var course = TheCanonical.Course()
-            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday())
+            .UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a)
             .Confirm()
             .AssignCoach(coach);
-        Entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday()).Confirm();
+        Entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a).Confirm();
         Assert.Throws<CoachNotAvailableForCourse>(() => Entity.AssignCoach(coach));
     }
 

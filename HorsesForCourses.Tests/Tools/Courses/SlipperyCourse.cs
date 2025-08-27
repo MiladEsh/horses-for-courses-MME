@@ -20,7 +20,7 @@ public class SlipperyCourse : Course
     public record SlipperyHours(Course Course, CourseDay Day, int Start)
     {
         public Course To(int end) =>
-            Course.UpdateTimeSlots([TimeSlot.From(Day, OfficeHour.From(Start), OfficeHour.From(end))]);
+            Course.UpdateTimeSlots([(Day, Start, end)], a => a);
     }
 
     public Course FullDayOnMonday()

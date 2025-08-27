@@ -12,7 +12,7 @@ public class A_UpdateConfirmCourseApi : CoursesControllerTests
 
     protected override void ManipulateEntity(Course entity)
     {
-        entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
+        entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a);
     }
 
     [Fact]

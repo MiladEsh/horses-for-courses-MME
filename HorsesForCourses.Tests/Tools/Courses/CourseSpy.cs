@@ -1,3 +1,4 @@
+using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Courses.TimeSlots;
@@ -19,10 +20,12 @@ public class CourseSpy : Course
     public bool TimeSlotsCalled;
     public IEnumerable<TimeSlot>? TimeSlotsSeen;
 
-    public override Course UpdateTimeSlots(IEnumerable<TimeSlot> timeSlots)
+    public override Course UpdateTimeSlots<T>(IEnumerable<T> timeSlotInfo, Func<T, (CourseDay Day, int Start, int End)> getTimeSlot)
     {
-        TimeSlotsCalled = true; TimeSlotsSeen = timeSlots;
-        return base.UpdateTimeSlots(timeSlots);
+        TimeSlotsCalled = true;
+        base.UpdateTimeSlots(timeSlotInfo, getTimeSlot);
+        TimeSlotsSeen = TimeSlots;
+        return this;
     }
 
     public bool AssignCoachCalled;

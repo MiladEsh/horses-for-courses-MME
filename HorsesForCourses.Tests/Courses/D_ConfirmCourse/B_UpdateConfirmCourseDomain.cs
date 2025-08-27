@@ -1,3 +1,4 @@
+using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 using HorsesForCourses.Tests.Tools;
@@ -9,7 +10,7 @@ namespace HorsesForCourses.Tests.Courses.D_ConfirmCourse;
 public class B_UpdateConfirmCourseDomain : CourseDomainTests
 {
     protected override Course ManipulateEntity(Course entity)
-        => entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
+        => entity.UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a);
 
     [Fact]
     public void UpdateConfirmCourse_WithValidData_ShouldSucceed()
@@ -28,7 +29,7 @@ public class B_UpdateConfirmCourseDomain : CourseDomainTests
     [Fact]
     public void UpdateConfirmCourse_Without_TimeSlots_Throws()
     {
-        Entity.UpdateTimeSlots([]);
+        Entity.UpdateTimeSlots((IEnumerable<(CourseDay, int, int)>)[], a => a);
         Assert.Throws<AtLeastOneTimeSlotRequired>(() => Entity.Confirm());
     }
 }

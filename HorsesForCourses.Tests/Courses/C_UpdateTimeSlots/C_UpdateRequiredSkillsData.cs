@@ -8,7 +8,7 @@ public class C_UpdateTimeSlotsData : CourseDatabaseTests
     private void Act()
     {
         var context = GetDbContext();
-        Reload(context).UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday());
+        Reload(context).UpdateTimeSlots(TheCanonical.TimeSlotsFullDayMonday(), a => a);
         context.SaveChanges();
     }
 
@@ -16,6 +16,6 @@ public class C_UpdateTimeSlotsData : CourseDatabaseTests
     public void TimeSlots_can_be_updated()
     {
         Act();
-        Assert.Equal(TheCanonical.TimeSlotsFullDayMonday(), Reload().TimeSlots);
+        Assert.Equal(TheCanonical.TimeSlotsFullDayMondayExpected(), Reload().TimeSlots);
     }
 }

@@ -6,17 +6,14 @@ using HorsesForCourses.Api.Courses.GetCourses;
 using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Api.Warehouse.Paging;
-using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
-using HorsesForCourses.Core.Domain.Courses.OfficeHours;
-using HorsesForCourses.Core.Domain.Courses.TimeSlots;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorsesForCourses.Api.Courses;
 
 [ApiController]
 [Route("courses")]
-public partial class CoursesController : ControllerBase
+public class CoursesController : ControllerBase
 {
     private readonly IAmASuperVisor supervisor;
     private readonly IGetCourseById getCourseById;
@@ -62,12 +59,7 @@ public partial class CoursesController : ControllerBase
     {
         var course = await getCourseById.Load(id);
         if (course == null) return NotFound();
-        course.UpdateTimeSlots(
-            timeSlots.Select(
-                a => TimeSlot.From(
-                    a.Day,
-                    OfficeHour.From(a.Start),
-                    OfficeHour.From(a.End))).ToList());
+        course.UpdateTimeSlots(timeSlots, a => (a.Day, a.Start, a.End));
         await supervisor.Ship();
         return NoContent();
     }
