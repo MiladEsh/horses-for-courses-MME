@@ -1,3 +1,4 @@
+using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 using HorsesForCourses.Core.Domain.Courses.OfficeHours;
 
 namespace HorsesForCourses.Core.Domain.Courses.TimeSlots;

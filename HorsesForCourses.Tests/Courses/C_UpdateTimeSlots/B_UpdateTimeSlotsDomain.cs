@@ -1,5 +1,7 @@
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
+using HorsesForCourses.Core.Domain.Courses.OfficeHours;
+using HorsesForCourses.Core.Domain.Courses.TimeSlots;
 using HorsesForCourses.Tests.Tools;
 using HorsesForCourses.Tests.Tools.Courses;
 

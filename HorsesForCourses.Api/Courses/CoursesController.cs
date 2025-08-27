@@ -8,6 +8,8 @@ using HorsesForCourses.Api.Warehouse;
 using HorsesForCourses.Api.Warehouse.Paging;
 using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
+using HorsesForCourses.Core.Domain.Courses.OfficeHours;
+using HorsesForCourses.Core.Domain.Courses.TimeSlots;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorsesForCourses.Api.Courses;
