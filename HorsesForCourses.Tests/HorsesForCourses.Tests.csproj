@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="MoQ" Version="4.20.72" />
+    <PackageReference Include="QuickPulse.Show" Version="0.1.6" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
   </ItemGroup>
@@ -24,9 +25,5 @@
     <ProjectReference Include="..\HorsesForCourses.Core\HorsesForCourses.Core.csproj" />
     <ProjectReference Include="..\HorsesForCourses.Api\HorsesForCourses.Api.csproj" />
   </ItemGroup>
-
-   <ItemGroup>
-    <ProjectReference Include="..\..\QuickPulse.Show\QuickPulse.Show\QuickPulse.Show.csproj" />
-  </ItemGroup> 
 
 </Project>
