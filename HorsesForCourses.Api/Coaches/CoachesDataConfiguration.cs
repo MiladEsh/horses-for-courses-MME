@@ -8,30 +8,30 @@ namespace HorsesForCourses.Api.Coaches;
 
 public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
 {
-    public void Configure(EntityTypeBuilder<Coach> builder)
+    public void Configure(EntityTypeBuilder<Coach> coach)
     {
-        builder.HasKey(c => c.Id);
+        coach.HasKey(c => c.Id);
 
-        var idProp = builder.Property(c => c.Id)
+        var id = coach.Property(c => c.Id)
             .HasConversion(new IdValueConverter<Coach>())
             .Metadata;
-        idProp.SetValueComparer(new IdValueComparer<Coach>());
-        idProp.SetBeforeSaveBehavior(PropertySaveBehavior.Ignore);
-        idProp.SetAfterSaveBehavior(PropertySaveBehavior.Throw);
-        builder.Property(c => c.Id)
+        id.SetValueComparer(new IdValueComparer<Coach>());
+        id.SetBeforeSaveBehavior(PropertySaveBehavior.Ignore);
+        id.SetAfterSaveBehavior(PropertySaveBehavior.Throw);
+        coach.Property(c => c.Id)
             .ValueGeneratedOnAdd()
             .HasColumnType("INTEGER")
             .HasAnnotation("Sqlite:Autoincrement", true);
 
-        builder.Property(c => c.Name)
+        coach.Property(c => c.Name)
             .IsRequired()
             .HasMaxLength(100);
 
-        builder.Property(c => c.Email)
+        coach.Property(c => c.Email)
             .IsRequired()
             .HasMaxLength(100);
 
-        builder.OwnsMany(c => c.Skills, sb =>
+        coach.OwnsMany(c => c.Skills, sb =>
         {
             sb.WithOwner().HasForeignKey("CoachId");
 
@@ -45,6 +45,6 @@ public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
             sb.ToTable("CoachSkills");
         });
 
-        builder.ToTable("Coaches");
+        coach.ToTable("Coaches");
     }
 }

@@ -1,7 +1,6 @@
 using HorsesForCourses.Core.Abstractions;
-using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 
-namespace HorsesForCourses.Core.Domain;
+namespace HorsesForCourses.Core.Domain.Courses.OfficeHours;
 
 public record OfficeHour : ComparableValue<OfficeHour, int>
 {
@@ -9,7 +8,7 @@ public record OfficeHour : ComparableValue<OfficeHour, int>
 
     protected override int InnerValue => Value;
 
-    private OfficeHour() { } // For EF
+    private OfficeHour() { }
 
     private OfficeHour(int value)
     {

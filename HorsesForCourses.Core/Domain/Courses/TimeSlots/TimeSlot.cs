@@ -1,25 +1,21 @@
-using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
+using HorsesForCourses.Core.Domain.Courses.OfficeHours;
 
-namespace HorsesForCourses.Core.Domain;
+namespace HorsesForCourses.Core.Domain.Courses.TimeSlots;
 
 public record TimeSlot
 {
     public CourseDay Day { get; }
-
-    public int StartHour => Start.Value;
     public OfficeHour Start { get; } = OfficeHour.Empty;
-
-    public int EndHour => Start.Value;
     public OfficeHour End { get; } = OfficeHour.Empty;
 
     private TimeSlot() { }
-
     private TimeSlot(CourseDay day, OfficeHour start, OfficeHour end)
     {
         Day = day;
         Start = start;
         End = end;
     }
+
 
     public static TimeSlot From(CourseDay day, OfficeHour start, OfficeHour end)
     {
