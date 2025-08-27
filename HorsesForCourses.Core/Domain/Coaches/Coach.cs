@@ -16,16 +16,20 @@ public class Coach(string name, string email) : DomainEntity<Coach>
     private readonly List<Course> assignedCourses = [];
     public IReadOnlyCollection<Course> AssignedCourses => assignedCourses.AsReadOnly();
 
-    private static bool NotAllowedWhenThereAreDuplicateSkills(IEnumerable<string> skills)
-        => skills.NoDuplicatesAllowed(a => new CoachAlreadyHasSkill(string.Join(",", a)));
-
     public virtual void UpdateSkills(IEnumerable<string> skills)
     {
         NotAllowedWhenThereAreDuplicateSkills(skills);
-        Skills.Clear();
-        skills.Select(Skill.From)
-            .ToList()
-            .ForEach(a => Skills.Add(a));
+        OverwriteSkills(skills);
+        // ------------------------------------------------------------------------------------------------
+        static bool NotAllowedWhenThereAreDuplicateSkills(IEnumerable<string> skills)
+            => skills.NoDuplicatesAllowed(a => new CoachAlreadyHasSkill(string.Join(",", a)));
+        void OverwriteSkills(IEnumerable<string> skills)
+        {
+            Skills.Clear();
+            skills.Select(Skill.From)
+                .ToList()
+                .ForEach(a => Skills.Add(a));
+        }
     }
 
     public bool IsSuitableFor(Course course)
