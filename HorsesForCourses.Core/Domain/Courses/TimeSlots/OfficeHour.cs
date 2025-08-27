@@ -1,7 +1,7 @@
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Courses.InvalidationReasons;
 
-namespace HorsesForCourses.Core.Domain.Courses.OfficeHours;
+namespace HorsesForCourses.Core.Domain.Courses.TimeSlots;
 
 public record OfficeHour : ComparableValue<OfficeHour, int>
 {

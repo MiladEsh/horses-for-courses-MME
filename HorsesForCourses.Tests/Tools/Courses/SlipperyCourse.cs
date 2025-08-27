@@ -1,6 +1,4 @@
-using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Courses;
-using HorsesForCourses.Core.Domain.Courses.OfficeHours;
 using HorsesForCourses.Core.Domain.Courses.TimeSlots;
 
 namespace HorsesForCourses.Tests.Tools.Courses;

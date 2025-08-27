@@ -1,8 +1,6 @@
 using HorsesForCourses.Api.Courses.UpdateTimeSlots;
-using HorsesForCourses.Core.Domain;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
-using HorsesForCourses.Core.Domain.Courses.OfficeHours;
 using HorsesForCourses.Core.Domain.Courses.TimeSlots;
 using WibblyWobbly;
 

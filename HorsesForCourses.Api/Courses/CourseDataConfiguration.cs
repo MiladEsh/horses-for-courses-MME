@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.EntityFrameworkCore.Metadata;
 using HorsesForCourses.Core.Domain.Courses.TimeSlots;
-using HorsesForCourses.Core.Domain.Courses.OfficeHours;
 
 namespace HorsesForCourses.Api.Courses;
 

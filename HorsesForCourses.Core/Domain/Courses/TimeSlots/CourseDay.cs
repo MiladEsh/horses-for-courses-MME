@@ -1,4 +1,4 @@
-namespace HorsesForCourses.Core.Domain;
+namespace HorsesForCourses.Core.Domain.Courses.TimeSlots;
 
 public enum CourseDay
 {
