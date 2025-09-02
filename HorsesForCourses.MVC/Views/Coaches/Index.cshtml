@@ -1,0 +1,10 @@
+@model List<HorsesForCourses.MVC.ViewModels.CoachViewModel>
+
+<h2>Coaches</h2>
+
+<ul>
+@foreach (var coach in Model)
+{
+    <li>@coach.Name (@coach.Email)</li>
+}
+</ul>
