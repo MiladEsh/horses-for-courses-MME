@@ -17,8 +17,12 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-}
 
+}
+using (var scope = app.Services.CreateScope())
+{
+    scope.ServiceProvider.GetRequiredService<AppDbContext>().Database.EnsureCreated();
+}
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();

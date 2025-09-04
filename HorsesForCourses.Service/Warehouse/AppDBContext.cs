@@ -1,4 +1,3 @@
-using HorsesForCourses.Service.Coaches;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.EntityFrameworkCore;
