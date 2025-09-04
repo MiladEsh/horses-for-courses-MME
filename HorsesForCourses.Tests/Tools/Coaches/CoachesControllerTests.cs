@@ -1,6 +1,7 @@
 using HorsesForCourses.Api.Coaches;
 using HorsesForCourses.Api.Coaches.GetCoachDetail;
 using HorsesForCourses.Api.Coaches.GetCoaches;
+using HorsesForCourses.Service.Coaches.GetCoaches;
 using HorsesForCourses.Service.Warehouse;
 using HorsesForCourses.Service.Warehouse.Paging;
 using Moq;
@@ -13,7 +14,7 @@ public abstract class CoachesControllerTests
     protected readonly CoachesRepository repository;
     protected readonly Mock<IAmASuperVisor> supervisor;
     protected readonly Mock<IGetCoachById> coachQuery;
-    protected readonly Mock<IGetTheCoachSummaries> getCoachSummaries;
+    protected readonly Mock<IGetCoachSummaries> getCoachSummaries;
     protected readonly Mock<IGetTheCoachDetail> getCoachDetail;
     protected readonly CoachSpy spy;
 
@@ -22,7 +23,7 @@ public abstract class CoachesControllerTests
         getCoachDetail = new Mock<IGetTheCoachDetail>();
         getCoachDetail.Setup(a => a.One(TheCanonical.CoachId)).ReturnsAsync(new CoachDetail());
 
-        getCoachSummaries = new Mock<IGetTheCoachSummaries>();
+        getCoachSummaries = new Mock<IGetCoachSummaries>();
         getCoachSummaries.Setup(a => a.All(It.IsAny<PageRequest>()))
             .ReturnsAsync(new PagedResult<CoachSummary>([], 0, 1, 15));
 

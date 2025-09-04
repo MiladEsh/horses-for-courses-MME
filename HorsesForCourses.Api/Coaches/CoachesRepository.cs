@@ -1,5 +1,5 @@
 using HorsesForCourses.Api.Coaches.GetCoachDetail;
-using HorsesForCourses.Api.Coaches.GetCoaches;
+using HorsesForCourses.Service.Coaches.GetCoaches;
 using HorsesForCourses.Service.Warehouse;
 
 namespace HorsesForCourses.Api.Coaches;
@@ -9,7 +9,7 @@ public class CoachesRepository
     public CoachesRepository(
         IAmASuperVisor supervisor,
         IGetCoachById getCoachById,
-        IGetTheCoachSummaries getTheCoachSummaries,
+        IGetCoachSummaries getTheCoachSummaries,
         IGetTheCoachDetail getTheCoachDetail)
     {
         Supervisor = supervisor;
@@ -20,6 +20,6 @@ public class CoachesRepository
 
     public IAmASuperVisor Supervisor { get; }
     public IGetCoachById GetCoachById { get; }
-    public IGetTheCoachSummaries GetTheCoachSummaries { get; }
+    public IGetCoachSummaries GetTheCoachSummaries { get; }
     public IGetTheCoachDetail GetTheCoachDetail { get; }
 }
