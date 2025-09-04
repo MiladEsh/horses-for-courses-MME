@@ -1,4 +1,4 @@
-using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Service.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
 

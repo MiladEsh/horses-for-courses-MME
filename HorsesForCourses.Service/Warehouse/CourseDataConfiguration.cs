@@ -1,4 +1,3 @@
-using HorsesForCourses.Api.Warehouse;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using HorsesForCourses.Core.Domain.Courses;
@@ -6,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using HorsesForCourses.Core.Domain.Courses.TimeSlots;
 using HorsesForCourses.Core.ValidationHelpers;
 
-namespace HorsesForCourses.Api.Courses;
+namespace HorsesForCourses.Service.Warehouse;
 
 public class CourseDataConfiguration : IEntityTypeConfiguration<Course>
 {

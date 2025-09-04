@@ -1,10 +1,9 @@
-using HorsesForCourses.Api.Coaches;
-using HorsesForCourses.Api.Courses;
+using HorsesForCourses.Service.Coaches;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.EntityFrameworkCore;
 
-namespace HorsesForCourses.Api.Warehouse;
+namespace HorsesForCourses.Service.Warehouse;
 
 public class AppDbContext : DbContext
 {

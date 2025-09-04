@@ -1,7 +1,7 @@
 using HorsesForCourses.Api.Coaches;
 using HorsesForCourses.Api.Courses.GetCourseDetail;
 using HorsesForCourses.Api.Courses.GetCourses;
-using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Service.Warehouse;
 
 namespace HorsesForCourses.Api.Courses;
 

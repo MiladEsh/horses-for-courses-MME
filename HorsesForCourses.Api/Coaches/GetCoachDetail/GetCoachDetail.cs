@@ -1,5 +1,5 @@
 using HorsesForCourses.Api.Coaches.GetCoaches;
-using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Service.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.EntityFrameworkCore;

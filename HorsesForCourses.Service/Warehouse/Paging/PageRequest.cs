@@ -1,4 +1,4 @@
-namespace HorsesForCourses.Api.Warehouse.Paging;
+namespace HorsesForCourses.Service.Warehouse.Paging;
 
 public sealed record PageRequest(int PageNumber = 1, int PageSize = 25)
 {

@@ -1,7 +1,7 @@
 using HorsesForCourses.Core.Abstractions;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace HorsesForCourses.Api.Warehouse;
+namespace HorsesForCourses.Service.Warehouse;
 
 public class IdValueComparer<T> : ValueComparer<Id<T>>
 {

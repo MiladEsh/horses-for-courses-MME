@@ -1,6 +1,6 @@
-using HorsesForCourses.Api.Warehouse;
-using HorsesForCourses.Api.Warehouse.Paging;
+using HorsesForCourses.Service.Warehouse;
 using Microsoft.EntityFrameworkCore;
+using HorsesForCourses.Service.Warehouse.Paging;
 
 namespace HorsesForCourses.Api.Coaches.GetCoaches;
 

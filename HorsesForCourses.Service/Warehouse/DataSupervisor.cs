@@ -1,6 +1,6 @@
 using HorsesForCourses.Core.Abstractions;
 
-namespace HorsesForCourses.Api.Warehouse;
+namespace HorsesForCourses.Service.Warehouse;
 
 public interface IAmASuperVisor
 {

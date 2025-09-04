@@ -1,11 +1,11 @@
 using HorsesForCourses.Core.Domain.Coaches;
-using HorsesForCourses.Api.Warehouse;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata;
 using HorsesForCourses.Core.ValidationHelpers;
 
-namespace HorsesForCourses.Api.Coaches;
+
+namespace HorsesForCourses.Service.Warehouse;
 
 public class CoachesDataConfiguration : IEntityTypeConfiguration<Coach>
 {

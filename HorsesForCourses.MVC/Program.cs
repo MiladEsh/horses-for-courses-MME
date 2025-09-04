@@ -1,4 +1,4 @@
-using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Service.Warehouse;
 using HorsesForCourses.Service.Coaches;
 using Microsoft.EntityFrameworkCore;
 

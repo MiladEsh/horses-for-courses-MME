@@ -1,7 +1,7 @@
 using HorsesForCourses.Core.Abstractions;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace HorsesForCourses.Api.Warehouse;
+namespace HorsesForCourses.Service.Warehouse;
 
 public class IdValueConverter<T> : ValueConverter<Id<T>, int>
 {

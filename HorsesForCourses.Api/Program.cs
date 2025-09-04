@@ -7,7 +7,7 @@ using HorsesForCourses.Api.Coaches.GetCoaches;
 using HorsesForCourses.Api.Courses;
 using HorsesForCourses.Api.Courses.GetCourseDetail;
 using HorsesForCourses.Api.Courses.GetCourses;
-using HorsesForCourses.Api.Warehouse;
+using HorsesForCourses.Service.Warehouse;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

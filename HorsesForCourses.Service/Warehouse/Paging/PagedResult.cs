@@ -1,4 +1,4 @@
-namespace HorsesForCourses.Api.Warehouse.Paging;
+namespace HorsesForCourses.Service.Warehouse.Paging;
 
 public sealed record PagedResult<T>(
     IReadOnlyList<T> Items,
