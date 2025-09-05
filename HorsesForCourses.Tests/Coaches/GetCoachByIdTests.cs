@@ -1,6 +1,7 @@
 using HorsesForCourses.Service.Coaches.GetCoaches;
 using HorsesForCourses.Core.Domain.Coaches;
 using HorsesForCourses.Tests.Tools;
+using HorsesForCourses.Service.Coaches;
 
 
 namespace HorsesForCourses.Tests.Coaches;

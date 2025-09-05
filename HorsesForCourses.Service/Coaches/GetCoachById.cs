@@ -2,7 +2,7 @@ using HorsesForCourses.Service.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
 
-namespace HorsesForCourses.Service.Coaches.GetCoaches;
+namespace HorsesForCourses.Service.Coaches;
 
 public interface IGetCoachById
 {

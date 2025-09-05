@@ -6,6 +6,7 @@ using HorsesForCourses.Service.Coaches.GetCoachDetail;
 using HorsesForCourses.Service.Courses.GetCourses;
 using HorsesForCourses.Service.Courses.GetCourseDetail;
 using Microsoft.EntityFrameworkCore;
+using HorsesForCourses.MVC.Controllers;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +28,9 @@ builder.Services
     .AddScoped<IGetTheCourseDetail, GetCourseDetail>()
 
     .AddScoped<CoachesRepository>()
-    .AddScoped<CoursesRepository>();
+    .AddScoped<CoursesRepository>()
+
+    .AddScoped<CoachesService>();
 
 var app = builder.Build();
 

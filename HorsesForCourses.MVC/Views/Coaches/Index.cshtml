@@ -4,6 +4,22 @@
 
 <h2>Coaches</h2>
 
+<form asp-controller="Coaches" asp-action="RegisterCoach" method="post" class="mb-3">
+    <div class="row g-2 align-items-end">
+        <div class="col-auto">
+            <label for="Name" class="form-label mb-0">Name</label>
+            <input id="Name" name="Name" class="form-control" />
+        </div>
+        <div class="col-auto">
+            <label for="Email" class="form-label mb-0">Email</label>
+            <input id="Email" name="Email" type="email" class="form-control" />
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Register coach</button>
+        </div>
+    </div>
+</form>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -21,6 +37,7 @@
                 <td>@coach.Name</td>
                 <td>@coach.Email</td>
                 <td>@coach.NumberOfCoursesAssignedTo</td>
+                <td><a class="nav-link text-dark" asp-area="" asp-controller="Controller" asp-action="CoachesController" asp-route-itemid="=@coach.Id">Details</a></td>
             </tr>
         }
     </tbody>

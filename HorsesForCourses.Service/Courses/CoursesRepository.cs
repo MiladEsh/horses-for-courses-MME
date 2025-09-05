@@ -1,4 +1,4 @@
-using HorsesForCourses.Service.Coaches.GetCoaches;
+using HorsesForCourses.Service.Coaches;
 using HorsesForCourses.Service.Courses.GetCourseDetail;
 using HorsesForCourses.Service.Courses.GetCourses;
 using HorsesForCourses.Service.Warehouse;

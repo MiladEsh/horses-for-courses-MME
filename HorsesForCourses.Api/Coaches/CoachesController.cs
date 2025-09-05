@@ -5,22 +5,19 @@ using HorsesForCourses.Api.Coaches.UpdateSkills;
 using HorsesForCourses.Service.Warehouse.Paging;
 using HorsesForCourses.Service.Coaches;
 
+
 namespace HorsesForCourses.Api.Coaches;
 
 [ApiController]
 [Route("coaches")]
-public class CoachesController(CoachesRepository repository) : ControllerBase
+public class CoachesController(CoachesRepository repository, CoachesService service) : ControllerBase
 {
     private readonly CoachesRepository repository = repository;
+    private readonly CoachesService service = service;
 
     [HttpPost]
     public async Task<IActionResult> RegisterCoach(RegisterCoachRequest request)
-    {
-        var coach = new Coach(request.Name, request.Email);
-        await repository.Supervisor.Enlist(coach);
-        await repository.Supervisor.Ship();
-        return Ok(coach.Id.Value);
-    }
+        => Ok(await service.RegisterCoach(request.Name, request.Email));
 
     [HttpPost("{id}/skills")]
     public async Task<IActionResult> UpdateSkills(int id, UpdateSkillsRequest request)

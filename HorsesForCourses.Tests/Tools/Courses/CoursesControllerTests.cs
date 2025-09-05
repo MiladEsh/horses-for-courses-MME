@@ -7,6 +7,7 @@ using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Service.Warehouse;
 using HorsesForCourses.Service.Warehouse.Paging;
 using Moq;
+using HorsesForCourses.Service.Coaches;
 
 namespace HorsesForCourses.Tests.Tools.Courses;
 

@@ -37,6 +37,9 @@ public abstract class CoachesControllerTests
             coachQuery.Object,
             getCoachSummaries.Object,
             getCoachDetail.Object);
-        controller = new CoachesController(repository);
+        controller = new CoachesController(
+            repository,
+            new CoachesService(getCoachSummaries.Object, getCoachDetail.Object, repository)
+        );
     }
 }
