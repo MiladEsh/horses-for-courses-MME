@@ -1,6 +1,8 @@
 using HorsesForCourses.Service.Warehouse;
-using Microsoft.EntityFrameworkCore;
 using HorsesForCourses.Service.Coaches.GetCoaches;
+using HorsesForCourses.Service.Coaches.GetCoachDetail;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,18 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=horsesforcourses.db"));
 
 builder.Services
-    .AddScoped<IGetCoachSummaries, GetCoachSummaries>();
+    .AddScoped<IAmASuperVisor, DataSupervisor>()
+
+    .AddScoped<IGetCoachById, GetCoachById>()
+    .AddScoped<IGetCoachSummaries, GetCoachSummaries>()
+    .AddScoped<IGetTheCoachDetail, GetCoachDetail>()
+
+    .AddScoped<IGetCourseById, GetCourseById>()
+    .AddScoped<IGetTheCourseSummaries, GetCourseSummaries>()
+    .AddScoped<IGetTheCourseDetail, GetCourseDetail>()
+
+    .AddScoped<CoachesRepository>()
+    .AddScoped<CoursesRepository>();
 
 var app = builder.Build();
 

@@ -1,10 +1,9 @@
-using HorsesForCourses.Api.Coaches.GetCoaches;
 using HorsesForCourses.Service.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Coaches;
 using Microsoft.EntityFrameworkCore;
 
-namespace HorsesForCourses.Api.Coaches.GetCoachDetail;
+namespace HorsesForCourses.Service.Coaches.GetCoachDetail;
 
 public interface IGetTheCoachDetail
 {

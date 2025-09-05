@@ -1,4 +1,4 @@
-namespace HorsesForCourses.Api.Coaches.GetCoaches;
+namespace HorsesForCourses.Service.Coaches.GetCoachDetail;
 
 public record CoachDetail
 {
