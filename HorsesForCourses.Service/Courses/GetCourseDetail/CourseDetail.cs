@@ -1,6 +1,6 @@
 using HorsesForCourses.Core.Domain.Courses.TimeSlots;
 
-namespace HorsesForCourses.Api.Courses.GetCourseDetail;
+namespace HorsesForCourses.Service.Courses.GetCourseDetail;
 
 public record CourseDetail
 {

@@ -1,9 +1,9 @@
-using HorsesForCourses.Api.Coaches;
-using HorsesForCourses.Api.Courses.GetCourseDetail;
-using HorsesForCourses.Api.Courses.GetCourses;
+using HorsesForCourses.Service.Coaches.GetCoaches;
+using HorsesForCourses.Service.Courses.GetCourseDetail;
+using HorsesForCourses.Service.Courses.GetCourses;
 using HorsesForCourses.Service.Warehouse;
 
-namespace HorsesForCourses.Api.Courses;
+namespace HorsesForCourses.Service.Courses;
 
 public class CoursesRepository
 {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using HorsesForCourses.Api.Coaches.RegisterCoach;
 using HorsesForCourses.Api.Coaches.UpdateSkills;
 using HorsesForCourses.Service.Warehouse.Paging;
+using HorsesForCourses.Service.Coaches;
 
 namespace HorsesForCourses.Api.Coaches;
 

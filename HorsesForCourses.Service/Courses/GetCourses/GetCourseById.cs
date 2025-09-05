@@ -2,7 +2,7 @@ using HorsesForCourses.Service.Warehouse;
 using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Courses;
 
-namespace HorsesForCourses.Api.Courses;
+namespace HorsesForCourses.Service.Courses.GetCourses;
 
 public interface IGetCourseById
 {

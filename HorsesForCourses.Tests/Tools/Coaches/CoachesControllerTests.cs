@@ -1,5 +1,5 @@
 using HorsesForCourses.Api.Coaches;
-using HorsesForCourses.Api.Coaches.GetCoaches;
+using HorsesForCourses.Service.Coaches;
 using HorsesForCourses.Service.Coaches.GetCoachDetail;
 using HorsesForCourses.Service.Coaches.GetCoaches;
 using HorsesForCourses.Service.Warehouse;

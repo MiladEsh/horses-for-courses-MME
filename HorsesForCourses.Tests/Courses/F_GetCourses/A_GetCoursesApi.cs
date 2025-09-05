@@ -1,4 +1,4 @@
-using HorsesForCourses.Api.Courses.GetCourses;
+using HorsesForCourses.Service.Courses.GetCourses;
 using HorsesForCourses.Service.Warehouse.Paging;
 using HorsesForCourses.Tests.Tools.Courses;
 using Microsoft.AspNetCore.Mvc;

@@ -2,7 +2,7 @@ using HorsesForCourses.Service.Coaches.GetCoachDetail;
 using HorsesForCourses.Service.Coaches.GetCoaches;
 using HorsesForCourses.Service.Warehouse;
 
-namespace HorsesForCourses.Api.Coaches;
+namespace HorsesForCourses.Service.Coaches;
 
 public class CoachesRepository
 {

@@ -3,6 +3,7 @@ using HorsesForCourses.Api.Courses.CreateCourse;
 using HorsesForCourses.Api.Courses.UpdateTimeSlots;
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Service.Warehouse.Paging;
+using HorsesForCourses.Service.Courses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorsesForCourses.Api.Courses;

@@ -1,4 +1,4 @@
-using HorsesForCourses.Api.Courses;
+using HorsesForCourses.Service.Courses.GetCourses;
 using HorsesForCourses.Core.Domain.Courses;
 using HorsesForCourses.Tests.Tools;
 

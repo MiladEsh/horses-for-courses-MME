@@ -3,7 +3,7 @@ using HorsesForCourses.Core.Abstractions;
 using HorsesForCourses.Core.Domain.Courses;
 using Microsoft.EntityFrameworkCore;
 
-namespace HorsesForCourses.Api.Courses.GetCourseDetail;
+namespace HorsesForCourses.Service.Courses.GetCourseDetail;
 
 public interface IGetTheCourseDetail
 {

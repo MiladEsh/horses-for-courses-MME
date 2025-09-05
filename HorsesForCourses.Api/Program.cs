@@ -1,12 +1,12 @@
 
 using System.Text.Json.Serialization;
 using HorsesForCourses.Api;
-using HorsesForCourses.Api.Coaches;
-using HorsesForCourses.Api.Courses;
-using HorsesForCourses.Api.Courses.GetCourseDetail;
-using HorsesForCourses.Api.Courses.GetCourses;
+using HorsesForCourses.Service.Coaches;
+using HorsesForCourses.Service.Courses;
 using HorsesForCourses.Service.Coaches.GetCoachDetail;
 using HorsesForCourses.Service.Coaches.GetCoaches;
+using HorsesForCourses.Service.Courses.GetCourseDetail;
+using HorsesForCourses.Service.Courses.GetCourses;
 using HorsesForCourses.Service.Warehouse;
 using Microsoft.EntityFrameworkCore;
 

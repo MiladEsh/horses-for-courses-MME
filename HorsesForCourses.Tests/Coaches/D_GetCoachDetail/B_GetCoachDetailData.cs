@@ -1,4 +1,3 @@
-using HorsesForCourses.Api.Coaches.GetCoachDetail;
 using HorsesForCourses.Service.Coaches.GetCoachDetail;
 using HorsesForCourses.Tests.Tools;
 

@@ -1,6 +1,10 @@
 using HorsesForCourses.Service.Warehouse;
+using HorsesForCourses.Service.Coaches;
+using HorsesForCourses.Service.Courses;
 using HorsesForCourses.Service.Coaches.GetCoaches;
 using HorsesForCourses.Service.Coaches.GetCoachDetail;
+using HorsesForCourses.Service.Courses.GetCourses;
+using HorsesForCourses.Service.Courses.GetCourseDetail;
 using Microsoft.EntityFrameworkCore;
 
 

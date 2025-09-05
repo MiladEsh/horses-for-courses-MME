@@ -2,7 +2,7 @@ using HorsesForCourses.Service.Warehouse;
 using Microsoft.EntityFrameworkCore;
 using HorsesForCourses.Service.Warehouse.Paging;
 
-namespace HorsesForCourses.Api.Courses.GetCourses;
+namespace HorsesForCourses.Service.Courses.GetCourses;
 
 public interface IGetTheCourseSummaries
 {

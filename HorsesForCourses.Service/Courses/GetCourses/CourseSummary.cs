@@ -1,4 +1,4 @@
-namespace HorsesForCourses.Api.Courses.GetCourses;
+namespace HorsesForCourses.Service.Courses.GetCourses;
 
 public record CourseSummary(
     int Id,
